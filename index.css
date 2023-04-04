@@ -11,8 +11,11 @@
     --blue-gray: #b3c4c8;
 }
 
-html,
 * {
+    font-family: "Jost", sans-serif;
+}
+
+h1 {
     font-family: "Jost", sans-serif;
     box-sizing: border-box;
 }

@@ -1,3 +1,25 @@
+:root {
+    /* Color styles */
+    --blue-light: #1d5f6b;
+    --blue-regular: #18515c;
+    --blue-dark: #11373f;
+    --coral-light: #f7645d;
+    --primary: #1d5f6b;
+    --white: #ffffff;
+    --blue-gray: #b3c4c8;
+}
+
+* {
+    font-family: "Jost", sans-serif;
+}
+
 h1 {
+    font-family: "Jost";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 35px;
     text-align: center;
+    text-transform: uppercase;
+    color: #000000;
 }

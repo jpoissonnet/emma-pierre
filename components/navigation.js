@@ -17,6 +17,9 @@ class Navigation extends HTMLElement {
           backdrop-filter: blur(15px);
           box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
         }
+        :host * {
+         transition: all 0.3s ease;
+        }
         :host nav{
           display: flex;
           flex-direction: row;
@@ -48,20 +51,19 @@ class Navigation extends HTMLElement {
         }
 
         :host .drawer{
-            display: none;
-        }
-        :host .drawer:has(.open){
-          display: block;
           position: absolute;
           content: "";
           top: 0;
-          left: 0;
-          width: calc(100% - 36px);
+          left: -100%;
+          width: 75%;
           height: 100vh;
           overflow: hidden;
           background: #ffffff;
-          box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
           padding: 20px;
+        }
+        :host .drawer.open{
+          left: 0;
+          box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
         }
 
         :host nav .drawer ul{
@@ -103,7 +105,7 @@ class Navigation extends HTMLElement {
 
       </style>
       <nav>
-          <button class="mobile-link">🍔</button>
+          <button class="mobile-link" id="menu">🍔</button>
           <img src="https://haudrey.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fabc3cfef-58c0-40c1-b855-7d59d6a7925d%2FEP-logo-DEF-carre.png?id=c4206b66-9240-4498-b79d-34fac4501f7d&table=block&spaceId=13fec3ef-4892-4045-a9dd-26c7528efbeb&width=2000&userId=&cache=v2" alt="logo emma pierre" />
           <span class="mobile-link">panier</span>
           <ul>
@@ -134,8 +136,15 @@ class Navigation extends HTMLElement {
     }
 
     connectedCallback() {
-        this.shadowRoot.querySelector('.mobile-link').addEventListener('click', () => {
-                console.log("coucou");
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 0) {
+                this.shadowRoot.querySelector('nav').classList.add('scrolled');
+            }
+            if(window.scrollY === 0) {
+                this.shadowRoot.querySelector('nav').classList.remove('scrolled');
+            }
+        });
+        this.shadowRoot.querySelector('#menu').addEventListener('click', () => {
                 this.shadowRoot.querySelector('.drawer').classList.add('open');
                 this.shadowRoot.querySelector('#close-drawer').addEventListener('click', () => {
                     this.shadowRoot.querySelector('.drawer').classList.remove('open');

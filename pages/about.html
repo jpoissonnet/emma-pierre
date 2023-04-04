@@ -15,13 +15,13 @@
 </head>
 
 <body>
-    <navigation></navigation>
+    <c-nav></c-nav>
 
     <h1>portrait</h1>
     <section>
         <img src="../assets/images/emma.png" loading="lazy" alt="Photo of Emma" />
         <article>
-            <h1>L'histoire d'Emma</h1>
+            <h2>L'histoire d'Emma</h2>
             <div class="content">
                 <p>
                     Lorem ipsum dolor sit amet consectetur. Ut elit quisque ullamcorper malesuada cursus neque
@@ -45,8 +45,9 @@
     </section>
 
     <section>
+        <img src="../assets/images/lab.png" loading="lazy" alt="Photo of Lab" />
         <article>
-            <h1>Fabriquer, c'est transmettre</h1>
+            <h2>Fabriquer, c'est transmettre</h2>
             <div class="content">
                 <p>
                     Lorem ipsum dolor sit amet consectetur. Ut elit quisque ullamcorper malesuada cursus neque
@@ -67,30 +68,32 @@
                 </p>
             </div>
         </article>
-        <img src="../assets/images/lab.png" loading="lazy" alt="Photo of Lab" />
     </section>
 </body>
 
-<!-- <script src="./components/navigation.js"></script> -->
+<script src="../components/navigation.js"></script>
 
 </html>
 
 <style>
+    h1 {
+        padding: 10px;
+        margin: 0;
+    }
+
     section {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 66px;
+        width: 100%;
         padding: 25px;
-        height: 400px;
-        overflow: hidden;
     }
 
     img {
         padding: 0;
         margin: 0;
-        width: auto;
+        width: 100%;
         height: 100%;
     }
 
@@ -111,15 +114,32 @@
         align-self: center;
     }
 
-    .content>p {
+    .content p {
         font-size: 14px;
         text-align: left;
         max-width: 500px;
     }
 
-    h1 {
+    .content h2 {
         align-self: top;
         margin: 0;
         padding: 0;
+    }
+
+    @media (min-width: 768px) {
+        section {
+            flex-direction: row;
+            justify-content: space-around;
+            height: 400px;
+        }
+
+        img {
+            width: auto;
+            height: 100%;
+        }
+
+        section:nth-of-type(2) {
+            flex-direction: row-reverse !important;
+        }
     }
 </style>

@@ -1,12 +1,12 @@
 class Navigation extends HTMLElement {
     constructor() {
         super();
-        window.addEventListener('scroll', () => {
+        window.addEventListener("scroll", () => {
             if (window.scrollY > 0) {
-                this.shadowRoot.querySelector('nav').classList.add('scrolled');
+                this.shadowRoot.querySelector("nav").classList.add("scrolled");
             }
-            if(window.scrollY === 0) {
-                this.shadowRoot.querySelector('nav').classList.remove('scrolled');
+            if (window.scrollY === 0) {
+                this.shadowRoot.querySelector("nav").classList.remove("scrolled");
             }
         });
         this.attachShadow({ mode: "open" });
@@ -58,14 +58,14 @@ class Navigation extends HTMLElement {
             <li><a href="/">Impertinentes</a></li>
             <li><a href="/">Uniques</a></li>
             <li><a href="/">Par couleur</a></li>
-            <li><a href="/">A propos</a></li>
+            <li><a href="pages/about.html">A propos</a></li>
             <li><a href="/">Blog</a></li>
             <li><a href="/">Contact</a></li>
           </ul>
       </nav>
     `;
     }
-
 }
 
 customElements.define("c-nav", Navigation);
+

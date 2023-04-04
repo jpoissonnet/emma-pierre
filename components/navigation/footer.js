@@ -4,17 +4,20 @@ class Footer extends HTMLElement {
         this.attachShadow({ mode: "open" });
         this.shadowRoot.innerHTML = `
         <style>
+            * {
+            box-sizing: border-box;
+            }
           footer {
-            font-family: 'Jost', sans-serif;
-            font-family: 'Playfair Display', serif;
+            position: fixed;
             font-family: 'Urbanist', sans-serif;
             display:flex;
             flex-direction: row;
             justify-content: space-between;
             padding: 20px 50px;
+            width: 100%;
             color: black;
-            bottom: 0px;
-            margin: 0px auto;
+            bottom: 0;
+            margin: 0 auto;
           }
           .logo {
             display: block;
@@ -34,7 +37,7 @@ class Footer extends HTMLElement {
           ul {
             list-style: none;
             padding: 0;
-            margin: 0px 20px;
+            margin: 0 20px;
           }
           li {
             display: block;
@@ -53,12 +56,11 @@ class Footer extends HTMLElement {
             }
         .reseau {
             display: flex;
-            justify-content: row;
             }
         </style>
         <footer>
-            <div class="logo"> 
-                <a><img class="logo" src="./assets/images/logo.png" alt=""></a>
+            <div class="logo">
+                <a><img class="logo" src="/assets/images/logo.png" alt=""></a>
             </div>
             <div class="list">
                 <ul>
@@ -82,17 +84,15 @@ class Footer extends HTMLElement {
                     <li><a>3 Rue des blés, 69000 Lyon</a></li>
                     <div class="reseau">
                         <li>
-                            <a href=""><img class="reseau_soc" src="./assets/images/instagram.png" alt="instagram" /></a>
+                            <a href=""><img class="reseau_soc" src="/assets/images/instagram.png" alt="instagram" /></a>
                         </li>
                         <li>
-                            <a href=""><img class="reseau_soc" src="./assets/images/facebook.png" alt="" /></a>
+                            <a href=""><img class="reseau_soc" src="/assets/images/facebook.png" alt="" /></a>
                         </li>
                     </div>
-                    
+
                 </ul>
             </div>
-           
-            
         </footer>
       `;
     }

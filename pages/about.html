@@ -21,7 +21,7 @@
     <section>
         <img src="../assets/images/emma.png" loading="lazy" alt="Photo of Emma" />
         <article>
-            <h1>L'histoire d'Emma</h1>
+            <h2>L'histoire d'Emma</h2>
             <div class="content">
                 <p>
                     Lorem ipsum dolor sit amet consectetur. Ut elit quisque ullamcorper malesuada cursus neque
@@ -46,7 +46,7 @@
 
     <section>
         <article>
-            <h1>Fabriquer, c'est transmettre</h1>
+            <h2>Fabriquer, c'est transmettre</h2>
             <div class="content">
                 <p>
                     Lorem ipsum dolor sit amet consectetur. Ut elit quisque ullamcorper malesuada cursus neque
@@ -76,6 +76,11 @@
 </html>
 
 <style>
+    h1 {
+        padding: 10px;
+        margin: 0;
+    }
+
     section {
         display: flex;
         flex-direction: row;
@@ -111,13 +116,13 @@
         align-self: center;
     }
 
-    .content>p {
+    .content p {
         font-size: 14px;
         text-align: left;
         max-width: 500px;
     }
 
-    h1 {
+    .content h2 {
         align-self: top;
         margin: 0;
         padding: 0;

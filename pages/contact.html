@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Emma Pierre's Jewelry Shop" />
+    <!-- KEYWORDS TO COMPLETE -->
+    <meta name="keywords" content="Bijoux, Pierre précieuse, Jewelry" />
+    <meta name="author" content="ESGI's Brahim, Cihan Jules and Kenza" />
+    <link rel="icon" href="../assets/images/favicon_io/favicon.ico" />
+    <link rel="stylesheet" href="../index.css" />
+    <title>Emma Pierre - Contact</title>
+</head>
+
+<body>
+    <c-nav></c-nav>
+
+    <section>
+        <img src="../assets/images/contact.png" loading="lazy" alt="Photo of Emma" />
+        <article>
+            <h1>Contactez-nous</h1>
+            <div class="content">
+                <p>Merci de me contacter en indiquant votre numéro de commande et/ou votre question.</p>
+
+                <p>Je traiterai votre demande sous <strong>24h à 72h ouvrés.</strong></p>
+
+                <p>
+                    N'hésitez pas à me contacter pour toutes vos questions éventuelles à emmapierre@contact.fr ou
+                    remplir le formulaire ci-dessous.
+                </p>
+            </div>
+            <form action="submit">
+                <div class="input">
+                    <label class="input-label" for="subject">Sujet</label>
+                    <input type="text" name="subject" id="subject" required />
+                </div>
+
+                <div class="input">
+                    <label class="input-label" for="email">Email</label>
+                    <input type="email" name="email" id="email" required />
+                </div>
+
+                <div class="input">
+                    <label class="input-label" for="file">Joindre un document</label>
+                    <div class="input-file">
+                        <input type="email" name="email" id="email" required />
+                        <label for="file">🔗 JOINDRE UN FICHIER</label>
+                    </div>
+                </div>
+
+                <div class="input-area">
+                    <label class="input-label" for="message">Message</label>
+                    <textarea name="message" id="message" rows="7" required></textarea>
+                </div>
+
+                <button>Valider</button>
+            </form>
+        </article>
+    </section>
+</body>
+
+<script src="../components/navigation.js"></script>
+
+</html>
+
+<style>
+    h1 {
+        text-align: left;
+        margin: 0;
+        margin-bottom: 25px;
+    }
+
+    p {
+        text-align: left;
+        letter-spacing: 1.2px;
+        font-size: 16px;
+        margin: 0;
+        padding: 5px;
+    }
+
+    section {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 40px;
+        padding: 25px;
+        overflow: hidden;
+    }
+
+    article {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+    }
+
+    img {
+        padding: 0;
+        margin: 0;
+        width: auto;
+        height: 100%;
+    }
+
+    form {
+        padding: 15px 0px;
+    }
+
+    .input {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    .input-file {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .input-file label:hover {
+        background-color: var(--primary);
+        color: #fff;
+    }
+
+    .input input,
+    .input-area textarea {
+        padding: 8px 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 15px;
+        transition: all 0.3s ease-in-out;
+        resize: none;
+    }
+
+    .input>label,
+    .input-area label {
+        margin-bottom: 5px;
+        text-transform: uppercase;
+        font-size: 18px;
+    }
+
+    .input-file label {
+        color: var(--primary);
+        font-weight: 500;
+        border: solid 2px var(--primary);
+        padding: 8px 35px;
+        border-radius: 5px;
+        font-size: 15px;
+        text-transform: uppercase;
+        cursor: pointer;
+        flex-grow: 1;
+        text-align: center;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .input-area {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    button {
+        background-color: var(--primary);
+        color: #fff;
+        border: none;
+        padding: 8px 35px;
+        border-radius: 5px;
+        font-size: 15px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+    }
+</style>

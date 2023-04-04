@@ -126,7 +126,7 @@ class Navigation extends HTMLElement {
                 <li><a href="/">Impertinentes</a></li>
                 <li><a href="/">Uniques</a></li>
                 <li><a href="/">Par couleur</a></li>
-                <li><a href="/">A propos</a></li>
+                <li><a href="/pages/about.html">A propos</a></li>
                 <li><a href="/">Blog</a></li>
                 <li><a href="/">Contact</a></li>
           </ul>

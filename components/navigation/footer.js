@@ -58,7 +58,7 @@ class Footer extends HTMLElement {
         </style>
         <footer>
             <div class="logo"> 
-                <a><img class="logo" src="/emma-pierre/assets/images/logo.png" alt=""></a>
+                <a><img class="logo" src="./assets/images/logo.png" alt=""></a>
             </div>
             <div class="list">
                 <ul>
@@ -82,10 +82,10 @@ class Footer extends HTMLElement {
                     <li><a>3 Rue des blés, 69000 Lyon</a></li>
                     <div class="reseau">
                         <li>
-                            <a href=""><img class="reseau_soc" src="/emma-pierre/assets/images/instagram.png" alt="instagram" /></a>
+                            <a href=""><img class="reseau_soc" src="./assets/images/instagram.png" alt="instagram" /></a>
                         </li>
                         <li>
-                            <a href=""><img class="reseau_soc" src="/emma-pierre/assets/images/facebook.png" alt="" /></a>
+                            <a href=""><img class="reseau_soc" src="./assets/images/facebook.png" alt="" /></a>
                         </li>
                     </div>
                     

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Emma Pierre's Jewelry Shop" />
+    <!-- KEYWORDS TO COMPLETE -->
+    <meta name="keywords" content="Bijoux, Pierre précieuse, Jewelry" />
+    <meta name="author" content="ESGI's Brahim, Cihan Jules and Kenza" />
+    <link rel="icon" href="../assets/images/favicon_io/favicon.ico" />
+    <link rel="stylesheet" href="../index.css" />
+    <title>Emma Pierre - Panier</title>
+    <link rel="stylesheet" href="panier.scss">
+</head>
+
+<body>
+    <c-nav></c-nav>
+    <h1>Mon panier</h1>
+    <h3>Produit</h3>
+
+    <div class="shopping-cart">
+
+        <div class="column-labels">
+            <label class="product-image">Produit</label>
+            <label class="product-details">Produit</label>
+            <label class="product-quantity">Quantité</label>
+            <label class="product-price">Prix</label>
+            <label class="product-removal">Remove</label>
+            <label class="product-line-price">Total</label>
+        </div>
+
+        <div class="product">
+            <div class="product-image">
+                <img src="../assets/images/25555.jpeg">
+            </div>
+            <div class="product-details">
+                <div class="product-title">Boucles d'oreilles N950</div>
+                <p class="product-description">Plaqué OR - XS</p>
+            </div>
+            <div class="product-quantity">
+                <input type="number" value="2" min="1">
+            </div>
+            <div class="product-price">89,00€</div>
+            <div class="product-removal">
+                <button class="remove-product">
+                    Remove
+                </button>
+            </div>
+            <div class="product-line-price">25.98</div>
+        </div>
+
+        <div class="totals">
+            <div class="totals-item">
+                <label>Frais de port</label>
+                <div class="totals-value" id="cart-subtotal">OFFERT</div>
+            </div>
+            <div class="totals-item totals-item-total">
+                <label>Total</label>
+                <div class="totals-value" id="cart-total">89,00€</div>
+            </div>
+        </div>
+
+        <button class="checkout">Valider</button>
+
+    </div>
+
+</body>
+<script src="../components/navigation.js"></script>
+
+</html>
+
+<style>
+    h1,
+    h3 {
+        display: flex;
+        margin-left: 20px;
+    }
+
+    .product-image {
+        float: left;
+        width: 20%;
+    }
+
+    .product-details {
+        float: left;
+        width: 37%;
+    }
+
+    .product-price {
+        float: left;
+        width: 12%;
+    }
+
+    .product-quantity {
+        float: left;
+        width: 10%;
+        display: grid;
+    }
+
+    .product-removal {
+        float: left;
+        width: 9%;
+    }
+
+    .product-line-price {
+        float: left;
+        width: 12%;
+        text-align: right;
+    }
+
+    .column-labels {
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        display: flex;
+        margin-left: 20px;
+        border-bottom: 1px solid;
+    }
+
+    .column-labels .product-details {
+        visibility: hidden;
+    }
+
+    .column-labels .product-price {
+        margin-left: 50px;
+    }
+
+    .product .product-image {
+        text-align: center;
+        display: flex;
+        margin-left: 20px;
+    }
+
+    .product .product-image img {
+        width: 200px;
+    }
+
+    .product .product-details .product-title {
+        color: #1D5F6B;
+        text-transform: uppercase;
+        margin-left: -5px;
+    }
+
+    .product .product-details .product-description {
+        margin: 5px 20px 5px 0;
+        line-height: 1em;
+        color: #1D5F6B;
+        text-transform: uppercase;
+        margin-left: -5px;
+
+    }
+
+    .product .product-price {
+        margin: 5px 20px 5px 0;
+        line-height: 1em;
+        text-transform: uppercase;
+    }
+
+    .product-quantity input {
+        width: 40px;
+    }
+
+    .product .remove-product {
+        border: 0;
+        padding: 4px 8px;
+        background-color: #c66;
+        color: #fff;
+        font-size: 12px;
+        border-radius: 3px;
+    }
+
+    .product .remove-product:hover {
+        background-color: #a44;
+    }
+
+    .totals .totals-item {
+        float: right;
+        clear: both;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .totals .totals-item label {
+        float: left;
+        clear: both;
+        width: 79%;
+        text-align: right;
+    }
+
+    .totals .totals-item .totals-value {
+        float: right;
+        width: 21%;
+        text-align: right;
+    }
+</style>

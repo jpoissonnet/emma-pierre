@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <c-nav></c-nav>
+    <!-- <c-nav></c-nav> -->
 
     <section>
         <img src="../assets/images/contact.png" loading="lazy" alt="Photo of Emma" />
@@ -180,11 +180,11 @@
         border: solid 2px var(--primary);
     }
 
-    #file-mobile-show {
+    #file-mobile {
         display: none;
     }
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 1156px) {
         section {
             flex-direction: row;
             gap: 40px;
@@ -192,14 +192,44 @@
 
         article {
             width: 50%;
+            justify-content: space-between;
         }
 
         img {
-            width: 100%;
-            height: auto;
+            width: auto;
+            height: 800px;
         }
 
         #file-mobile-show {
+            display: none;
+        }
+
+        #file-mobile {
+            display: block;
+        }
+    }
+
+    @media screen and (min-width: 1125px) and (max-width: 1155px) {
+        section {
+            flex-direction: row;
+            gap: 40px;
+        }
+
+        article {
+            width: 50%;
+            justify-content: space-between;
+        }
+
+        img {
+            width: auto;
+            height: 800px;
+        }
+
+        #file-mobile-show {
+            display: block;
+        }
+
+        #file-mobile {
             display: none;
         }
     }

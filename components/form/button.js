@@ -37,7 +37,7 @@ class Button extends HTMLElement {
     connectedCallback() {
         let variant = this.getAttribute("variant");
         let button = this.shadowRoot.querySelector("button");
-        if (variant === null || variant !== "primary") button.classList.add(variant);
+        if (variant !== null && variant !== "primary") button.classList.add(variant);
 
         let showLink = this.getAttribute("showLink") === "true";
         let span = this.shadowRoot.querySelector("span");

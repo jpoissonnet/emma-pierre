@@ -1,8 +1,8 @@
 class Footer extends HTMLElement {
-    constructor() {
-        super();
-        this.attachShadow({ mode: "open" });
-        this.shadowRoot.innerHTML = `
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+    this.shadowRoot.innerHTML = `
         <style>
             * {
                 box-sizing: border-box;
@@ -111,7 +111,7 @@ class Footer extends HTMLElement {
             </div>
         </footer>
       `;
-    }
+  }
 }
 
 customElements.define("c-footer", Footer);

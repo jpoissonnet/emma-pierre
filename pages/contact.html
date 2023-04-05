@@ -82,12 +82,9 @@
 
     section {
         flex-direction: column;
-        gap: 0px;
         display: flex;
-        height: auto;
         justify-content: center;
         padding: 25px;
-        overflow: hidden;
     }
 
     article {
@@ -100,8 +97,13 @@
     img {
         padding: 0;
         margin: 0;
-        width: auto;
-        height: 100%;
+        width: calc(100% - 40px);
+        /* width: 550px; */
+        height: 400px;
+        /* align-self: center; */
+        object-fit: cover;
+        object-position: top;
+        transition: ease all 0.5s;
     }
 
     form {
@@ -129,6 +131,7 @@
     .input-area textarea {
         padding: 8px 15px;
         border: 1px solid #ccc;
+        flex: 1;
         border-radius: 5px;
         font-size: 15px;
         transition: all 0.3s ease-in-out;
@@ -151,7 +154,6 @@
         font-size: 15px;
         text-transform: uppercase;
         cursor: pointer;
-        flex-grow: 1;
         text-align: center;
         transition: all 0.3s ease-in-out;
     }
@@ -197,7 +199,8 @@
 
         img {
             width: auto;
-            height: 800px;
+            align-self: center;
+            height: 600px;
         }
 
         #file-mobile-show {
@@ -222,7 +225,8 @@
 
         img {
             width: auto;
-            height: 800px;
+            align-self: center;
+            height: 600px;
         }
 
         #file-mobile-show {

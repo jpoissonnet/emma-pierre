@@ -116,7 +116,7 @@ class Navigation extends HTMLElement {
             <li><a href="/">Par couleur</a></li>
             <li><a href="/pages/about.html">A propos</a></li>
             <li><a href="/">Blog</a></li>
-            <li><a href="/">Contact</a></li>
+            <li><a href="/pages/contact.html">Contact</a></li>
           </ul>
           <div class="drawer">
           <span id="close-drawer">✖</span>
@@ -128,7 +128,7 @@ class Navigation extends HTMLElement {
                 <li><a href="/">Par couleur</a></li>
                 <li><a href="/pages/about.html">A propos</a></li>
                 <li><a href="/">Blog</a></li>
-                <li><a href="/">Contact</a></li>
+                <li><a href="/pages/contact.html">Contact</a></li>
           </ul>
           </div>
       </nav>
@@ -136,22 +136,21 @@ class Navigation extends HTMLElement {
     }
 
     connectedCallback() {
-        window.addEventListener('scroll', () => {
+        window.addEventListener("scroll", () => {
             if (window.scrollY > 0) {
-                this.shadowRoot.querySelector('nav').classList.add('scrolled');
+                this.shadowRoot.querySelector("nav").classList.add("scrolled");
             }
-            if(window.scrollY === 0) {
-                this.shadowRoot.querySelector('nav').classList.remove('scrolled');
+            if (window.scrollY === 0) {
+                this.shadowRoot.querySelector("nav").classList.remove("scrolled");
             }
         });
-        this.shadowRoot.querySelector('#menu').addEventListener('click', () => {
-                this.shadowRoot.querySelector('.drawer').classList.add('open');
-                this.shadowRoot.querySelector('#close-drawer').addEventListener('click', () => {
-                    this.shadowRoot.querySelector('.drawer').classList.remove('open');
-                });
+        this.shadowRoot.querySelector("#menu").addEventListener("click", () => {
+            this.shadowRoot.querySelector(".drawer").classList.add("open");
+            this.shadowRoot.querySelector("#close-drawer").addEventListener("click", () => {
+                this.shadowRoot.querySelector(".drawer").classList.remove("open");
+            });
         });
     }
-
 }
 
 customElements.define("c-nav", Navigation);

@@ -5,13 +5,13 @@ class Footer extends HTMLElement {
         this.shadowRoot.innerHTML = `
         <style>
             * {
-            box-sizing: border-box;
+                box-sizing: border-box;
             }
           footer {
-            position: fixed;
+            background-color: #A5BFC4;
             font-family: 'Urbanist', sans-serif;
             display:flex;
-            flex-direction: row;
+            flex-direction: column;
             justify-content: space-between;
             padding: 20px 50px;
             width: 100%;
@@ -30,14 +30,20 @@ class Footer extends HTMLElement {
           }
           .list {
             display: flex;
+            flex-direction: column;
             justify-content: end;
-
+            gap: 20px;
           }
 
           ul {
             list-style: none;
             padding: 0;
             margin: 0 20px;
+          }
+          ul > li:first-child {
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
           }
           li {
             display: block;
@@ -51,12 +57,24 @@ class Footer extends HTMLElement {
           .reseau .reseau_soc {
             width: 30px;
             height: 30px;
-            margin-right: 10px;
             cursor: pointer;
             }
         .reseau {
             display: flex;
             }
+
+        @media (min-width: 768px) {
+            footer {
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: center;
+                padding: 20px;
+                gap: 20px;
+            }
+            .list{
+                flex-direction: row;
+            }
+        }
         </style>
         <footer>
             <div class="logo">
@@ -64,13 +82,13 @@ class Footer extends HTMLElement {
             </div>
             <div class="list">
                 <ul>
-                    <li><a>Menu</a></li>
+                    <li>Menu</li>
                     <li><a>Accueil</a></li>
                     <li><a>A propos</a></li>
                     <li><a>Blog</a></li>
                 </ul>
                 <ul>
-                    <li><a>A propos</a></li>
+                    <li>A propos</li>
                     <li><a>Témoignage client</a></li>
                     <li><a>Emballages protégés</a></li>
                     <li><a>Faq</a></li>
@@ -79,7 +97,7 @@ class Footer extends HTMLElement {
                     <li><a>Charte de confidentialité</a></li>
                 </ul>
                 <ul>
-                    <li><a>Contact</a></li>
+                    <li>Contact</li>
                     <li><a>+33 6 12 34 54 57</a></li>
                     <li><a>3 Rue des blés, 69000 Lyon</a></li>
                     <div class="reseau">

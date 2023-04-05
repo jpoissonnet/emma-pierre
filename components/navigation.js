@@ -39,7 +39,7 @@ class Navigation extends HTMLElement {
             height: 100%;
             content: "";
             z-index: -1;
-            backdrop-filter: blur(30px);
+            backdrop-filter: blur(40px);
             transition: all 0.1s ease-in-out;
         }
 
@@ -178,7 +178,7 @@ class Navigation extends HTMLElement {
 
     connectedCallback() {
         window.addEventListener('scroll', () => {
-            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
                 this.shadowRoot.querySelector('nav').classList.add('scrolled');
             }
             if(window.scrollY === 0) {

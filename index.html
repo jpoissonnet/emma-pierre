@@ -13,6 +13,7 @@
     <script src="/components/navigation.js"></script>
     <script src="/components/navigation/footer.js"></script>
     <script src="/components/article.js"></script>
+    <script src="/components/form/button.js"></script>
     <title>Emma Pierre</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -73,7 +74,42 @@
                 <img src="/assets/images/achter.png" alt="perle" />
             </div>
         </section>
+
+        <section class="reseaux">
+            <h2>#EMMAPIERREJEWELS</h2>
+            <span>Rejoignez-nous sur <u>Instagram</u> !</span>
+            <div class="instagrams">
+                <img src="/assets/images/photo-1.png" alt="insta" />
+                <img src="/assets/images/photo-2.png" alt="insta" />
+                <img src="/assets/images/photo-3.png" alt="insta" />
+                <img src="/assets/images/photo-4.png" alt="insta" />
+                <img src="/assets/images/photo-1.png" alt="insta" />
+                <img src="/assets/images/photo-2.png" alt="insta" />
+                <img src="/assets/images/photo-3.png" alt="insta" />
+                <img src="/assets/images/photo-4.png" alt="insta" />
+            </div>
+        </section>
+
     </div>
+
+    <section class="newsletter">
+        <div class="ad">
+            <img src="/assets//images/perle.png" alt="perle" />
+            <h2>Deviens une perle rare</h2>
+        </div>
+        <div class="join">
+            <h2>En rejoignant la communauté</h2>
+            <div class="input">
+                <label for="email">Inscrivez-vous à notre newsletter :</label>
+                <input type="email" placeholder="Votre adresse mail" />
+                <span>Ok</span>
+            </div>
+            <div class="follow">
+                <span>Suivez-nous : </span>
+                <img src="/assets/images/instagram.png" alt="instagram">
+            </div>
+        </div>
+    </section>
 
     <c-footer></c-footer>
 </body>
@@ -228,8 +264,141 @@
         width: 452px;
     }
 
-    @media screen and (max-width: 768px) {
+    .reseaux {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
 
+    .reseaux h2 {
+        font-size: 30px;
+        font-weight: 400;
+        text-align: center;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+    }
+
+    .reseaux span {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .reseaux .instagrams {
+        width: 100%;
+        overflow: auto;
+        white-space: nowrap;
+    }
+
+    .reseaux .instagrams img {
+        display: inline-block;
+        width: 300px;
+        height: 300px;
+        margin: 0 10px;
+    }
+
+    .newsletter {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        background: rgba(247, 100, 93, 0.29);
+        opacity: 0.71;
+        padding: 15px;
+    }
+
+    .newsletter .ad {
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    .newsletter .ad h2 {
+        font-size: 30px;
+        font-weight: 500;
+        text-align: center;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+    }
+
+    .newsletter .join {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .newsletter .join h2 {
+        font-size: 22px;
+        color: #000;
+        font-weight: 700;
+        text-align: center;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+    }
+
+    .newsletter .join input:focus {
+        outline: none;
+    }
+
+    .newsletter .join label {
+        flex-grow: 1;
+    }
+
+    .newsletter .input {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        gap: 15px;
+    }
+
+    .newsletter .join input {
+        width: 100%;
+        height: 50px;
+        text-align: center;
+        margin-bottom: 15px;
+        background-color: rgba(247, 100, 93, 0);
+        color: #fff;
+        border: none;
+        border-bottom: 1px solid #000;
+        font-size: 16px;
+        font-weight: 400;
+        text-transform: uppercase;
+        padding: 10px 30px;
+    }
+
+    .newsletter .follow {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        gap: 15px;
+        align-items: center;
+    }
+
+    .newsletter .follow h2 {
+        font-size: 30px;
+        font-weight: 500;
+        text-align: center;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+    }
+
+    .newsletter .follow span {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .newsletter .follow img {
+        width: 30px;
+        margin: 0 0 15px;
+        cursor: pointer;
+    }
+
+    @media screen and (max-width: 768px) {
         .news {
             display: flex;
             flex-direction: column;

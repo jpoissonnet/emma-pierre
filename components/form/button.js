@@ -4,17 +4,22 @@ class Button extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.shadowRoot.innerHTML = `
       <style>
-        button {
-          background: #f00;
-          color: #fff;
-          border: 0;
-          padding: 10px;
-          cursor: pointer;
+        .primary {
+          font-family: 'Jost', sans-serif;
+          text-transform: uppercase;
+          color: white;
+          font-size: 20px;
+          padding: 10px 60px; 
+          border-radius:5px;
+          margin: 10px;
+          border: 1px solid #1D5F6B;
+          background: #1D5F6B;
         }
       </style>
-      <button>AZER</button>
+      <button class="primary">Valider</button>
     `;
   }
+
 }
 
 customElements.define("c-button", Button);

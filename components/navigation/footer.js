@@ -9,7 +9,7 @@ class Footer extends HTMLElement {
             }
           footer {
             background-color: #A5BFC4;
-            font-family: 'Urbanist', sans-serif;
+            font-family: 'Jost', sans-serif;
             display:flex;
             flex-direction: column;
             justify-content: space-between;
@@ -41,8 +41,6 @@ class Footer extends HTMLElement {
             margin: 0 20px;
           }
           ul > li:first-child {
-            font-weight: bold;
-            letter-spacing: 1px;
             text-transform: uppercase;
           }
           li {
@@ -105,7 +103,7 @@ class Footer extends HTMLElement {
                             <a href=""><img class="reseau_soc" src="/assets/images/instagram.png" alt="instagram" /></a>
                         </li>
                         <li>
-                            <a href=""><img class="reseau_soc" src="/assets/images/facebook.png" alt="" /></a>
+                            <a href=""><img class="reseau_soc" src="/assets/images/facebook.png" alt="facebook" /></a>
                         </li>
                     </div>
 

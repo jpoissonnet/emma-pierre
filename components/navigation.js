@@ -5,7 +5,7 @@ class Navigation extends HTMLElement {
         this.shadowRoot.innerHTML = `
       <style>
         :host * {
-          transition: all 0.3s ease;
+          transition: height 0.3s ease;
         }
 
         :host nav{

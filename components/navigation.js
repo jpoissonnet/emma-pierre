@@ -178,7 +178,7 @@ class Navigation extends HTMLElement {
 
     connectedCallback() {
         window.addEventListener('scroll', () => {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
                 this.shadowRoot.querySelector('nav').classList.add('scrolled');
             }
             if(window.scrollY === 0) {

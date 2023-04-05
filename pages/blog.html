@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Emma Pierre's Jewelry Shop"/>
+    <!-- KEYWORDS TO COMPLETE -->
+    <meta name="keywords" content="Bijoux, Pierre précieuse, Jewelry"/>
+    <meta name="author" content="ESGI's Brahim, Cihan Jules and Kenza"/>
+    <link rel="icon" href="../assets/images/favicon_io/favicon.ico"/>
+    <script src="/components/navigation.js"></script>
+    <link rel="stylesheet" href="../index.css"/>
+    <title>Emma Pierre - Contact</title>
+</head>
+
+<body>
+<c-nav></c-nav>
+<c-blog-card>
+    <span slot="card-title">YOlazone</span>
+    <span slot="card-desc">Coucou</span>
+</c-blog-card>
+<c-blog-card>
+    <span slot="card-title">Yolazone</span>
+    <span slot="card-desc">Coucou</span>
+</c-blog-card>
+<c-blog-card>
+    <span slot="card-title">Yolazone</span>
+    <span slot="card-desc">Coucou</span>
+</c-blog-card>
+<c-blog-card>
+    <span slot="card-title">Yolazone</span>
+    <span slot="card-desc">Coucou</span>
+</c-blog-card>
+<c-blog-card>
+    <span slot="card-title">Yolazone</span>
+    <span slot="card-desc">Coucou</span>
+</c-blog-card>
+<template>
+    <style>
+        .card {
+            width: 421px;
+            height: 560px;
+            display: flex;
+            flex-direction: column;
+            border-radius: 10px;
+        }
+
+        .imgblogcard {
+            width: 421px;
+            height: 328px;
+        }
+
+        .imgblogcard img {
+            width: 421px;
+            height: 328px;
+        }
+
+        .description {
+        }
+
+        .description h2 {
+            color: black;
+            font-size: 20px;
+            text-transform: uppercase;
+            font-family: Jost, sans-serif;
+        }
+
+        .description p {
+            color: black;
+            padding-top: 40px;
+        }
+
+        .grpbutton hr {
+            background-color: black;
+        }
+
+        button {
+            float: right;
+            width: 120px;
+            border: none;
+            background-color: transparent;
+            font-family: Jost, sans-serif;
+            color: black;
+            font-size: 23px;
+        }
+
+        .hr {
+            display: block;
+            margin-left: 315px;
+            float: right;
+            border-bottom: 1px solid black;
+        }
+    </style>
+    <div class="card">
+        <div class="imgblogcard">
+            <a><img src="/assets/images/WhatsApp Image 2023-03-08 at 20.16.06.jpeg" alt=""></a>
+        </div>
+        <div class="description">
+            <h2>
+                <slot name="card-title">COMMENT ENTRETENIR SES BIJOUX ET COLLIERS ?</slot>
+            </h2>
+            <p>
+                <slot name="card-desc">Le plaqué or craint les produits chimiques très agressifs. Plus le placage est
+                    fin, ...
+                </slot>
+            </p>
+        </div>
+
+        <div class="hr">
+            <button>Voir plus</button>
+        </div>
+    </div>
+</template>
+<script>
+    customElements.define('c-blog-card', class extends HTMLElement {
+        constructor() {
+            super();
+            const shadow = this.attachShadow({mode: 'open'});
+            const template = document.querySelector('template');
+            const instance = template.content.cloneNode(true);
+            shadow.appendChild(instance);
+
+        }
+
+        connectedCallback() {
+            this.getAttribute("src") ? this.shadowRoot.querySelector("img").src = this.getAttribute("src") : null;
+            this.getAttribute("alt") ? this.shadowRoot.querySelector("img").alt = this.getAttribute("alt") : null;
+        }
+    });
+</script>
+</body>
+</html>

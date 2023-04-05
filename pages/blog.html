@@ -17,47 +17,49 @@
 
 <body>
 <c-nav></c-nav>
-<c-blog-card>
-    <span slot="card-title">YOlazone</span>
-    <span slot="card-desc">Coucou</span>
-</c-blog-card>
-<c-blog-card>
-    <span slot="card-title">Yolazone</span>
-    <span slot="card-desc">Coucou</span>
-</c-blog-card>
-<c-blog-card>
-    <span slot="card-title">Yolazone</span>
-    <span slot="card-desc">Coucou</span>
-</c-blog-card>
-<c-blog-card>
-    <span slot="card-title">Yolazone</span>
-    <span slot="card-desc">Coucou</span>
-</c-blog-card>
-<c-blog-card>
-    <span slot="card-title">Yolazone</span>
-    <span slot="card-desc">Coucou</span>
-</c-blog-card>
+<div class="wrapper">
+    <c-blog-card src="/assets/images/25144.jpg">
+        <span slot="card-title">Les bijoux en pierres précieuses : un éclat de couleur pour votre style !</span>
+        <span slot="card-desc">Le 29 est une journée spéciale pour nos mamans et chaque année la meme idée nous revient : le choix du cadeau !</span>
+    </c-blog-card>
+    <c-blog-card src="/assets/images/WhatsApp Image 2023-03-08 at 20.16.06.jpeg">
+        <span
+            slot="card-title">Les pierres précieuses les plus populaires pour les bijoux : Diamant, Saphir, Rubis...</span>
+    </c-blog-card>
+    <c-blog-card src="/assets/images/WhatsApp Image 2023-03-08 at 20.16.07 (2).jpeg">
+        <span slot="card-title">Comment choisir la bonne pierre précieuse pour votre bijou ?</span>
+    </c-blog-card>
+    <c-blog-card src="/assets/images/WhatsApp Image 2023-03-08 at 20.16.07 (3).jpeg">
+        <span
+            slot="card-title">La signification des pierres précieuses dans les bijoux : ce que vous devez savoir !</span>
+    </c-blog-card>
+    <c-blog-card src="/assets/images/WhatsApp Image 2023-03-08 at 20.16.07 (4).jpeg">
+        <span
+            slot="card-title">Les bijoux en pierres précieuses : des cadeaux parfaits pour les occasions spéciales !</span>
+    </c-blog-card>
+    <c-blog-card src="/assets/images/WhatsApp Image 2023-03-08 at 20.16.08.jpeg">
+        <span slot="card-title">Les tendances actuelles en matière de bijoux en pierres précieuses : de la couleur et du caractère !</span>
+    </c-blog-card>
+    <c-blog-card>
+        <span slot="card-title">Les pierres précieuses rares et leur valeur dans les bijoux : découvrez les joyaux les plus exclusifs !</span>
+    </c-blog-card>
+</div>
 <template>
     <style>
         .card {
-            width: 421px;
-            height: 560px;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
+            width: 420px;
+            height: 560px;
             border-radius: 10px;
+            padding: 20px;
         }
 
-        .imgblogcard {
-            width: 421px;
-            height: 328px;
-        }
-
-        .imgblogcard img {
-            width: 421px;
-            height: 328px;
-        }
-
-        .description {
+        img {
+            height: 300px;
+            width: 100%;
+            object-fit: cover
         }
 
         .description h2 {
@@ -76,7 +78,8 @@
             background-color: black;
         }
 
-        button {
+        a {
+            position: relative;
             float: right;
             width: 120px;
             border: none;
@@ -84,6 +87,23 @@
             font-family: Jost, sans-serif;
             color: black;
             font-size: 23px;
+            text-decoration: none;
+        }
+
+        a::after {
+            content: "";
+            display: block;
+            position: absolute;
+            right: -10px;
+            left: 10px;
+            height: 1px;
+            background: black;
+            transition: all 0.3s ease;
+        }
+
+        a:hover::after {
+            left: -10px;
+            right: 0;
         }
 
         .hr {
@@ -94,9 +114,7 @@
         }
     </style>
     <div class="card">
-        <div class="imgblogcard">
-            <a><img src="/assets/images/WhatsApp Image 2023-03-08 at 20.16.06.jpeg" alt=""></a>
-        </div>
+        <img src="/assets/images/25147.jpg" alt="bijou porté">
         <div class="description">
             <h2>
                 <slot name="card-title">COMMENT ENTRETENIR SES BIJOUX ET COLLIERS ?</slot>
@@ -109,7 +127,7 @@
         </div>
 
         <div class="hr">
-            <button>Voir plus</button>
+            <a href="/pages/article.html">Voir plus</a>
         </div>
     </div>
 </template>
@@ -126,9 +144,16 @@
 
         connectedCallback() {
             this.getAttribute("src") ? this.shadowRoot.querySelector("img").src = this.getAttribute("src") : null;
-            this.getAttribute("alt") ? this.shadowRoot.querySelector("img").alt = this.getAttribute("alt") : null;
         }
     });
 </script>
+<style>
+    .wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 50px;
+    }
+</style>
 </body>
 </html>

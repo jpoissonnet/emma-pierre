@@ -9,8 +9,8 @@ class Article extends HTMLElement {
         <style>
         .article {
             position: relative;
-            width: 250px;
-            height: 350px;
+            width: 300px;
+            height: 400px;
             color: #fff;
             cursor: pointer;
             display: inline-block;
@@ -65,7 +65,6 @@ class Article extends HTMLElement {
             bottom: 15px;
             display: block;
         }
-
     
         </style>        
         <div id="id" class="article">

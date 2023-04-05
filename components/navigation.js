@@ -31,7 +31,7 @@ class Navigation extends HTMLElement {
 
         :host nav::after{
             opacity: 0;
-            background: radial-gradient(ellipse at center, rgba(255,255,255,0) 0%,rgb(255,255,255,75%) 100%);
+            background: rgb(255,255,255,75%);
             position: absolute;
             top: 0;
             left: 0;

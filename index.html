@@ -27,12 +27,18 @@
     <c-nav></c-nav>
 
     <header>
-        <img src="/assets/images/home_back.png" alt="jewelries" />
+        <h1>
+            Créatrice de bijoux
+            <br />
+            <span id="bleu">made</span>
+            <span>in</span>
+            <span id="rouge">France</span>
+        </h1>
     </header>
 
     <div class="wrapper">
         <section class="news">
-            <h2>Nouveautés <img src="/assets/images/star.png" alt="star"></h2>
+            <h2>Nouveautés <img src="/assets/images/star.png" alt="star" /></h2>
             <ul>
                 <h3>Bracelets</h3>
                 <h3>Colliers</h3>
@@ -46,7 +52,17 @@
                 <c-article></c-article>
             </div>
 
-            <a id="all" href="#">Voir tout</a>
+            <div id="draw-wrapper" href="#">
+                <a id="draw">
+                    <svg width="126" height="43" viewBox="0 0 126 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M25.6413 3.01136C13.8586 3.01136 -4.95697 5.31499 2.83528 22.8995C6.53262 31.2432 23.544 33.7346 30.7975 35.6988C48.8734 40.5938 65.8689 42 84.5404 42C98.9039 42 132.443 39.1716 123.509 15.5153C119.401 4.63897 87.1145 1.91841 78.4919 1.43606C63.3183 0.587251 47.9817 1.23915 32.7806 1.23915"
+                            stroke="#F7645D" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+
+                    <span id="all" href="#">Voir tout</span>
+                </a>
+            </div>
         </section>
 
         <section class="moment">
@@ -167,8 +183,37 @@
         margin: 0;
     }
 
-    header img {
+    header {
+        background: url("/assets/images/home_back.png");
+        background-size: cover;
+        background-repeat: no-repeat;
         width: 100%;
+        height: 100vh;
+        position: relative;
+    }
+
+    header h1 {
+        font-size: 50px;
+        font-weight: 400;
+        text-align: center;
+        position: absolute;
+        top: 40%;
+        right: 40px;
+        transform: translateY(-50%);
+        color: #fff;
+        line-height: 70px;
+    }
+
+    header span#bleu {
+        color: #002395;
+    }
+
+    header span#blanc {
+        color: #fff;
+    }
+
+    header span#rouge {
+        color: #ed2939;
     }
 
     .news {
@@ -188,7 +233,7 @@
 
     .news ul {
         display: flex;
-        margin: 15px 0;
+        margin: 30px 0;
         padding: 0;
         gap: 20px;
     }
@@ -201,32 +246,79 @@
     }
 
     .articles {
+        position: relative;
         width: 100%;
         display: flex;
         flex-wrap: wrap;
-        gap: 20px;
-        margin: none;
-        max-width: 1350px;
+        max-width: 1600px;
         margin: 0 auto;
+        justify-content: space-between;
+        margin-bottom: 45px;
+    }
+
+    .articles:before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        background-repeat: no-repeat;
+        height: 300px;
+        background: url(/assets/images/line_red.png);
+    }
+
+    #draw-wrapper {
+        display: flex;
+        height: 200px;
         justify-content: center;
-        margin-bottom: 15px;
     }
 
-    #all {
-        text-decoration: none;
-        color: #000;
-        font-size: 16px;
-        font-weight: 400;
-        padding: 5px 30px;
-        text-transform: uppercase;
-        border: 1px solid #000;
-        text-align: left;
+    #draw {
+        display: inline-block;
+        position: relative;
+        text-align: center;
+        width: 200px;
+        height: 50px;
+        cursor: pointer;
     }
 
-    #all:hover {
-        background-color: #000;
+    #draw svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+    }
+
+    #draw:hover svg {
+        fill: var(--coral-light);
+    }
+
+    #draw:hover span {
         color: #fff;
-        transition: 0.2s ease-in-out;
+    }
+
+    #draw svg path {
+        transition: 0.3s;
+    }
+
+    #draw span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        font-size: 18px;
+        font-weight: 500;
+        text-transform: uppercase;
+        color: #000;
+        cursor: pointer;
+    }
+
+    .article {
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 30px;
+        position: relative;
+        z-index: 2;
     }
 
     .moment {
@@ -606,6 +698,14 @@
 
         .news h3:last-child {
             flex: 3;
+        }
+
+        .news .articles {
+            justify-content: center;
+        }
+
+        .articles:before {
+            display: none;
         }
 
         #all {

@@ -14,6 +14,7 @@
     <script src="/components/navigation/footer.js"></script>
     <script src="/components/article.js"></script>
     <script src="/components/form/button.js"></script>
+    <script src="/components/service-card.js"></script>
     <title>Emma Pierre</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -59,10 +60,20 @@
             </div>
         </section>
 
-        <!-- TODO: Section cadeau 2008 -->
-        <!-- <section class="gift">
+        <section class="gift">
             <h2>Offrez un sourire</h2>
-        </section> -->
+            <div class="box">
+                <h2>la main sur le cœur</h2>
+                <span>Accueillez le printemps en offrant notre sélection. Il ne vous reste plus qu'à faire votre choix
+                    !</span>
+                <div class="gifts">
+                    <img src="/assets/images/gift.png" alt="gift">
+                    <img src="assets/images/gift2.png" alt="gift">
+                    <img src="assets/images/gift3.png" alt="gift">
+                </div>
+                <a href="#">Dire je t'aime avec Emma Pierre</a>
+            </div>
+        </section>
 
         <section class="plage">
             <span>Rencontrez nous à </span>
@@ -101,8 +112,8 @@
             <h2>En rejoignant la communauté</h2>
             <div class="input">
                 <label for="email">Inscrivez-vous à notre newsletter :</label>
-                <input type="email" placeholder="Votre adresse mail" />
-                <span>Ok</span>
+                <input type="email" />
+                <span>OK</span>
             </div>
             <div class="follow">
                 <span>Suivez-nous : </span>
@@ -110,6 +121,32 @@
             </div>
         </div>
     </section>
+
+    <div class="wrapper">
+        <section class="services">
+            <c-service-card>
+                <img src="/assets/images/send.png" slot="icon"></img>
+                <h3 slot="title">Livraison rapide</h3>
+                <p slot="content">Expedition sous <strong>24h à 72h</strong> et livraison rapide</p>
+            </c-service-card>
+            <c-service-card>
+                <img src="/assets/images/receive.png" slot="icon"></img>
+                <h3 slot="title">Satisfait ou remboursé</h3>
+                <p slot="content">Vous avez 15 jours pour changer d'avis</p>
+            </c-service-card>
+            <c-service-card>
+                <img src="/assets/images/call.png" slot="icon"></img>
+                <h3 slot="title">Service après-vente</h3>
+                <p slot="content">Besoin d'aide ? Nous vous répondons sous <strong>48h</strong> emmapierre@contact.fr
+                </p>
+            </c-service-card>
+            <c-service-card>
+                <img src="/assets/images/pay.png" slot="icon"></img>
+                <h3 slot="title">Paiment sécurisé</h3>
+                <p slot="content">Le site utilise le chiffrement SSL pour des paiements en toute sécurité</p>
+            </c-service-card>
+        </section>
+    </div>
 
     <c-footer></c-footer>
 </body>
@@ -251,6 +288,64 @@
         margin-bottom: 15px;
     }
 
+    /* TODO: */
+
+    .gift {
+        width: 900px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin-bottom: 15px;
+    }
+
+    .gift .box {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin: none;
+        max-width: 1350px;
+        margin: 0 auto;
+        margin-bottom: 15px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .gift .box h2 {
+        font-weight: 500;
+        font-size: 40px;
+    }
+
+    .gift .box span {
+        max-width: 450px;
+        line-height: 30px;
+        text-align: center;
+    }
+
+    .gift .box .gifts {
+        display: flex;
+        gap: 50px;
+        flex-wrap: wrap;
+    }
+
+    .gift .box .gifts img {
+        width: 250px
+    }
+
+    .gift .box a {
+        text-decoration: none;
+        color: #fff;
+        font-family: "Jost", sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        background: var(--coral-light);
+        padding: 12px 60px;
+        border-radius: 5px;
+    }
+
     .gallery {
         display: flex;
         justify-content: center;
@@ -305,20 +400,22 @@
         margin-bottom: 15px;
         background: rgba(247, 100, 93, 0.29);
         opacity: 0.71;
-        padding: 15px;
+        padding: 30px;
     }
 
     .newsletter .ad {
         width: 100%;
         display: flex;
         align-items: center;
+        justify-content: center;
     }
 
     .newsletter .ad h2 {
-        font-size: 30px;
-        font-weight: 500;
+        font-size: 40px;
+        font-weight: 400;
         text-align: center;
         text-transform: uppercase;
+        letter-spacing: 4px;
         margin-bottom: 15px;
     }
 
@@ -330,32 +427,54 @@
         flex-direction: column;
     }
 
+    .newsletter .input {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+        justify-content: center;
+    }
+
     .newsletter .join h2 {
         font-size: 22px;
         color: #000;
-        font-weight: 700;
+        font-weight: 600;
         text-align: center;
         text-transform: uppercase;
         margin-bottom: 15px;
+    }
+
+    .newsletter .join label {
+        flex: 2;
+        text-align: right;
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 16px;
+    }
+
+    .newsletter .join span {
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    /* select the first span */
+    .newsletter .join span:last-child {
+        flex: 1;
+        cursor: pointer;
+    }
+
+    .newsletter .join span:last-child:hover {
+        color: #fff;
+        transition: 0.2s ease-in-out;
     }
 
     .newsletter .join input:focus {
         outline: none;
     }
 
-    .newsletter .join label {
-        flex-grow: 1;
-    }
-
-    .newsletter .input {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        gap: 15px;
-    }
-
     .newsletter .join input {
-        width: 100%;
         height: 50px;
         text-align: center;
         margin-bottom: 15px;
@@ -367,6 +486,7 @@
         font-weight: 400;
         text-transform: uppercase;
         padding: 10px 30px;
+        flex: 2;
     }
 
     .newsletter .follow {
@@ -388,14 +508,25 @@
     }
 
     .newsletter .follow span {
-        font-size: 24px;
-        margin-bottom: 15px;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 16px;
+        cursor: default;
     }
 
     .newsletter .follow img {
         width: 30px;
-        margin: 0 0 15px;
         cursor: pointer;
+    }
+
+    .services {
+        display: flex;
+        justify-content: space-around;
+        gap: 15px;
+        align-items: center;
+        margin: 55px 0;
+        flex-wrap: wrap;
     }
 
     @media screen and (max-width: 768px) {
@@ -408,14 +539,28 @@
             margin: 0 auto;
         }
 
-        .gallery img:nth(3),
-        .gallery img:nth(1) {
-            flex-basis: 100px;
+        .gallery img {
+            width: 100%;
         }
 
-        .gallery img:nth(4),
-        .gallery img:nth(2) {
-            flex-basis: 100px;
+        .newsletter {
+            flex-direction: column;
+        }
+
+        .newsletter .ad {
+            flex-direction: column;
+        }
+
+        .newsletter .ad h2 {
+            line-height: 50px;
+        }
+
+        .newsletter .input {
+            flex-direction: column;
+        }
+
+        .newsletter .join label {
+            flex: 4
         }
     }
 </style>

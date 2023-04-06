@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Emma Pierre's Jewelry Shop" />
+        <!-- KEYWORDS TO COMPLETE -->
+        <meta name="keywords" content="Bijoux, Pierre précieuse, Jewelry" />
+        <meta name="author" content="ESGI's Brahim, Cihan Jules and Kenza" />
+        <link rel="icon" href="../assets/images/favicon_io/favicon.ico" />
+        <script src="/components/navigation.js"></script>
+        <script src="/components/form/button.js"></script>
+        <link rel="stylesheet" href="../index.css" />
+        <title>Emma Pierre - Contact</title>
+    </head>
+
+    <body>
+        <div class="window">
+            <div class="container1">
+                <section class="logobarre form">
+                    <img src="/assets/images/logo.png" alt="" />
+                    <ul>
+                        <a href="#"><li>Panier</li></a>
+                        <li>></li>
+                        <a href="#"><li id="info">Informations</li></a>
+                        <li>></li>
+                        <a href="#"><li>Livraison</li></a>
+                        <li>></li>
+                        <a href="#"><li>Paiement</li></a>
+                    </ul>
+                </section>
+                <form action="save">
+                    <div class="form-group">
+                        <h2>Coordonnés</h2>
+                        <input type="email" class="form-control" id="email" placeholder="Adresse mail" />
+                        <div class="check">
+                            <input type="checkbox" id="Politique" />
+                            <label for="politique" id="politique">J'accepte la politique de confidentialité</label>
+                        </div>
+
+                        <h2>ADRESSE D'EXPEDITION</h2>
+                        <input type="text" placeholder="Pays/Région" />
+                        <div class="twice">
+                            <input type="text" placeholder="Nom" />
+                            <span class="space"></span>
+                            <input type="text" placeholder="Prenom" />
+                        </div>
+
+                        <input type="text" placeholder="Adresse" />
+                        <input type="text" placeholder="Appartement" />
+
+                        <div class="twice">
+                            <input type="text" placeholder="Code postal" />
+                            <span class="space"></span>
+                            <input type="text" placeholder="Ville" />
+                        </div>
+
+                        <input type="text" placeholder="Téléphone (optionnel)" />
+                        <div class="check">
+                            <input type="checkbox" />
+                            <label for="save">Sauvgarder mes données pour la prochaines fois</label>
+                        </div>
+
+                        <div class="gpr-button">
+                            <div class="grp-retour">
+                                <p><strong><</strong></p>
+                                <span class="space"></span>
+                                <button id="retour">Retour au panier</button>
+                            </div>
+                            <button class="btn">Continuer vers l'expédition</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="container2">
+                <section class="paiement">
+                    <div class="column">
+                        <div class="article-description">
+                            <div class="article">
+                                <img src="/assets/images/25174.jpg" alt="collier pierre" />
+                            </div>
+                            <div class="description">
+                                <div>
+                                    <h2>Boucle d'oreille</h2>
+                                    <p>plaqué OR - XS</p>
+                                </div>
+                                <span class="space"></span>
+                                <div class="prix">
+                                    <h2>48.95€</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="twice reduc">
+                            <input type="text" placeholder="CARTE CADEAU" />
+                            <button class="btn-secondary">Valider</button>
+                        </div>
+                        <hr />
+                        <div class="sous-total">
+                            <div class="twice">
+                                <p>Sous-total</p>
+                                <h2>48.95€</h2>
+                            </div>
+                            <div class="twice">
+                                <p>Livraison</p>
+                                <p>Calculé à l'étape suivante</p>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="twice">
+                            <h2>TOTAL</h2>
+                            <h2>48.95€</h2>
+                        </div>
+                        <p>Taxes de 8.15 inclus</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <style>
+            .window {
+                display: flex;
+                justify-content: center;
+                padding: 80px;
+            }
+            p {
+                font-size: 12px;
+            }
+            .btn {
+                font-family: "Jost", sans-serif;
+                font-weight: 600;
+                text-transform: uppercase;
+                color: white;
+                font-size: 12px;
+                padding: 5px 5px;
+                border-radius: 5px;
+                margin: 10px;
+                border: 1px solid #1d5f6b;
+                background: #1d5f6b;
+            }
+            .btn-secondary {
+                font-family: "Jost", sans-serif;
+                font-weight: 600;
+                text-transform: uppercase;
+                color: white;
+                font-size: 12px;
+                padding: 5px 50px;
+                border-radius: 5px;
+                margin: 10px;
+                border: 2px solid #1d5f6b;
+                background: transparent;
+                color: #1d5f6b;
+            }
+            .window input[type="text"],
+            .window input[type="email"] {
+                width: 100%;
+                padding: 5px;
+                margin: 8px 0;
+                box-sizing: border-box;
+                border: 1px solid lightgrey;
+                border-radius: 4px;
+            }
+            .space {
+                padding: 0px 3px;
+            }
+            .check {
+                display: flex;
+                justify-content: row;
+                align-items: center;
+            }
+            .window h2,
+            .window input[type="checkbox"],
+            #politique {
+                float: left;
+            }
+            .twice {
+                display: flex;
+                justify-content: space-between;
+            }
+            .container1 {
+                display: flex;
+                width: 50%;
+                flex-direction: column;
+            }
+            .container2 {
+                display: flex;
+                width: 50%;
+                flex-direction: column;
+            }
+
+            form {
+                width: 80%;
+                margin: auto;
+            }
+            .logobarre {
+                display: flex;
+                flex-direction: column;
+                justify-content: column;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+            .logobarre img {
+                margin: 0 auto;
+            }
+            .logobarre ul {
+                list-style-type: none;
+            }
+            .logobarre ul li {
+                display: inline-block;
+                color: black;
+            }
+            .logobarre ul #info {
+                font-weight: bold;
+            }
+            .gpr-button {
+                display: flex;
+                justify-content: space-between;
+            }
+            .grp-retour {
+                display: flex;
+                justify-content: row;
+                align-items: center;
+            }
+            #retour {
+                padding: 0px 0px;
+                background-color: transparent;
+                border: transparent;
+            }
+            #retour p {
+                size: 16px 16px;
+            }
+            .paiement {
+                width: 80%;
+                margin: 100px auto;
+            }
+            .container2 {
+                background-color: #b3c4c8;
+            }
+
+            .container2 .paiement .article {
+                width: 94px;
+                height: 84px;
+            }
+            .container2 .paiement .article img {
+                width: 100%;
+                height: 100%;
+                border-radius: 5%;
+            }
+            .column {
+                width: 80%;
+                margin: auto;
+            }
+            .article:first-child {
+                margin-right: 0px;
+                display: flex;
+                align-items: center;
+            }
+            hr {
+                border: 1px solid #706a6a;
+            }
+            .description {
+                display: flex;
+                justify-content: space-between;
+                border-bottom: 2px solid #706a6a;
+            }
+            .description h2 {
+                font-size: 15px;
+            }
+            .article-description {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .reduc {
+                margin: 15px 0px;
+            }
+            .reduc input {
+                padding: 5px;
+            }
+            .sous-total div {
+                display: flex;
+                align-items: center;
+            }
+        </style>
+    </body>
+</html>

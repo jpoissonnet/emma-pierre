@@ -71,7 +71,7 @@
                 <img src="/assets/images/perles.png" alt="wouaf" />
                 <div class="front-text">
                     <span>Le duo Printanier</span>
-                    <span>Découvrir</span>
+                    <a href="/pages/month-product.html">Découvrir</a>
                 </div>
             </div>
         </section>
@@ -354,15 +354,19 @@
         flex-direction: column;
     }
 
-    .spring span {
+    .spring span, .spring a {
         font-size: 60px;
         text-align: center;
         text-transform: uppercase;
         font-family: "Noto Serif Display", serif;
         font-weight: 600;
     }
+    .spring a{
+        text-decoration: none;
+        color: #fff;
+    }
 
-    .spring span:nth-child(2) {
+    .spring a:nth-child(2) {
         font-size: 24px;
         font-weight: 400;
         text-transform: uppercase;

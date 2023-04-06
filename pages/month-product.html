@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Emma Pierre's Jewelry Shop" />
+    <meta name="keywords" content="Bijoux, Pierre précieuse, Jewelry" />
+    <meta name="author" content="ESGI's Brahim, Cihan Jules and Kenza" />
+    <link rel="icon" href="/assets/images/favicon_io/favicon.ico" />
+    <link rel="stylesheet" href="/index.css" />
+    <script src="/components/navigation/footer.js"></script>
+    <title>Emma Pierre - Produit du mois</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Jost&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet" />
+</head>
+
+<body>
+
+
+    <nav class="hamburger-menu">
+        <input id="menu__toggle" type="checkbox" />
+        <label class="menu__btn" for="menu__toggle">
+            <span></span>
+        </label>
+
+        <img src="/assets/images/logo-blanc.png" class="logo"><a href="/index.html"></a></img>
+        <img src="/assets/images/cart.png" class="cart">
+        <ul class="menu__box">
+            <li><a class="menu__item" href="#">Accueil</a></li>
+            <li><a class="menu__item" href="#">Précieuses</a></li>
+            <li><a class="menu__item" href="#">Impertinentes</a></li>
+            <li><a class="menu__item" href="#">Uniques</a></li>
+            <li><a class="menu__item" href="#">Par couleur</a></li>
+        </ul>
+    </nav>
+
+    <img src="/assets/images/productmonth.png" class="background-image">
+    <div class="card card--fixedWidth">
+        <div class="card__description">
+            <div class="container-description">
+                <div class="uptitle">
+                    <div class="first-title">Éclats de mer</div>
+                    <div class="subtitle">Topaze bleue N220</div>
+                </div>
+                <div class="subprice">
+                    <div>58,00€</div>
+                </div>
+            </div>
+            <img src="/assets/images/25171.jpg">
+            <div>
+                <div class="cat">
+                    <div class="card__descriptionText">Détails</div>
+                    <img src="/assets/images/plus.png">
+                </div>
+                <div class="cat">
+                    <div class="card__descriptionText">Livraison</div>
+                    <img src="/assets/images/plus.png">
+                </div>
+            </div>
+            <c-button></c-button>
+        </div>
+    </div>
+
+    <c-footer></c-footer>
+
+</body>
+
+<script src="/components/navigation.js"></script>
+<script src="/components/form/button.js"></script>
+
+
+</html>
+
+<style>
+    .logo {
+        position: absolute;
+        left: 5rem;
+        cursor: pointer;
+    }
+
+    .cart {
+        position: absolute;
+        right: 3rem;
+        top: 2rem;
+        width: 2rem;
+        height: auto;
+        cursor: pointer;
+    }
+
+    .background-image {
+        margin: 0;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        width: 100%;
+        height: auto;
+        object-position: 0px -268px;
+    }
+
+    body {
+        background-color: transparent;
+    }
+
+    h1,
+    p {
+        font-weight: 400;
+        text-align: left;
+        margin-left: 11%;
+        margin-bottom: 0;
+        margin-top: 8px;
+        text-transform: uppercase;
+    }
+
+    p {
+        color: #897D7D;
+    }
+
+    .card {
+        width: 500px;
+        height: 700px;
+        position: absolute;
+        overflow: hidden;
+        left: 400px;
+        right: 0px;
+        top: 110px;
+        bottom: 0px;
+        float: left;
+    }
+
+    .card__description {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 15px 0;
+        margin-left: 9%;
+        margin-right: 5%;
+        text-transform: uppercase;
+    }
+
+    .card--fixedWidth {
+        max-width: 500px;
+        height: 700px;
+        background-color: white;
+    }
+
+    .card img {
+        width: 400px;
+        height: auto;
+    }
+
+    .first-title {
+        font-weight: 500;
+        font-size: 20px;
+    }
+
+    .subtitle {
+        font-weight: 400;
+        font-size: 14px;
+        color: #706A6A;
+    }
+
+    .container-description {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .uptitle {
+        width: 340px;
+    }
+
+    .subprice {
+        font-size: 20px;
+    }
+
+    .cat {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    .cat div {
+        width: 380px
+    }
+
+    .cat img {
+        width: 20px;
+        height: auto;
+        margin-left: auto;
+    }
+
+    #menu__toggle {
+        opacity: 0;
+        position: absolute;
+    }
+
+    #menu__toggle:checked~.menu__btn>span {
+        transform: rotate(45deg);
+    }
+
+    #menu__toggle:checked~.menu__btn>span::before {
+        top: 0;
+        transform: rotate(0);
+    }
+
+    #menu__toggle:checked~.menu__btn>span::after {
+        top: 0;
+        transform: rotate(90deg);
+    }
+
+    #menu__toggle:checked~.menu__box {
+        visibility: visible;
+        left: 0;
+    }
+
+    .menu__btn {
+        display: flex;
+        align-items: center;
+        position: fixed;
+        top: 30px;
+        left: 20px;
+
+        width: 26px;
+        height: 26px;
+
+        cursor: pointer;
+        z-index: 1;
+    }
+
+    .menu__btn>span,
+    .menu__btn>span::before,
+    .menu__btn>span::after {
+        display: block;
+        position: absolute;
+
+        width: 100%;
+        height: 2px;
+
+        background-color: white;
+
+        transition-duration: .25s;
+    }
+
+    .menu__btn>span::before {
+        content: '';
+        top: -8px;
+    }
+
+    .menu__btn>span::after {
+        content: '';
+        top: 8px;
+    }
+
+    .menu__box {
+        display: block;
+        position: fixed;
+        visibility: hidden;
+        top: 0;
+        left: -100%;
+
+        width: 300px;
+        height: 100%;
+
+        margin: 0;
+        padding: 80px 0;
+
+        list-style: none;
+
+        background-color: rgba(255, 255, 255, 0.5);
+        box-shadow: 1px 0px 6px rgba(0, 0, 0, .2);
+        backdrop-filter: blur(8px);
+
+        transition-duration: .25s;
+    }
+
+    .menu__item {
+        display: block;
+        padding: 12px 24px;
+
+        color: #333;
+
+        font-family: 'Jost', sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+
+        text-decoration: none;
+
+        transition-duration: .25s;
+    }
+
+    .menu__item:hover {
+        background-color: #CFD8DC;
+    }
+
+    img {
+        width: 90px;
+        height: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+</style>

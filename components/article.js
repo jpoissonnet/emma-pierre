@@ -9,11 +9,25 @@ class Article extends HTMLElement {
         <style>
         .article {
             position: relative;
-            width: 250px;
-            height: 350px;
+            width: 300px;
+            height: 400px;
             color: #fff;
             cursor: pointer;
             display: inline-block;
+            padding: 5px;
+           z-index: 1; 
+        }
+
+        .article:before {
+            content: "";
+            border: 1px solid #000;
+            position: absolute;
+            width: 100%;
+            height: 105%;
+            right: -25px;
+            top: -13px;
+            transition: 0.5s ease-in-out;
+            z-index: -1;
         }
 
         .article img {
@@ -66,6 +80,15 @@ class Article extends HTMLElement {
             display: block;
         }
 
+        @media screen and (max-width: 768px) {
+            .article {
+                width: 250px;
+                height: 350px;
+            }
+
+            div:before {
+                display: none;
+            }
     
         </style>        
         <div id="id" class="article">

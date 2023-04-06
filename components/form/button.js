@@ -1,7 +1,7 @@
 class Button extends HTMLElement {
     constructor() {
         super();
-        this.attachShadow({mode: "open"});
+        this.attachShadow({ mode: "open" });
         this.shadowRoot.innerHTML = `
       <style>
         button {
@@ -36,14 +36,19 @@ class Button extends HTMLElement {
 
     connectedCallback() {
         let variant = this.getAttribute("variant");
+        let content = this.getAttribute("content");
         let button = this.shadowRoot.querySelector("button");
         if (variant !== null && variant !== "primary") button.classList.add(variant);
+
+        if (content !== null) {
+            button.innerHTML = content;
+        }
 
         let showLink = this.getAttribute("showLink") === "true";
         let span = this.shadowRoot.querySelector("span");
         if (showLink) span.classList.add("showLink");
     }
-
 }
 
 customElements.define("c-button", Button);
+

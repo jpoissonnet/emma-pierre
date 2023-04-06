@@ -177,27 +177,26 @@ class Navigation extends HTMLElement {
     }
 
     connectedCallback() {
-        window.addEventListener('scroll', () => {
+        window.addEventListener("scroll", () => {
             if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
-                this.shadowRoot.querySelector('nav').classList.add('scrolled');
+                this.shadowRoot.querySelector("nav").classList.add("scrolled");
             }
-            if(window.scrollY === 0) {
+            if (window.scrollY === 0) {
                 let scrollPosition = window.scrollY;
                 setTimeout(() => {
                     if (window.scrollY === scrollPosition) {
-                        this.shadowRoot.querySelector('nav').classList.remove('scrolled');
+                        this.shadowRoot.querySelector("nav").classList.remove("scrolled");
                     }
                 }, 300);
             }
         });
-        this.shadowRoot.querySelector('#menu').addEventListener('click', () => {
-                this.shadowRoot.querySelector('.drawer').classList.add('open');
-                this.shadowRoot.querySelector('#close-drawer').addEventListener('click', () => {
-                    this.shadowRoot.querySelector('.drawer').classList.remove('open');
-                });
+        this.shadowRoot.querySelector("#menu").addEventListener("click", () => {
+            this.shadowRoot.querySelector(".drawer").classList.add("open");
+            this.shadowRoot.querySelector("#close-drawer").addEventListener("click", () => {
+                this.shadowRoot.querySelector(".drawer").classList.remove("open");
+            });
         });
     }
-
 }
 
 customElements.define("c-nav", Navigation);

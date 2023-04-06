@@ -8,7 +8,6 @@
     <meta name="keywords" content="Bijoux, Pierre précieuse, Jewelry"/>
     <meta name="author" content="ESGI's Brahim, Cihan Jules and Kenza"/>
     <link rel="icon" href="/assets/images/favicon_io/favicon.ico"/>
-    <link rel="stylesheet" href="index.css"/>
     <script src="/components/navigation.js"></script>
     <script src="/components/navigation/footer.js"></script>
     <script src="/components/form/button.js"></script>
@@ -22,7 +21,8 @@
 <header>
     <div class="wrapper">
         <h1>
-            <div id="choisir">Ch<div id="long-o"></div>isir</div>
+            <div id="choisir">Ch<div id="long-o"></div>isir
+            </div>
             son bijou : <span class="whitespace">les précieuses</span>
         </h1>
         <a id="scroll">Scroll pour voir plus</a>
@@ -32,18 +32,19 @@
 <c-footer></c-footer>
 </body>
 <style>
-    *{
+    * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
         font-family: "Jost", sans-serif;
     }
+
     header {
         position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 600px;
+        height: 400px;
         text-transform: uppercase;
     }
 
@@ -51,26 +52,28 @@
         height: 100%;
     }
 
-    .wrapper{
+    .wrapper {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
         height: 100%;
         width: 100%;
     }
 
-    .wrapper a#scroll{
+    .wrapper a#scroll {
         box-sizing: border-box;
-        padding: 3rem 7rem;
         position: relative;
         width: fit-content;
+        color: white;
+        padding: 1.5rem;
         z-index: 3;
     }
 
-    .wrapper a#scroll::after{
+    .wrapper a#scroll::after {
         content: "↓";
         position: absolute;
-        bottom: calc(3rem - 25px);
+        bottom: calc(1.5rem - 25px);
         left: 50%;
     }
 
@@ -78,30 +81,30 @@
         white-space: nowrap;
     }
 
-    header::before{
+    header::before {
         content: "";
         position: absolute;
         top: 0;
         bottom: 0;
         right: 0;
-        left: 50%;
+        left: 0;
         background-image: url('/assets/images/boucle shiny.png');
         filter: invert(100%);
         z-index: 0;
     }
 
-    header::after{
+    header::after {
         content: "";
         position: absolute;
         top: 0;
         bottom: 0;
         right: 0;
-        left: 50%;
+        left: 0;
         backdrop-filter: invert(100%);
         z-index: 1;
     }
 
-    div#fioritures{
+    div#fioritures {
         position: absolute;
         height: 100%;
         width: 100%;
@@ -112,60 +115,64 @@
         z-index: 2;
     }
 
-    h1{
-        font-size: 5rem;
+    h1 {
+        font-size: 2.5rem;
+        padding: 0;
         font-weight: 500;
         color: #000;
         z-index: 0;
-        padding: 0 7rem;
+        text-align: center;
     }
+
     div#long-o {
         display: inline-block;
         width: calc(2em - 20px);
-        height: calc(1em - 20px);
-        border: 6px solid #000;
+        height: calc(1em - 10px);
+        border: 3px solid #000;
         border-radius: calc(1em - 20px);
     }
 
-    div#choisir{
-        transform: translateX(-7rem);
-    }
-    @media (max-width: 768px) {
+
+    @media (min-width: 768px) {
         header {
-            height: 400px;
-        }
-        header::before{
-            left: 0;
+            height: 600px;
         }
 
-        header::after{
-            left: 0;
+        header::before {
+            left: 50%;
+        }
+
+        header::after {
+            left: 50%;
         }
 
         .wrapper {
-            align-items: center;
+            align-items: flex-start;
         }
-        h1{
-            font-size: 3rem;
+
+        h1 {
             padding: 0;
+            font-size: 5rem;
+            text-align: left;
         }
 
-        div#choisir{
-            transform: none;
+        div#choisir {
+            transform: translateX(-7rem);
+        }
+
+        .wrapper a#scroll {
+            padding: 3rem 7rem;
+            color: black;
+        }
+
+        h1 {
+            padding: 0 7rem;
         }
 
 
-        a#scroll{
-            color: white;
-            padding: 1.5rem;
-        }
-
-        h1{
-            padding: 0;
-        }
-
-        .whitespace{
-            white-space: normal;
+        div#long-o{
+            height: calc(1em - 20px);
+            border-width: 6px;
         }
     }
 </style>

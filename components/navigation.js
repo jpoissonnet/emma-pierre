@@ -20,7 +20,7 @@ class Navigation extends HTMLElement {
           border-bottom: 1px solid #ccc0;
           height: 60px;
           padding: 15px 18px;
-          z-index: 1;
+          z-index: 3;
         }
         :host nav.scrolled{
           border-bottom: 1px solid #5b5b5b;

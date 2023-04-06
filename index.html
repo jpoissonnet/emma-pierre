@@ -32,7 +32,7 @@
 
     <div class="wrapper">
         <section class="news">
-            <h2>Nouveautés</h2>
+            <h2>Nouveautés <img src="/assets/images/star.png" alt="star"></h2>
             <ul>
                 <h3>Bracelets</h3>
                 <h3>Colliers</h3>
@@ -64,12 +64,12 @@
             <h2>Offrez un <span>sourire</span></h2>
             <div class="box">
                 <h2>la main sur le cœur</h2>
-                <span>Accueillez le printemps en offrant notre sélection. Il ne vous reste plus qu'à faire votre choix
-                    !</span>
+                <span>Accueillez le printemps en offrant notre sélection. Il ne vous reste plus qu'à faire votre
+                    choix !</span>
                 <div class="gifts">
-                    <img src="/assets/images/gift.png" alt="gift">
-                    <img src="assets/images/gift2.png" alt="gift">
-                    <img src="assets/images/gift3.png" alt="gift">
+                    <img src="/assets/images/gift.png" alt="gift" />
+                    <img src="assets/images/gift2.png" alt="gift" />
+                    <img src="assets/images/gift3.png" alt="gift" />
                 </div>
                 <a href="#">Dire je t'aime avec Emma Pierre</a>
             </div>
@@ -78,6 +78,7 @@
         <section class="plage">
             <span>Rencontrez nous à </span>
             <span>la plage</span>
+            <img src="assets/images/line.png" id="line" alt="line" />
             <div class="gallery">
                 <img src="/assets/images/perle2.png" alt="perle" />
                 <img src="/assets/images/perle3.png" alt="perle" />
@@ -100,7 +101,6 @@
                 <img src="/assets/images/photo-4.png" alt="insta" />
             </div>
         </section>
-
     </div>
 
     <section class="newsletter">
@@ -117,7 +117,7 @@
             </div>
             <div class="follow">
                 <span>Suivez-nous : </span>
-                <img src="/assets/images/instagram.png" alt="instagram">
+                <img src="/assets/images/instagram.png" alt="instagram" />
             </div>
         </div>
     </section>
@@ -125,23 +125,24 @@
     <div class="wrapper">
         <section class="services">
             <c-service-card>
-                <img src="/assets/images/send.png" slot="icon"></img>
+                <img src="/assets/images/send.png" slot="icon" />
                 <h3 slot="title">Livraison rapide</h3>
                 <p slot="content">Expedition sous <strong>24h à 72h</strong> et livraison rapide</p>
             </c-service-card>
             <c-service-card>
-                <img src="/assets/images/receive.png" slot="icon"></img>
+                <img src="/assets/images/receive.png" slot="icon" />
                 <h3 slot="title">Satisfait ou remboursé</h3>
                 <p slot="content">Vous avez 15 jours pour changer d'avis</p>
             </c-service-card>
             <c-service-card>
-                <img src="/assets/images/call.png" slot="icon"></img>
+                <img src="/assets/images/call.png" slot="icon" />
                 <h3 slot="title">Service après-vente</h3>
-                <p slot="content">Besoin d'aide ? Nous vous répondons sous <strong>48h</strong> emmapierre@contact.fr
+                <p slot="content">
+                    Besoin d'aide ? Nous vous répondons sous <strong>48h</strong> emmapierre@contact.fr
                 </p>
             </c-service-card>
             <c-service-card>
-                <img src="/assets/images/pay.png" slot="icon"></img>
+                <img src="/assets/images/pay.png" slot="icon" />
                 <h3 slot="title">Paiment sécurisé</h3>
                 <p slot="content">Le site utilise le chiffrement SSL pour des paiements en toute sécurité</p>
             </c-service-card>
@@ -174,9 +175,20 @@
         width: 100%;
     }
 
+    .news h2 {
+        display: flex;
+        gap: 2px;
+    }
+
+    .news h2 img {
+        width: 23px;
+        height: 23px;
+        align-self: flex-end;
+    }
+
     .news ul {
         display: flex;
-        margin: 0;
+        margin: 15px 0;
         padding: 0;
         gap: 20px;
     }
@@ -185,6 +197,7 @@
         text-transform: uppercase;
         font-weight: 400;
         font-size: 16px;
+        cursor: pointer;
     }
 
     .articles {
@@ -234,7 +247,7 @@
     }
 
     .front-text {
-        max-width: 420px;
+        max-width: 700px;
         height: 100px;
         position: absolute;
         top: 50%;
@@ -250,7 +263,7 @@
     }
 
     .spring span {
-        font-size: 40px;
+        font-size: 60px;
         text-align: center;
         text-transform: uppercase;
         font-family: "Noto Serif Display", serif;
@@ -258,15 +271,18 @@
     }
 
     .spring span:nth-child(2) {
-        font-size: 18px;
+        font-size: 24px;
         font-weight: 400;
         text-transform: uppercase;
         text-decoration: underline;
+        cursor: pointer;
     }
 
     .plage {
         width: 100%;
         margin: 30px 0;
+        display: flex;
+        flex-direction: column;
     }
 
     .plage span {
@@ -276,19 +292,22 @@
     }
 
     .plage span:nth-child(1) {
-        font-size: 20px;
+        font-size: 30px;
         font-family: "Jost", sans-serif;
         font-weight: 300;
     }
 
     .plage span:nth-child(2) {
-        font-size: 30px;
+        font-size: 55px;
         font-family: "Noto Serif Display", serif;
         font-weight: 500;
-        margin-bottom: 15px;
     }
 
-    /* TODO: */
+    #line {
+        width: 280px;
+        margin: 0 auto;
+        margin-bottom: 15px;
+    }
 
     .gift {
         width: 100%;
@@ -307,7 +326,7 @@
     }
 
     .gift h2 span {
-        color: var(--coral-light)
+        color: var(--coral-light);
     }
 
     .gift .box {
@@ -366,7 +385,7 @@
     }
 
     .gift .box .gifts img {
-        width: 250px
+        width: 250px;
     }
 
     .gift .box a {
@@ -573,6 +592,8 @@
 
         .news h2 {
             margin-bottom: 10px;
+            display: flex;
+            gap: 2px;
         }
 
         .news ul {
@@ -591,8 +612,47 @@
             margin: 0 auto;
         }
 
+        .plage span:first-of-type {
+            font-size: 25x;
+        }
+
+        .plage span:nth-child(2) {
+            font-size: 30px;
+        }
+
+        .spring .front-text {
+            max-width: 80%;
+        }
+
+        .spring .front-text span {
+            font-size: 25px;
+        }
+
+        .spring .front-text span:last-child {
+            font-size: 15px;
+        }
+
+        #line {
+            width: 150px;
+        }
+
         .gift {
             background: rgba(0, 0, 0, 0);
+            max-width: 500px;
+            align-items: center;
+            text-align: center;
+        }
+
+        .gift .box {
+            max-width: calc(100% - 30px);
+        }
+
+        .gifts {
+            justify-content: center;
+        }
+
+        .gift .box .gifts img {
+            width: 170px;
         }
 
         .gift .box h2 {
@@ -626,7 +686,7 @@
         }
 
         .newsletter .join label {
-            flex: 4
+            flex: 4;
         }
     }
 </style>

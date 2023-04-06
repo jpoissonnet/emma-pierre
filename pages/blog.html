@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Emma Pierre's Jewelry Shop"/>
+    <!-- KEYWORDS TO COMPLETE -->
+    <meta name="keywords" content="Bijoux, Pierre précieuse, Jewelry"/>
+    <meta name="author" content="ESGI's Brahim, Cihan Jules and Kenza"/>
+    <link rel="icon" href="../assets/images/favicon_io/favicon.ico"/>
+    <script src="/components/navigation.js"></script>
+    <link rel="stylesheet" href="../index.css"/>
+    <title>Emma Pierre - Contact</title>
+</head>
+
+<body>
+<c-nav></c-nav>
+<div class="wrapper">
+    <c-blog-card src="/assets/images/25144.jpg">
+        <span slot="card-title">Les bijoux en pierres précieuses : un éclat de couleur pour votre style !</span>
+        <span slot="card-desc">Le 29 est une journée spéciale pour nos mamans et chaque année la meme idée nous revient : le choix du cadeau !</span>
+    </c-blog-card>
+    <c-blog-card src="/assets/images/WhatsApp Image 2023-03-08 at 20.16.06.jpeg">
+        <span
+            slot="card-title">Les pierres précieuses les plus populaires pour les bijoux : Diamant, Saphir, Rubis...</span>
+    </c-blog-card>
+    <c-blog-card src="/assets/images/WhatsApp Image 2023-03-08 at 20.16.07 (2).jpeg">
+        <span slot="card-title">Comment choisir la bonne pierre précieuse pour votre bijou ?</span>
+    </c-blog-card>
+    <c-blog-card src="/assets/images/WhatsApp Image 2023-03-08 at 20.16.07 (3).jpeg">
+        <span
+            slot="card-title">La signification des pierres précieuses dans les bijoux : ce que vous devez savoir !</span>
+    </c-blog-card>
+    <c-blog-card src="/assets/images/WhatsApp Image 2023-03-08 at 20.16.07 (4).jpeg">
+        <span
+            slot="card-title">Les bijoux en pierres précieuses : des cadeaux parfaits pour les occasions spéciales !</span>
+    </c-blog-card>
+    <c-blog-card src="/assets/images/WhatsApp Image 2023-03-08 at 20.16.08.jpeg">
+        <span slot="card-title">Les tendances actuelles en matière de bijoux en pierres précieuses : de la couleur et du caractère !</span>
+    </c-blog-card>
+    <c-blog-card>
+        <span slot="card-title">Les pierres précieuses rares et leur valeur dans les bijoux : découvrez les joyaux les plus exclusifs !</span>
+    </c-blog-card>
+</div>
+<template>
+    <style>
+        .card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 420px;
+            height: 560px;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        img {
+            height: 300px;
+            width: 100%;
+            object-fit: cover
+        }
+
+        .description h2 {
+            color: black;
+            font-size: 20px;
+            text-transform: uppercase;
+            font-family: Jost, sans-serif;
+        }
+
+        .description p {
+            color: black;
+            padding-top: 40px;
+        }
+
+        .grpbutton hr {
+            background-color: black;
+        }
+
+        a {
+            position: relative;
+            float: right;
+            width: 120px;
+            border: none;
+            background-color: transparent;
+            font-family: Jost, sans-serif;
+            color: black;
+            font-size: 23px;
+            text-decoration: none;
+        }
+
+        a::after {
+            content: "";
+            display: block;
+            position: absolute;
+            right: -10px;
+            left: 10px;
+            height: 1px;
+            background: black;
+            transition: all 0.3s ease;
+        }
+
+        a:hover::after {
+            left: -10px;
+            right: 0;
+        }
+
+        .hr {
+            display: block;
+            margin-left: 315px;
+            float: right;
+            border-bottom: 1px solid black;
+        }
+    </style>
+    <div class="card">
+        <img src="/assets/images/25147.jpg" alt="bijou porté">
+        <div class="description">
+            <h2>
+                <slot name="card-title">COMMENT ENTRETENIR SES BIJOUX ET COLLIERS ?</slot>
+            </h2>
+            <p>
+                <slot name="card-desc">Le plaqué or craint les produits chimiques très agressifs. Plus le placage est
+                    fin, ...
+                </slot>
+            </p>
+        </div>
+
+        <div class="hr">
+            <a href="/pages/article.html">Voir plus</a>
+        </div>
+    </div>
+</template>
+<script>
+    customElements.define('c-blog-card', class extends HTMLElement {
+        constructor() {
+            super();
+            const shadow = this.attachShadow({mode: 'open'});
+            const template = document.querySelector('template');
+            const instance = template.content.cloneNode(true);
+            shadow.appendChild(instance);
+
+        }
+
+        connectedCallback() {
+            this.getAttribute("src") ? this.shadowRoot.querySelector("img").src = this.getAttribute("src") : null;
+        }
+    });
+</script>
+<style>
+    .wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 50px;
+    }
+</style>
+</body>
+</html>

@@ -5,7 +5,7 @@ class Navigation extends HTMLElement {
         this.shadowRoot.innerHTML = `
       <style>
         :host * {
-          transition: all 0.3s ease;
+          transition: height 0.3s ease;
         }
 
         :host nav{
@@ -31,7 +31,7 @@ class Navigation extends HTMLElement {
 
         :host nav::after{
             opacity: 0;
-            background: radial-gradient(ellipse at center, rgba(255,255,255,0) 0%,rgb(255,255,255,75%) 100%);
+            background: rgb(255,255,255,75%);
             position: absolute;
             top: 0;
             left: 0;
@@ -39,7 +39,7 @@ class Navigation extends HTMLElement {
             height: 100%;
             content: "";
             z-index: -1;
-            backdrop-filter: blur(30px);
+            backdrop-filter: blur(40px);
             transition: all 0.1s ease-in-out;
         }
 
@@ -178,7 +178,7 @@ class Navigation extends HTMLElement {
 
     connectedCallback() {
         window.addEventListener('scroll', () => {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
                 this.shadowRoot.querySelector('nav').classList.add('scrolled');
             }
             if(window.scrollY === 0) {

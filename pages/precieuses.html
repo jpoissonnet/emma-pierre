@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Emma Pierre's Jewelry Shop"/>
+    <meta name="keywords" content="Bijoux, Pierre précieuse, Jewelry"/>
+    <meta name="author" content="ESGI's Brahim, Cihan Jules and Kenza"/>
+    <link rel="icon" href="/assets/images/favicon_io/favicon.ico"/>
+    <link rel="stylesheet" href="index.css"/>
+    <script src="/components/navigation.js"></script>
+    <script src="/components/navigation/footer.js"></script>
+    <script src="/components/form/button.js"></script>
+    <title>Emma Pierre</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet"/>
+</head>
+<body>
+<c-nav></c-nav>
+<header>
+    <div class="wrapper">
+        <h1>
+            <div id="choisir">Ch<div id="long-o"></div>isir</div>
+            son bijou : <span class="whitespace">les précieuses</span>
+        </h1>
+        <a id="scroll">Scroll pour voir plus</a>
+        <div id="fioritures"></div>
+    </div>
+</header>
+<c-footer></c-footer>
+</body>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Jost", sans-serif;
+    }
+    header {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 600px;
+        text-transform: uppercase;
+    }
+
+    header img {
+        height: 100%;
+    }
+
+    .wrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+    }
+
+    .wrapper a#scroll{
+        box-sizing: border-box;
+        padding: 3rem 7rem;
+        position: relative;
+        width: fit-content;
+        z-index: 3;
+    }
+
+    .wrapper a#scroll::after{
+        content: "↓";
+        position: absolute;
+        bottom: calc(3rem - 25px);
+        left: 50%;
+    }
+
+    .whitespace {
+        white-space: nowrap;
+    }
+
+    header::before{
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 50%;
+        background-image: url('/assets/images/boucle shiny.png');
+        filter: invert(100%);
+        z-index: 0;
+    }
+
+    header::after{
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 50%;
+        backdrop-filter: invert(100%);
+        z-index: 1;
+    }
+
+    div#fioritures{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-image: url('/assets/images/things.png');
+        background-position: right;
+        background-size: cover;
+        background-repeat: no-repeat;
+        z-index: 2;
+    }
+
+    h1{
+        font-size: 5rem;
+        font-weight: 500;
+        color: #000;
+        z-index: 0;
+        padding: 0 7rem;
+    }
+    div#long-o {
+        display: inline-block;
+        width: calc(2em - 20px);
+        height: calc(1em - 20px);
+        border: 6px solid #000;
+        border-radius: calc(1em - 20px);
+    }
+
+    div#choisir{
+        transform: translateX(-7rem);
+    }
+    @media (max-width: 768px) {
+        header {
+            height: 400px;
+        }
+        header::before{
+            left: 0;
+        }
+
+        header::after{
+            left: 0;
+        }
+
+        .wrapper {
+            align-items: center;
+        }
+        h1{
+            font-size: 3rem;
+            padding: 0;
+        }
+
+        div#choisir{
+            transform: none;
+        }
+
+
+        a#scroll{
+            color: white;
+            padding: 1.5rem;
+        }
+
+        h1{
+            padding: 0;
+        }
+
+        .whitespace{
+            white-space: normal;
+        }
+    }
+</style>
+</html>

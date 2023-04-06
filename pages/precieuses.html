@@ -12,6 +12,7 @@
     <script src="/components/navigation/footer.js"></script>
     <script src="/components/form/button.js"></script>
     <script src="/components/choose.js"></script>
+    <script src="/components/product.js"></script>
     <title>Emma Pierre</title>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -19,7 +20,166 @@
 </head>
 <body>
 <c-nav></c-nav>
-<c-choose></c-choose>
+<div class="wrapper">
+    <c-choose></c-choose>
+    <p>Bijoux composés avec des pierres fines ou précieuses soigneusement sélectionnées pour leur
+        <strong>couleur</strong> spécifique
+        et/ou leur <strong>taille</strong> particulière les mettant particulièrement en valeur.
+    </p>
+    <nav class="filter-wrapper">
+        <div class="main-categories-wrapper">
+            <button class="active">Family</button>
+            <button>Trilogy</button>
+            <button>Rana</button>
+            <button>Pearl</button>
+        </div>
+        <hr/>
+        <div class="sub-categories-wrapper">
+            <button>Bague</button>
+            <button>Collier</button>
+            <button class="active">Boucles</button>
+        </div>
+    </nav>
+    <section id="product">
+        <div class="products-wrapper">
+            <c-product src="/assets/images/25146.jpg">
+                <span slot="name">Opale d'été</span>
+                <span slot="price">35€</span>
+            </c-product>
+            <c-product src="/assets/images/25147.jpg">
+                <span slot="name">Goutte d'or</span>
+                <span slot="price">22€</span>
+            </c-product>
+            <c-product src="/assets/images/25149.jpg">
+                <span slot="name">Lune de miel</span>
+                <span slot="price">25€</span>
+            </c-product>
+            <c-product src="/assets/images/25150.jpg">
+                <span slot="name">Prune d'automne</span>
+                <span slot="price">27€</span>
+            </c-product>
+            <c-product src="/assets/images/25151.jpg">
+                <span slot="name">Larme de cristal</span>
+                <span slot="price">30€</span>
+            </c-product>
+            <c-product src="/assets/images/25152.jpg">
+                <span slot="name">Perle de morphée</span>
+                <span slot="price">32€</span>
+            </c-product>
+            <c-product src="/assets/images/25146.jpg">
+                <span slot="name">Opale d'été</span>
+                <span slot="price">35€</span>
+            </c-product>
+            <c-product src="/assets/images/25147.jpg">
+                <span slot="name">Goutte d'or</span>
+                <span slot="price">22€</span>
+            </c-product>
+        </div>
+        <div id="pagination">
+            <button>&lt;</button>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>4</button>
+            <button>5</button>
+            <button>&gt;</button>
+        </div>
+    </section>
+</div>
 <c-footer></c-footer>
 </body>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Jost', sans-serif;
+    }
+
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0 20px;
+        max-width: 1080px;
+        margin: auto;
+    }
+
+    .wrapper > p {
+        text-align: center;
+        font-size: 1.2rem;
+        margin: 80px 20px;
+    }
+
+    .filter-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        gap: 10px;
+        margin: 2rem 0;
+
+    }
+
+    .filter-wrapper button {
+        font-family: "Jost", sans-serif;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        border: none;
+        outline: none;
+        background: none;
+    }
+
+    .filter-wrapper button.active {
+        color: #F7645D;
+        border-bottom: 2px solid #F7645D;
+    }
+
+    .filter-wrapper hr {
+        width: 100%;
+        max-width: 300px;
+        border: 1px solid #000;
+    }
+
+    .main-categories-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 450px;
+    }
+
+    .products-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-around;
+        gap: 20px;
+        width: 100%;
+        max-width: 1200px;
+    }
+
+    #pagination {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin: 2rem 0;
+    }
+
+    #pagination button{
+        font-family: "Jost", sans-serif;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        border: none;
+        outline: none;
+        background: none;
+    }
+
+</style>
 </html>

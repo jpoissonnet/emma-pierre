@@ -42,9 +42,9 @@ class Product extends HTMLElement{
             }
         </style>
         <div class="product">
-           <img src="/assets/images/25170.jpg" alt="Bague"/>
+           <img src="/assets/images/25170.jpg" alt="image de bijou"/>
            <div class="product-info">
-               <h3 class="product-title"><slot name="name">Bague</slot></h3>
+               <h3 class="product-title"><slot name="name">Ras de cou</slot></h3>
                <p><slot name="price">30,00€</slot></p>
            </div>
         </div>

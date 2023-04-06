@@ -21,16 +21,23 @@
 <body>
 <c-nav></c-nav>
 <div class="wrapper">
-    <c-choose src="/assets/images/25170.jpg">
-        <span slot="category">les uniques</span>
+    <c-choose src="/assets/images/25171.jpg">
+        <span slot="category">les impertinentes</span>
     </c-choose>
     <section id="description">
-        <h2>Collection de bijoux en exemplaire très limité !</h2>
-        <p>Que c’est bon de laisser libre cours à son imagination, ces créations uniques sont le fruit de mes recherches
-            constantes sur l’alliance entre formes et couleurs pour créer un bijou harmonieux, mais original, avec des
-            matières telles que cristal, pierres dures, fines, Miyuki, corail, nacre… liste non exhaustive ! Comme leur
-            nom l’indique, ils sont souvent produits en un seul exemplaire, donc première arrivée, première servie !</p>
+        <p>Pourquoi ne pas faire confiance à votre seul instinct dans le choix de <span id="couleur-underline">la couleur de votre bijou</span>, il saura
+            vous guider vers la bonne pierre ou matière dont vous avez secrètement besoin</p>
     </section>
+    <nav class="filter-wrapper">
+        <div class="main-categories-wrapper">
+            <button class="active">Aqua Azzura</button>
+            <button>Rouge Carmin</button>
+            <button>Rainbow</button>
+            <button>Star night</button>
+            <button>Others</button>
+        </div>
+        <hr/>
+    </nav>
     <section id="product">
         <div class="products-wrapper">
             <c-product src="/assets/images/25147.jpg">
@@ -133,23 +140,63 @@
         background: none;
     }
 
+    #couleur-underline{
+        position: relative;
+        white-space: nowrap;
+    }
+
+    #couleur-underline::after{
+        content: "";
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
+
+    }
+
     #description {
         margin: 80px 0;
     }
 
-    #description h2 {
-        text-align: center;
-        text-transform: uppercase;
-        font-weight: 700;
-        font-size: 2rem;
-        margin: 20px 0;
-        color: #F7645D;
+    .filter-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        gap: 10px;
+        margin: 2rem 0;
+
     }
 
-    #description p {
-        text-align: center;
+    .filter-wrapper button {
+        font-family: "Jost", sans-serif;
         font-size: 1.2rem;
-        margin: 20px 0;
+        text-transform: uppercase;
+        border: none;
+        outline: none;
+        background: none;
+    }
+
+    .filter-wrapper button.active {
+        color: #F7645D;
+        border-bottom: 2px solid #F7645D;
+    }
+
+    .filter-wrapper hr {
+        width: 100%;
+        max-width: 300px;
+        border: 1px solid #000;
+    }
+
+    .main-categories-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 450px;
     }
 </style>
 </html>

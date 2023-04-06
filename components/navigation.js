@@ -5,7 +5,7 @@ class Navigation extends HTMLElement {
         this.shadowRoot.innerHTML = `
       <style>
         :host * {
-          transition: height 0.3s ease;
+          transition: height 0.3s ease 0s, left 0.3s ease 0s;
         }
 
         :host nav{
@@ -20,7 +20,7 @@ class Navigation extends HTMLElement {
           border-bottom: 1px solid #ccc0;
           height: 60px;
           padding: 15px 18px;
-          z-index: 1;
+          z-index: 10;
         }
         :host nav.scrolled{
           border-bottom: 1px solid #5b5b5b;

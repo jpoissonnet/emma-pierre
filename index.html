@@ -677,6 +677,20 @@
     }
 
     @media screen and (max-width: 768px) {
+        header {
+            background-position: center;
+        }
+
+        header h1 {
+            padding: 0;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 400px;
+            width: 500px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
         .news {
             display: flex;
             flex-direction: column;
@@ -763,6 +777,7 @@
         .gift .box a {
             font-size: 14px;
             text-align: center;
+            padding: 6px;
         }
 
         .gallery img {

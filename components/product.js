@@ -11,7 +11,7 @@ class Product extends HTMLElement{
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
-                min-height: 150px;
+                height: 300px;
                 width: 180px;
                 padding: 5px;
             }
@@ -35,10 +35,9 @@ class Product extends HTMLElement{
                 margin: 0;
             }
 
-            @media (max-width: 768px){
+            @media (min-width: 768px){
                 .product{
                     min-width: 200px;
-                    height: 300px;
                 }
             }
         </style>

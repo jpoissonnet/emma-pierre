@@ -5,6 +5,9 @@ namespace App\Controller\Api;
 class UserController extends BaseController
 {
     const TABLE = 'USER';
+    const ADRESS = 'ADRESSE';
+    const ROLE = 'ROLE';
+
     public function __construct()
     {
         parent::__construct();

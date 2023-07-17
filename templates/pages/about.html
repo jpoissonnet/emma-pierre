@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Emma Pierre's Jewelry Shop" />
+    <meta name="keywords" content="Bijoux, Pierre précieuse, Jewelry" />
+    <meta name="author" content="ESGI's Brahim, Cihan Jules and Kenza" />
+    <link rel="icon" href="/assets/images/favicon_io/favicon.ico" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <script src="/components/navigation/footer.js"></script>
+    <title>Emma Pierre - A Propos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Jost&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet"
+    />
+</head>
+
+<body>
+    <c-nav></c-nav>
+
+    <h1>portrait</h1>
+    <section>
+        <img src="/assets/images/emma.png" loading="lazy" alt="Photo of Emma" />
+        <article>
+            <h2>L'histoire d'Emma</h2>
+            <div class="content">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur. Ut elit quisque ullamcorper malesuada cursus neque
+                    euismod tempus quis. Eget dictum eu aliquam ullamcorper mi etiam. Viverra augue dignissim massa
+                    risus at volutpat. Commodo id duis aliquam nisi sapien. Ultrices quisque sit ultrices aliquam
+                    orci nisl sem neque
+                </p>
+
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet accusamus atque harum saepe
+                    magni Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet accusamus atque harum
+                    saepe magni suscipit
+                </p>
+
+                <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores consequatur perspiciatis
+                    harum, animi quas numquam facere maiores debitis.
+                </p>
+            </div>
+        </article>
+    </section>
+
+    <section>
+        <img src="/assets/images/lab.png" loading="lazy" alt="Photo of Lab" />
+        <article>
+            <h2>Fabriquer, c'est transmettre</h2>
+            <div class="content">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur. Ut elit quisque ullamcorper malesuada cursus neque
+                    euismod tempus quis. Eget dictum eu aliquam ullamcorper mi etiam. Viverra augue dignissim massa
+                    risus at volutpat. Commodo id duis aliquam nisi sapien. Ultrices quisque sit ultrices aliquam
+                    orci nisl sem neque
+                </p>
+
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet accusamus atque harum saepe
+                    magni Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet accusamus atque harum
+                    saepe magni suscipit
+                </p>
+
+                <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores consequatur perspiciatis
+                    harum, animi quas numquam facere maiores debitis.
+                </p>
+            </div>
+        </article>
+    </section>
+    <c-footer></c-footer>
+</body>
+
+<script src="/components/navigation.js"></script>
+
+</html>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    h1 {
+        padding: 10px;
+        margin: 0;
+    }
+
+    section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 25px;
+        gap: 50px;
+        margin: auto;
+        max-width: 1024px;
+    }
+
+    img {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    article {
+        height: inherit;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    div.content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        align-self: center;
+    }
+
+    .content p {
+        font-size: 14px;
+        text-align: left;
+        max-width: 500px;
+    }
+
+    .content h2 {
+        margin: 0;
+        padding: 0;
+    }
+
+    @media (min-width: 768px) {
+        section {
+            flex-direction: row;
+            justify-content: space-between;
+            height: 400px;
+        }
+
+        img {
+            width: auto;
+            height: 100%;
+            padding: 20px;
+        }
+
+        section:nth-of-type(2) {
+            flex-direction: row-reverse !important;
+        }
+    }
+</style>

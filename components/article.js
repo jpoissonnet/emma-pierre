@@ -124,7 +124,7 @@ class Article extends HTMLElement {
                 return;
             }
 
-            window.location.href = "/article.html";
+            window.location.href = "/pages/article.html";
         });
     }
 }

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Emma Pierre's Jewelry Shop"/>
+    <meta name="keywords" content="Bijoux, Pierre précieuse, Jewelry"/>
+    <meta name="author" content="ESGI's Brahim, Cihan Jules and Kenza"/>
+    <link rel="icon" href="/assets/images/favicon_io/favicon.ico"/>
+    <script src="/components/navigation.js"></script>
+    <script src="/components/navigation/footer.js"></script>
+    <script src="/components/form/button.js"></script>
+    <script src="/components/choose.js"></script>
+    <script src="/components/product.js"></script>
+    <title>Emma Pierre</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet"/>
+</head>
+<body>
+<c-nav></c-nav>
+<div class="wrapper">
+    <c-choose src="/assets/images/25171.jpg">
+        <span slot="category">les impertinentes</span>
+    </c-choose>
+    <section id="description"><p>Collection de boucles d’oreilles fantaisie ornées de perles chinées pour leur <strong>originalité</strong>
+        et/ou
+        leur
+        <strong>qualité</strong>
+        (Miyuki, Swarovski, Tchèques, …).
+    </p>
+        <p> Ces boucles d’oreilles étant en éditions limitées (stock réduit de perles pour plus de variété), <em
+            id="emma-pierre">Emma pierre</em> ne
+            garantit pas leur disponibilité dans le temps, alors achetez vite votre coup de ♥ avant de le regretter !!!
+        </p></section>
+    <section id="product">
+        <div class="products-wrapper">
+            <c-product src="/assets/images/25147.jpg">
+                <span slot="name">Goutte d'or</span>
+                <span slot="price">22€</span>
+            </c-product>
+            <c-product src="/assets/images/25146.jpg">
+                <span slot="name">Opale d'été</span>
+                <span slot="price">35€</span>
+            </c-product>
+            <c-product src="/assets/images/25149.jpg">
+                <span slot="name">Lune de miel</span>
+                <span slot="price">25€</span>
+            </c-product>
+            <c-product src="/assets/images/25150.jpg">
+                <span slot="name">Prune d'automne</span>
+                <span slot="price">27€</span>
+            </c-product>
+            <c-product src="/assets/images/25151.jpg">
+                <span slot="name">Larme de cristal</span>
+                <span slot="price">30€</span>
+            </c-product>
+            <c-product src="/assets/images/25152.jpg">
+                <span slot="name">Perle de morphée</span>
+                <span slot="price">32€</span>
+            </c-product>
+            <c-product src="/assets/images/25146.jpg">
+                <span slot="name">Opale d'été</span>
+                <span slot="price">35€</span>
+            </c-product>
+            <c-product src="/assets/images/25147.jpg">
+                <span slot="name">Goutte d'or</span>
+                <span slot="price">22€</span>
+            </c-product>
+        </div>
+        <div id="pagination">
+            <button>&lt;</button>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>4</button>
+            <button>5</button>
+            <button>&gt;</button>
+        </div>
+    </section>
+</div>
+<c-footer></c-footer>
+</body>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Jost', sans-serif;
+    }
+
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0 20px;
+        max-width: 1080px;
+        margin: auto;
+    }
+
+    .wrapper > p {
+        text-align: center;
+        font-size: 1.2rem;
+        margin: 20px 0;
+    }
+
+    .products-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-around;
+        gap: 20px;
+        width: 100%;
+        max-width: 1200px;
+    }
+
+    #pagination {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin: 2rem 0;
+    }
+
+    #pagination button {
+        font-family: "Jost", sans-serif;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        border: none;
+        outline: none;
+        background: none;
+    }
+
+    #emma-pierre {
+        text-transform: uppercase;
+        color: #1D5F6B;
+        font-style: normal;
+    }
+
+    #description {
+        margin: 80px 0;
+    }
+</style>
+</html>

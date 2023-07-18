@@ -77,4 +77,14 @@ class PageController extends AbstractPageController
     {
         return $this->twig->render("article.html.twig");
     }
+    #[Route("/auth", name: "auth")]
+    public function auth(): string
+    {
+        return $this->twig->render("auth.html.twig");
+    }
+    #[Route("/inscription", name: "inscription")]
+    public function inscription(): string
+    {
+        return $this->twig->render("inscription.html.twig");
+    }
 }

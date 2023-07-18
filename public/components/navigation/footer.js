@@ -100,10 +100,10 @@ class Footer extends HTMLElement {
                     <li><a>3 Rue des blés, 69000 Lyon</a></li>
                     <div class="reseau">
                         <li>
-                            <a href=""><img class="reseau_soc" src="/assets/images/instagram.png" alt="instagram" /></a>
+                            <a href="/"><img class="reseau_soc" src="/assets/images/instagram.png" alt="instagram" /></a>
                         </li>
                         <li>
-                            <a href=""><img class="reseau_soc" src="/assets/images/facebook.png" alt="facebook" /></a>
+                            <a href="/"><img class="reseau_soc" src="/assets/images/facebook.png" alt="facebook" /></a>
                         </li>
                     </div>
 

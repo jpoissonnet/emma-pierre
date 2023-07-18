@@ -23,6 +23,33 @@ class ProductController extends AbstractApiController
         echo json_encode($products);
     }
 
+    #[Route("/api/products/precieuses", name: "api_products_precieuses", httpMethod: "GET")]
+    public function getPrecieuses()
+    {
+        $query = $this->db->query("SELECT product.nom, product.prix FROM $this->table inner join category c on c.id = id_categorie where c.nom = 'précieuses'");
+        $products = $query->fetchAll(\PDO::FETCH_ASSOC);
+
+        echo json_encode($products);
+    }
+
+    #[Route("/api/products/impertinentes", name: "api_products_impertinentes", httpMethod: "GET")]
+    public function getImpertinentes()
+    {
+        $query = $this->db->query("SELECT * FROM $this->table inner join category c on c.id = id_categorie where c.nom = 'impertinentes'");
+        $products = $query->fetchAll(\PDO::FETCH_ASSOC);
+
+        echo json_encode($products);
+    }
+
+    #[Route("/api/products/couleurs", name: "api_products_couleurs", httpMethod: "GET")]
+    public function getCouleurs()
+    {
+        $query = $this->db->query("SELECT c.nom FROM couleur c inner join product p on p.id_couleur = id");
+        $products = $query->fetchAll(\PDO::FETCH_ASSOC);
+
+        echo json_encode($products);
+    }
+
     public function get($id)
     {
         $query = $this->db->prepare('SELECT * FROM $TABLE WHERE id = :id');

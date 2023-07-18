@@ -2,7 +2,7 @@
 
 namespace App\Controller\Api;
 
-use App\Controller\Api\AbstractApiController;
+use App\Controller\AbstractApiController;
 use App\Routing\Attribute\Route;
 
 class UserController extends AbstractApiController

@@ -2,9 +2,10 @@
 
 namespace App\Controller\Api;
 
+use App\Controller\AbstractApiController;
 use App\Routing\Attribute\Route;
 
-class ProductController extends BaseController
+class ProductController extends AbstractApiController
 {
     protected $table = 'PRODUCT';
 

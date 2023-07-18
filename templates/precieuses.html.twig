@@ -89,7 +89,15 @@
 <c-footer></c-footer>
 </body>
 <script>
-    fetch('/api/products');
+    fetch('/api/products').then(res => res.json()).then(data => {
+        const products = document.querySelector('.products-wrapper')
+        data.forEach(product => {
+            const cProduct = document.createElement('c-product')
+            cProduct.setAttribute('src', product.image)
+            cProduct.innerHTML = `<span slot="name">${product.name}</span><span slot="price">${product.price}€</span>`
+            products.appendChild(cProduct)
+        });
+    });
 </script>
 <style>
     * {
@@ -175,7 +183,7 @@
         margin: 2rem 0;
     }
 
-    #pagination button{
+    #pagination button {
         font-family: "Jost", sans-serif;
         font-size: 1.2rem;
         text-transform: uppercase;

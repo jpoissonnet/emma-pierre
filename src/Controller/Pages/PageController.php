@@ -67,4 +67,9 @@ class PageController extends AbstractPageController
         return $this->twig->render("uniques.html.twig");
     }
 
+    #[Route("/product", name: "product")]
+    public function product(): string
+    {
+        return $this->twig->render("product.html.twig");
+    }
 }

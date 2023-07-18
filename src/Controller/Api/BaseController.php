@@ -24,7 +24,6 @@ abstract class BaseController
             'DB_PASSWORD' => $password
         ] = $_ENV;
 
-
         $this->db = new \PDO("mysql:host=$host;dbname=$dbname", $user, $password);
     }
 }

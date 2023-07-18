@@ -67,7 +67,7 @@ class PageController extends AbstractPageController
         return $this->twig->render("uniques.html.twig");
     }
 
-    #[Route("/details", name: "details")]
+    #[Route("/product", name: "product")]
     public function product(): string
     {
         return $this->twig->render("product.html.twig");
@@ -87,5 +87,28 @@ class PageController extends AbstractPageController
     public function inscription(): string
     {
         return $this->twig->render("inscription.html.twig");
+    }
+    #[Route("/admin", name: "admin-console")]
+    public function admin(): string
+    {
+        return $this->twig->render("admin-console.html.twig");
+    }
+
+    #[Route("/user-console", name: "user-console")]
+    public function userConsole(): string
+    {
+        return $this->twig->render("admin-console.html.twig");
+    }
+
+    #[Route("/product-console", name: "product-console")]
+    public function productConsole(): string
+    {
+        return $this->twig->render("admin-console.html.twig");
+    }
+
+    #[Route("/prout-console", name: "prout-console")]
+    public function proutConsole(): string
+    {
+        return $this->twig->render("admin-console.html.twig");
     }
 }

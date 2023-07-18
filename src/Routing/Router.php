@@ -2,7 +2,8 @@
 
 namespace App\Routing;
 
-use App\Routing\Attribute\Route;
+use App\Routing\Attribute\Route as RouteAttribute;
+use App\Routing\Route;
 use App\Utils\Filesystem;
 use Psr\Container\ContainerInterface;
 use ReflectionClass;

@@ -2,74 +2,44 @@
 
 namespace App\Controller\Api;
 
-class UserController extends BaseController
+use App\Controller\AbstractApiController;
+use App\Routing\Attribute\Route;
+
+class UserController extends AbstractApiController
 {
-    const TABLE = 'USER';
-    public function __construct()
+
+    #[Route("/api/users", name: "api_users_get")]
+    public function getUsers()
     {
-        parent::__construct();
-    }
-
-    public function getAll()
-    {
-        $query = $this->db->query('SELECT * FROM $TABLE');
-        $users = $query->fetchAll(\PDO::FETCH_ASSOC);
-
-        echo json_encode($users);
-    }
-
-    public function get($id)
-    {
-        $query = $this->db->prepare('SELECT * FROM $TABLE WHERE id = :id');
-        $query->execute(['id' => $id]);
-        $user = $query->fetch(\PDO::FETCH_ASSOC);
-
-        echo json_encode($user);
-    }
-
-    public function create()
-    {
-        $data = json_decode(file_get_contents('php://input'), true);
-
-        $query = $this->db->prepare('INSERT INTO $TABLE (name, email) VALUES (:name, :email)');
-        $query->execute([
-            'name' => $data['name'],
-            'email' => $data['email']
+        return json_encode([
+            [
+                'id' => 1,
+                'login' => 'John Doe',
+                'password' => '',
+                'nom' => 'Doe',
+                'prenom' => 'John',
+                'telephone' => '0606060606',
+                'id_role' => 1,
+            ],
+            [
+                'id' => 2,
+                'login' => 'Jane Doe',
+                'password' => '',
+                'nom' => 'Doe',
+                'prenom' => 'Jane',
+                'telephone' => '0606060606',
+                'id_role' => 2,
+            ]
         ]);
-
-        $id = $this->db->lastInsertId();
-
-        $query = $this->db->prepare('SELECT * FROM $TABLE WHERE id = :id');
-        $query->execute(['id' => $id]);
-        $user = $query->fetch(\PDO::FETCH_ASSOC);
-
-        echo json_encode($user);
     }
 
-    public function update($id)
+    #[Route("/api/users", name: "api_users_post", httpMethod: "POST")]
+    public function createUser()
     {
-        $data = json_decode(file_get_contents('php://input'), true);
-
-        $query = $this->db->prepare('UPDATE $TABLE SET name = :name, email = :email WHERE id = :id');
-        $query->execute([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'id' => $id
-        ]);
-
-        $query = $this->db->prepare('SELECT * FROM $TABLE WHERE id = :id');
-        $query->execute(['id' => $id]);
-        $user = $query->fetch(\PDO::FETCH_ASSOC);
-
-        echo json_encode($user);
-    }
-
-    public function delete($id)
-    {
-        $query = $this->db->prepare('DELETE FROM $TABLE WHERE id = :id');
-        $query->execute(['id' => $id]);
-
-        echo json_encode(['message' => 'User deleted']);
+       header('Content-Type: application/json', true, 201);
+       return json_encode([
+           'message' => 'User created'
+       ]);
     }
 
 }

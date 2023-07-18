@@ -103,10 +103,19 @@ class Router
     {
 
         $classNames = Filesystem::getClassNames(self::CONTROLLERS_GLOB_PATH);
-
         foreach ($classNames as $class) {
+            //TODO: Refactor this
             $fqcn = "App\\Controller\\" . $class;
-            $classInfos = new ReflectionClass($fqcn);
+            try {
+                $classInfos = new ReflectionClass($fqcn);
+            } catch (ReflectionException $e) {
+                try {
+                    $fqcn = "App\\Controller\\Api\\" . $class;
+                    $classInfos = new ReflectionClass($fqcn);
+                } catch (ReflectionException $e) {
+                    continue;
+                }
+            }
 
             if ($classInfos->isAbstract()) {
                 continue;

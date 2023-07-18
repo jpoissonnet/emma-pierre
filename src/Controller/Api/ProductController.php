@@ -19,7 +19,7 @@ class ProductController extends AbstractApiController
     {
         $query = $this->db->query("SELECT * FROM $this->table");
         $products = $query->fetchAll(\PDO::FETCH_ASSOC);
-        
+
         echo json_encode($products);
     }
 
@@ -30,7 +30,7 @@ class ProductController extends AbstractApiController
         $queryStmt = $this->db->prepare($query);
         $queryStmt->execute(['category' => $category]);
         $products = $queryStmt->fetch(\PDO::FETCH_ASSOC);
-        
+
         echo json_encode($products);
     }
 
@@ -69,7 +69,7 @@ class ProductController extends AbstractApiController
     {
         $query = $this->db->query("SELECT * FROM $this->table p inner join couleur c on p.id_couleur = c.id;");
         $products = $query->fetchAll(\PDO::FETCH_ASSOC);
-    
+
         echo json_encode($products);
     }
 

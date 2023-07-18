@@ -15,7 +15,7 @@ class Article extends HTMLElement {
             cursor: pointer;
             display: inline-block;
             padding: 5px;
-           z-index: 1; 
+           z-index: 1;
         }
 
         .article:before {
@@ -35,7 +35,7 @@ class Article extends HTMLElement {
             height: 100%;
             object-fit: cover;
         }
-        
+
         .article:hover img {
             filter: brightness(0.5);
             transition: 0.5s ease-in-out;
@@ -89,8 +89,8 @@ class Article extends HTMLElement {
             div:before {
                 display: none;
             }
-    
-        </style>        
+
+        </style>
         <div id="id" class="article">
             <img src="/assets/images/start.jpeg" alt="article image">
             <h2>Title</h2>
@@ -124,7 +124,7 @@ class Article extends HTMLElement {
                 return;
             }
 
-            window.location.href = "/article.html";
+            window.location.href = "/article";
         });
     }
 }

@@ -2,14 +2,18 @@
 
 namespace App\Controller\Api;
 
+use App\Routing\Attribute\Route;
+
 class ProductController extends BaseController
 {
     const TABLE = 'PRODUCT';
+
     public function __construct()
     {
         parent::__construct();
     }
 
+    #[Route("/api/products", name: "api_products", httpMethod: "GET")]
     public function getAll()
     {
         $query = $this->db->query('SELECT * FROM $TABLE');

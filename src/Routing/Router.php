@@ -102,11 +102,11 @@ class Router
     public function registerRoutes(): void
     {
 
-    $classNames = Filesystem::getClassNames(self::CONTROLLERS_GLOB_PATH);
+        $classNames = Filesystem::getClassNames(self::CONTROLLERS_GLOB_PATH);
 
-    foreach ($classNames as $class) {
-      $fqcn = "App\\Controller\\" . $class;
-      $classInfos = new ReflectionClass($fqcn);
+        foreach ($classNames as $class) {
+            $fqcn = "App\\Controller\\" . $class;
+            $classInfos = new ReflectionClass($fqcn);
 
             if ($classInfos->isAbstract()) {
                 continue;

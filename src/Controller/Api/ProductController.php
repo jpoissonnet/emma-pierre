@@ -6,7 +6,7 @@ use App\Routing\Attribute\Route;
 
 class ProductController extends BaseController
 {
-    const TABLE = 'PRODUCT';
+    protected $table = 'PRODUCT';
 
     public function __construct()
     {
@@ -16,7 +16,7 @@ class ProductController extends BaseController
     #[Route("/api/products", name: "api_products", httpMethod: "GET")]
     public function getAll()
     {
-        $query = $this->db->query('SELECT * FROM $TABLE');
+        $query = $this->db->query("SELECT * FROM $this->table");
         $products = $query->fetchAll(\PDO::FETCH_ASSOC);
 
         echo json_encode($products);

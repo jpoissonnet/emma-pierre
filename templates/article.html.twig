@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Emma Pierre's Jewelry Shop" />
+        <meta name="keywords" content="Bijoux, Pierre précieuse, Jewelry" />
+        <meta name="author" content="ESGI's Brahim, Cihan Jules and Kenza" />
+        <link rel="icon" href="/assets/images/favicon_io/favicon.ico" />
+        <script src="/components/navigation.js"></script>
+        <script src="/components/navigation/footer.js"></script>
+        <script src="/components/form/button.js"></script>
+        <script src="/components/choose.js"></script>
+        <script src="/components/product.js"></script>
+        <script src="/components/article.js"></script>
+        <title>Emma Pierre</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="../index.css" />
+        <style>
+            /* Style CSS pour la mise en forme de la page produit */
+            body {
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 0;
+                background-color: #f2f2f2;
+                color: #333;
+            }
+            header {
+                background-color: #007bff;
+                color: #fff;
+                padding: 1rem;
+                text-align: center;
+            }
+            main {
+                padding: 1rem;
+                max-width: 800px;
+                margin: 0 auto;
+                background-color: #fff;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+                border-radius: 5px;
+            }
+            img.product-image {
+                max-width: 100%;
+                height: auto;
+                display: block;
+                margin: 0 auto;
+                padding: 1rem 0;
+            }
+            h1.product-title {
+                text-align: center;
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+            p.product-description {
+                text-align: justify;
+                margin-bottom: 1rem;
+            }
+            .product-price {
+                font-size: 1.6rem;
+                font-weight: bold;
+                text-align: center;
+                color: #353535;
+                margin-bottom: 2rem;
+            }
+            .article {
+                width: 250px;
+                height: 350px;
+            }
+            .wrap {
+                display: flex;
+            }
+            .wrap div {
+                margin: 10px;
+            }
+            img.product-image {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .inline {
+                display: inline-block;
+            }
+        </style>
+    </head>
+    <body>
+        <c-nav></c-nav>
+        <main class="wrap">
+            <div class="">
+                <img class="product-image" class=".article" src="/assets/images/start.jpeg" alt="Image du Produit" />
+            </div>
+            <div>
+                <h1 class="product-title">Nom du Produit</h1>
+                <p class="product-description">
+                    Description détaillée du produit. Cette section peut contenir des informations importantes sur les
+                    caractéristiques, les avantages et les détails du produit.
+                </p>
+                <div class="wrap inline">
+                    <span>Prix :</span>
+                    <p class="product-price">$99.99</p>
+                </div>
+
+                <c-button variant="produit"
+                    ><a href="/pages/panier.html" class="add-to-cart-button">Ajouter au Panier</a></c-button
+                >
+            </div>
+        </main>
+    </body>
+</html>

@@ -10,6 +10,7 @@ if (
 
 
 use App\DependencyInjection\Container;
+use App\Routing\ArgumentResolver;
 use App\Routing\RouteNotFoundException;
 use App\Routing\Router;
 use Symfony\Component\Dotenv\Dotenv;
@@ -50,7 +51,7 @@ $serviceContainer = new Container();
 $serviceContainer
     ->set(Environment::class, $twig);
 
-$router = new Router($serviceContainer);
+$router = new Router($serviceContainer, new ArgumentResolver());
 $router->registerRoutes();
 
 try {

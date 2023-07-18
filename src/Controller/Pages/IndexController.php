@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Pages;
 
+use App\Controller\AbstractPageController;
 use App\Routing\Attribute\Route;
 
 class IndexController extends AbstractPageController

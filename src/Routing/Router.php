@@ -105,7 +105,7 @@ class Router
         $classNames = Filesystem::getClassNames(self::CONTROLLERS_GLOB_PATH);
         foreach ($classNames as $class) {
             //TODO: Refactor this
-            $fqcn = "App\\Controller\\" . $class;
+            $fqcn = "App\\Controller\\Pages\\" . $class;
             try {
                 $classInfos = new ReflectionClass($fqcn);
             } catch (ReflectionException $e) {

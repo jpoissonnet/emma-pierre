@@ -19,17 +19,37 @@ class ProductController extends AbstractApiController
     {
         $query = $this->db->query("SELECT * FROM $this->table");
         $products = $query->fetchAll(\PDO::FETCH_ASSOC);
+        
+        echo json_encode($products);
+    }
 
+    #[Route("/api/products?category={category}", name: "api_products_filter", httpMethod: "GET")]
+    public function getAllFilter($category)
+    {
+        $query = $this->db->query("SELECT * FROM $this->table p where c.nom = :category");
+        $queryStmt = $this->db->prepare($query);
+        $queryStmt->execute(['category' => $category]);
+        $products = $queryStmt->fetch(\PDO::FETCH_ASSOC);
+        
         echo json_encode($products);
     }
 
     #[Route("/api/products/precieuses", name: "api_products_precieuses", httpMethod: "GET")]
     public function getPrecieuses()
     {
-        $query = $this->db->query("SELECT product.nom, product.prix FROM $this->table where c.nom = 'précieuses'");
+        $query = $this->db->query("SELECT product.nom, product.prix FROM $this->table where c.nom = 'precieuses'");
         $products = $query->fetchAll(\PDO::FETCH_ASSOC);
 
         echo json_encode($products);
+    }
+
+    #[Route("/api/products/{id}", name: "api_product", httpMethod: "GET")]
+    public function getById($id)
+    {
+        $query = $this->db->query("SELECT * FROM $this->table WHERE id = $id");
+        $product = $query->fetch(\PDO::FETCH_ASSOC);
+
+        echo json_encode($product);
     }
 
     #[Route("/api/products/impertinentes", name: "api_products_impertinentes", httpMethod: "GET")]
@@ -47,15 +67,6 @@ class ProductController extends AbstractApiController
         $query = $this->db->query("SELECT * FROM $this->table p inner join couleur c on p.id_couleur = c.id;");
         $products = $query->fetchAll(\PDO::FETCH_ASSOC);
     
-        echo json_encode($products);
-    }
-
-    #[Route("/api/products/details", name: "api_products_details", httpMethod: "GET")]
-    public function getProductDetails()
-    {
-        $query = $this->db->query("SELECT * FROM $this->table");
-        $products = $query->fetchAll(\PDO::FETCH_ASSOC);
-
         echo json_encode($products);
     }
 

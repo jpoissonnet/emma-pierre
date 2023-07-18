@@ -58,6 +58,16 @@
     h2 {
       text-align: center;
     }
+    @media screen and (max-width: 600px) {
+      input[type="text"],
+      input[type="email"],
+      input[type="telephone"],
+      input[type="rue"],
+      input[type="ville"],
+      input[type="password"] {
+        width: 90%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -72,6 +82,18 @@
       <div class="form-group">
         <label for="email">E-mail :</label>
         <input type="email" id="email" name="email" required>
+      </div>
+    <div class="form-group">
+        <label for="telephone">Telephone :</label>
+        <input type="telephone" id="telephone" name="telephone" required>
+      </div>
+      <div class="form-group">
+        <label for="rue">Rue :</label>
+        <input type="rue" id="rue" name="rue" required>
+      </div>
+      <div class="form-group">
+        <label for="ville">Ville :</label>
+        <input type="ville" id="ville" name="ville" required>
       </div>
       <div class="form-group">
         <label for="password">Mot de passe :</label>

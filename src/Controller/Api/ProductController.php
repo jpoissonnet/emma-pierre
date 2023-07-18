@@ -2,17 +2,22 @@
 
 namespace App\Controller\Api;
 
-class ProductController extends BaseController
+use App\Controller\AbstractApiController;
+use App\Routing\Attribute\Route;
+
+class ProductController extends AbstractApiController
 {
-    const TABLE = 'PRODUCT';
+    protected $table = 'PRODUCT';
+
     public function __construct()
     {
         parent::__construct();
     }
 
+    #[Route("/api/products", name: "api_products", httpMethod: "GET")]
     public function getAll()
     {
-        $query = $this->db->query('SELECT * FROM $TABLE');
+        $query = $this->db->query("SELECT * FROM $this->table");
         $products = $query->fetchAll(\PDO::FETCH_ASSOC);
 
         echo json_encode($products);

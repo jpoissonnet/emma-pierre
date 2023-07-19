@@ -12,7 +12,8 @@ use ReflectionMethod;
 
 class Router
 {
-    private const CONTROLLERS_GLOB_PATH = __DIR__ . "/../Controller/{*,/*/}*Controller.php";
+    private const CONTROLLERS_BASE_NAMESPACE = "App\\Controller\\";
+    private const CONTROLLERS_BASE_DIR = __DIR__ . "/../Controller";
 
     public function __construct(
         private ContainerInterface $container,
@@ -106,21 +107,13 @@ class Router
     function registerRoutes(): void
     {
 
-        $classNames = Filesystem::getClassNames(self::CONTROLLERS_GLOB_PATH);
+        $fqcns = Filesystem::getFqcns(
+            self::CONTROLLERS_BASE_DIR,
+            self::CONTROLLERS_BASE_NAMESPACE
+        );
 
-        foreach ($classNames as $class) {
-            //TODO: Refactor this
-            $fqcn = "App\\Controller\\Pages\\" . $class;
-            try {
-                $classInfos = new ReflectionClass($fqcn);
-            } catch (ReflectionException $e) {
-                try {
-                    $fqcn = "App\\Controller\\Api\\" . $class;
-                    $classInfos = new ReflectionClass($fqcn);
-                } catch (ReflectionException $e) {
-                    continue;
-                }
-            }
+        foreach ($fqcns as $fqcn) {
+            $classInfos = new ReflectionClass($fqcn);
 
             if ($classInfos->isAbstract()) {
                 continue;

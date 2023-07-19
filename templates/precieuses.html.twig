@@ -43,26 +43,6 @@
     <section id="product">
         <div class="products-wrapper">
             <!-- Product -->
-            <c-product src="/assets/images/products/1.jpg" data-main-category="family" data-type="boucles">
-                <span slot="name">Boucles d'oreilles</span>
-                <span slot="price">120€</span>
-            </c-product>
-            <c-product src="/assets/images/products/1.jpg" data-main-category="trilogy" data-type="boucles">
-                <span slot="name">trilogy</span>
-                <span slot="price">120€</span>
-            </c-product>
-            <c-product src="/assets/images/products/1.jpg" data-main-category="rana" data-type="boucles">
-                <span slot="name">Borana lles</span>
-                <span slot="price">120€</span>
-            </c-product>
-            <c-product src="/assets/images/products/1.jpg" data-main-category="pearl" data-type="boucles">
-                <span slot="name">Boui pearl lles</span>
-                <span slot="price">120€</span>
-            </c-product>
-            <c-product src="/assets/images/products/1.jpg" data-main-category="family" data-type="boucles">
-                <span slot="name">Boucles d'oreilles</span>
-                <span slot="price">120€</span>
-            </c-product>
         </div>
         <div id="pagination">
             <button>&lt;</button>
@@ -77,23 +57,6 @@
 </div>
 <c-footer></c-footer>
 </body>
-<script>
-    fetch('/api/products/precieuses').then(res => res.json()).then(data => {
-        console.table(data);
-        const products = document.querySelector('.products-wrapper')
-        data.forEach(product => {
-            const cProduct = document.createElement('c-product')
-            cProduct.setAttribute('src', product.image)
-            console.log(product.image, product)
-            console.log(typeof product)
-            cProduct.setAttribute('href', '/precieuses/' + product.id)
-            cProduct.setAttribute('data-main-category', product.categorie)
-            cProduct.setAttribute('data-type', product.type)
-            cProduct.innerHTML = `<span slot="name">${product.nom}</span><span slot="price">${product.prix}€</span>`
-            products.appendChild(cProduct)
-        });
-    });
-</script>
 <style>
     * {
         box-sizing: border-box;
@@ -189,6 +152,24 @@
 
 </style>
 <script>
+
+    fetch('/api/products/precieuses').then(res => res.json()).then(data => {
+        console.table(data);
+        const products = document.querySelector('.products-wrapper')
+        data.forEach(product => {
+            const cProduct = document.createElement('c-product')
+            cProduct.setAttribute('src', product.image)
+            console.log(product.image, product)
+            console.log(typeof product)
+            cProduct.setAttribute('href', '/precieuses/' + product.id)
+            cProduct.setAttribute('data-main-category', product.categorie)
+            cProduct.setAttribute('data-type', product.type)
+            cProduct.innerHTML = `<span slot="name">${product.nom}</span><span slot="price">${product.prix}€</span>`
+            products.appendChild(cProduct)
+        });
+        renderFilter();
+    });
+
     const filter = document.querySelector('.filter-wrapper')
     const buttons = document.querySelectorAll('.main-categories-wrapper button')
 
@@ -247,7 +228,5 @@
             renderFilter();
         })
     })
-
-
 </script>
 </html>

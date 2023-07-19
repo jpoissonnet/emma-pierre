@@ -12,7 +12,7 @@ class Filesystem
 {
     public static function getFqcns(string $baseDir, string $namespacePrefix = ''): array
     {
-        $dir = new RecursiveDirectoryIterator($baseDir, FilesystemIterator::SKIP_DOTS);
+        $dir = new RecursiveDirectoryIterator($baseDir, FilesystemIterator::SKIP_DOTS | FilesystemIterator::UNIX_PATHS);
 
         $iterator = new RegexIterator(
             new RecursiveIteratorIterator($dir),
@@ -22,7 +22,7 @@ class Filesystem
 
         $iterator->replacement = '$1';
         return array_map(function ($e) use ($namespacePrefix, $baseDir) {
-            $cleanedElement = $namespacePrefix . str_replace($baseDir . '/', '', $e);
+            $cleanedElement = $namespacePrefix . str_replace($baseDir . '\\', '', $e);
             return str_replace("/", "\\", $cleanedElement);
         }, iterator_to_array($iterator));
     }

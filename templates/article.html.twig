@@ -47,7 +47,7 @@
                 text-align: center;
                 font-size: 1.8rem;
                 margin-top: 0px;
-
+                text-transform: uppercase;
             }
             p.product-description {
                 text-align: justify;
@@ -55,7 +55,7 @@
                 margin-bottom: 1rem;
             }
             .product-price {
-                font-size: 1rem;
+                font-size: 2rem;
                 font-weight: bold;
                 text-align: center;
                 color: #353535;
@@ -101,7 +101,7 @@
                 align-items: center; /* Aligne les éléments verticalement au centre */
                 margin-bottom: 0px;
             }
-            .taille{
+            .taille, .color, .cat{
                 font-size:20px;
                 font-weight:bold;
             }
@@ -135,13 +135,18 @@
                     <h1 class="product-title" id="product-name">Nom du Produit</h1>
                     <div>
                         <label for="taille">Taille :</label>
-                        <span id="taille" class="taille">XS</span>
+                        <span id="taille" class="taille"></span>
                     </div>
 
-                    <p class="product-description" id="product-description">
-                        Description détaillée du produit. Cette section peut contenir des informations importantes sur les
-                        caractéristiques, les avantages et les détails du produit.
-                    </p>
+                    <div>
+                        <label for="color">Couleur :</label>
+                        <span id="color" class="color"></span>
+                    </div>
+
+                    <div>
+                        <label for="cat">Categorie :</label>
+                        <span id="cat" class="cat"></span>
+                    </div>
                 </div>
                 <div>
                 <hr>
@@ -150,7 +155,7 @@
                 <div class="block-price-btn">
                     <div class="div-price">
                         <span id="price-label">Prix : </span>
-                        <p class="product-price" id="product-price"> $99.99</p>
+                        <p class="product-price" id="product-price"></p>
                     </div>
                     <div class="btn">
                         <a href="/panier"  class="add-to-cart-button"><c-button variant="produit" >Ajouter</c-button></a>
@@ -161,4 +166,32 @@
         </main>
         <c-footer></c-footer>
     </body>
+    <script>
+    const url = window.location.href;
+    const id = url.substring(url.lastIndexOf('/') + 1);
+
+    fetch('/api/products/' + id).then(res => res.json()).then(detail => {
+        console.table(detail);
+
+        const productWrapper = document.querySelector('.wrap-list');
+        
+        const productName = document.querySelector('h1');
+        productName.innerText = detail.nom;
+
+        const productImage = document.querySelector('.product-image');
+        productImage.src = detail.image;
+
+        const productPrice = document.querySelector('.product-price');
+        productPrice.textContent = detail.prix + '€';
+
+        const productDescription = document.querySelector('.taille');
+        productDescription.innerText = detail.taille;
+        
+        const productColor = document.querySelector('.color');
+        productColor.innerText = detail.couleur;
+
+        const productCat = document.querySelector('.cat');
+        productCat.innerText = detail.categorie;
+    });
+    </script>
 </html>

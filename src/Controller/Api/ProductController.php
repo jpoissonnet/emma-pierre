@@ -37,7 +37,7 @@ class ProductController extends AbstractApiController
     #[Route("/api/products/precieuses", name: "api_products_precieuses", httpMethod: "GET")]
     public function getPrecieuses()
     {
-        $query = $this->db->query("SELECT product.nom, product.prix FROM $this->table where c.nom = 'precieuses'");
+        $query = $this->db->query("SELECT * FROM $this->table where categorie NOT IN ('impertinentes', 'par couleur', 'uniques');");
         $products = $query->fetchAll(\PDO::FETCH_ASSOC);
 
         echo json_encode($products);

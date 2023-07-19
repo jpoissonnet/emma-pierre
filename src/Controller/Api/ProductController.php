@@ -16,7 +16,7 @@ class ProductController extends AbstractApiController
     public function getAll()
     {
         if (empty($_GET['category'])) {
-            $query = $this->db->query("SELECT p.nom, p.prix, p.image, p.categorie, t.nom as 'type' FROM $this->table p");
+            $query = $this->db->query("SELECT p.nom, p.prix, p.image, p.categorie, t.nom as 'type' FROM $this->table p inner join `type` t on t.id = p.id_type");
         } else if ($_GET['category'] == "precieuses") {
             $query = $this->db->query("SELECT p.nom, p.prix, p.image, p.categorie, t.nom as 'type' FROM $this->table p inner join `type` t on t.id = p.id_type WHERE categorie NOT IN ('impertinentes', 'par couleur', 'uniques')");
         } else {

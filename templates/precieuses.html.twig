@@ -166,7 +166,7 @@
 </style>
 <script>
 
-    fetch('/api/products/precieuses').then(res => res.json()).then(data => {
+    fetch('/api/products?category=precieuses').then(res => res.json()).then(data => {
         console.table(data);
         const products = document.querySelector('.products-wrapper')
         data.forEach(product => {

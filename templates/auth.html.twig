@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Emma Pierre's Jewelry Shop" />
+    <meta name="keywords" content="Bijoux, Pierre précieuse, Jewelry" />
+    <meta name="author" content="ESGI's Brahim, Cihan Jules and Kenza" />
+    <link rel="icon" href="/assets/images/favicon_io/favicon.ico" />
+    <script src="/components/navigation.js"></script>
+    <script src="/components/navigation/footer.js"></script>
+    <script src="/components/form/button.js"></script>
+    <script src="/components/choose.js"></script>
+    <script src="/components/product.js"></script>
+    <script src="/components/article.js"></script>
+    <title>Emma Pierre</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <style>
+        body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        }
+        h2 {
+            text-align: center;
+        }
+
+        .container {
+        max-width:600px;
+        height:auto;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 100px;
+        }
+
+        .form-group {
+        margin-bottom: 20px;
+        }
+
+        label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        }
+
+        input {
+        width: 97%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        font-size: 16px;
+        }
+        .auth {
+            display : flex;
+           justify-content: center;
+        }
+        .auth:first-child {
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .inscription {
+            background-color: white;
+            border: 1px solid #1D5F6B;
+        }
+        @media screen and (max-width: 600px) {
+            input[type="text"],
+            input[type="password"] {
+                width: 90%;
+            }
+            .auth{
+                display: block;
+                margin: 0 auto;
+
+            }
+        }
+
+    </style>
+</head>
+<body>
+ <c-nav></c-nav>
+  <div class="container">
+    <h2>Authentification</h2>
+    <form action="/login" method="POST">
+      <div class="form-group">
+        <label for="username">Nom d'utilisateur :</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Mot de passe :</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div class="auth">
+        <c-button variant="auth" type="submit"><a href="#">Connexion</a> </c-button>
+        <a href="/inscription"><c-button variant="sinscrire" type="submit">S'inscrire</c-button></a>
+      </div>
+
+    </form>
+  </div>
+</body>
+</html>

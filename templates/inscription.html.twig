@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Emma Pierre's Jewelry Shop"/>
+    <meta name="keywords" content="Bijoux, Pierre précieuse, Jewelry"/>
+    <meta name="author" content="ESGI's Brahim, Cihan Jules and Kenza"/>
+    <link rel="icon" href="/assets/images/favicon_io/favicon.ico"/>
+    <script src="/components/navigation.js"></script>
+    <script src="/components/navigation/footer.js"></script>
+    <script src="/components/form/button.js"></script>
+    <script src="/components/choose.js"></script>
+    <script src="/components/product.js"></script>
+    <script src="/components/article.js"></script>
+    <title>Emma Pierre</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/index.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-top: 100px;
+    }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 16px;
+        }
+
+        #inscrit:hover {
+            background-color: #1D5F6B;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        @media screen and (max-width: 600px) {
+            input[type="text"],
+            input[type="email"],
+            input[type="telephone"],
+            input[type="rue"],
+            input[type="ville"],
+            input[type="password"] {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+<c-nav></c-nav>
+<div class="container">
+    <h2>Inscription</h2>
+    <form action="/api/register" method="POST">
+        <div class="form-group">
+            <label for="prenom">Prenom :</label>
+            <input type="text" id="prenom" name="prenom" required>
+        </div>
+        <div class="form-group">
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required>
+        </div>
+        <div class="form-group">
+            <label for="email">E-mail :</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="rue">Rue :</label>
+            <input type="rue" id="rue" name="rue" required>
+        </div>
+        <div class="form-group">
+            <label for="ville">Ville :</label>
+            <input type="ville" id="ville" name="ville" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <label for="confirm_password">Confirmer le mot de passe :</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+        </div>
+        <c-button type="submit" content="S'inscrire"></c-button>
+    </form>
+</div>
+</body>
+<script>
+    const button = document.querySelector('c-button');
+    const form = document.querySelector('form');
+    button.addEventListener('click', () => {
+        const password = document.querySelector('#password').value;
+        const confirm_password = document.querySelector('#confirm_password').value;
+        if (password !== confirm_password) {
+            alert('Les mots de passe ne correspondent pas');
+        } else {
+            const data = {
+                nom: document.querySelector('#nom').value,
+                prenom: document.querySelector('#prenom').value,
+                login: document.querySelector('#email').value,
+                rue: document.querySelector('#rue').value,
+                ville: document.querySelector('#ville').value,
+                password: password
+            };
+            fetch('/api/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data),
+            }).then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error);
+                    } else {
+                        alert('Vous êtes inscrit');
+                        //TODO: redirect after login
+                        /*window.location.href = '/';*/
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            console.log(data);
+            /*document.querySelector('form').submit();*/
+        }
+    });
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+    });
+</script>
+</html>

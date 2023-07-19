@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Emma Pierre's Jewelry Shop" />
+        <meta name="keywords" content="Bijoux, Pierre précieuse, Jewelry" />
+        <meta name="author" content="ESGI's Brahim, Cihan Jules and Kenza" />
+        <link rel="icon" href="/assets/images/favicon_io/favicon.ico" />
+        <script src="/components/navigation.js"></script>
+        <script src="/components/navigation/footer.js"></script>
+        <script src="/components/form/button.js"></script>
+        <script src="/components/choose.js"></script>
+        <script src="/components/product.js"></script>
+        <script src="/components/article.js"></script>
+        <title>Emma Pierre</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="./css/index.css" />
+        <style>
+            /* Style CSS pour la mise en forme de la page produit */
+            body {
+                font-family: "Jost", sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 0;
+                background-color: #f2f2f2;
+                color: #333;
+            }
+            header {
+                background-color: #007bff;
+                color: #fff;
+                padding: 1rem;
+                text-align: center;
+            }
+            main {
+                padding: 1rem;
+                max-width: 800px;
+                margin: 20px auto;
+                background-color: #fff;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+                border-radius: 5px;
+            }
+            h1.product-title {
+                text-align: center;
+                font-size: 1.8rem;
+                margin-top: 0px;
+
+            }
+            p.product-description {
+                text-align: justify;
+                font-size: 0.7rem;
+                margin-bottom: 1rem;
+            }
+            .product-price {
+                font-size: 1rem;
+                font-weight: bold;
+                text-align: center;
+                color: #353535;
+            }
+
+            .wrap {
+                display: flex;
+            }
+            .wrap-list {
+                margin: 0px 10px 10px 10px;
+                width: 100%;
+                display:flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+            img.product-image {
+                max-width: 60%;
+                float: left;
+                height: auto;
+                display: block;
+                margin-top: 0px;
+                padding: 1rem 0;
+            }
+            .inline {
+                display: inline-block;
+            }
+            #price-label{
+                /*font-weight: bold;*/
+                margin-right:10px;
+            }
+           .div-price {
+                display: flex; /* Transforme le conteneur en conteneur flexible */
+                justify-content: space-between; /* Aligne les éléments horizontalement au centre */
+                align-items: center; /* Aligne les éléments verticalement au centre */
+                wrap: nowrap;
+            }
+            .div-price.p{
+                height: 50%;
+            }
+            .block-price-btn{
+                display: flex; /* Transforme le conteneur en conteneur flexible */
+                justify-content: space-between; /* Aligne les éléments horizontalement au centre */
+                align-items: center; /* Aligne les éléments verticalement au centre */
+                margin-bottom: 0px;
+            }
+            .taille{
+                font-size:20px;
+                font-weight:bold;
+            }
+            @media screen and (max-width: 600px) {
+            .block-price-btn{
+                display: block;
+                margin: 0 auto;
+
+            }
+            hr{
+                border: 1px solid lightgrey;
+                overflow: visible;
+            }
+
+        }
+
+
+
+
+        </style>
+    </head>
+    <body>
+        <c-nav></c-nav>
+        <main class="wrap">
+            <div class="wrap-list">
+                <img class="product-image" src="/assets/images/start.jpeg" alt="Image du Produit" id="product-image" />
+            </div>
+
+            <div class="wrap-list">
+                <div>
+                    <h1 class="product-title" id="product-name">Nom du Produit</h1>
+                    <div>
+                        <label for="taille">Taille :</label>
+                        <span id="taille" class="taille">XS</span>
+                    </div>
+
+                    <p class="product-description" id="product-description">
+                        Description détaillée du produit. Cette section peut contenir des informations importantes sur les
+                        caractéristiques, les avantages et les détails du produit.
+                    </p>
+                </div>
+                <div>
+                <hr>
+                </div>
+
+                <div class="block-price-btn">
+                    <div class="div-price">
+                        <span id="price-label">Prix : </span>
+                        <p class="product-price" id="product-price"> $99.99</p>
+                    </div>
+                    <div class="btn">
+                        <a href="/panier"  class="add-to-cart-button"><c-button variant="produit" >Ajouter</c-button></a>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+        <c-footer></c-footer>
+    </body>
+</html>

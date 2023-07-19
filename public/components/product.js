@@ -16,6 +16,11 @@ class Product extends HTMLElement{
                 padding: 5px;
             }
 
+            a{
+                text-decoration: none;
+                color: inherit;
+            }
+
             .product img{
                 width: 100%;
                 height: 75%;
@@ -41,13 +46,13 @@ class Product extends HTMLElement{
                 }
             }
         </style>
-        <div class="product">
+        <a href="#" class="product">
            <img src="/assets/images/25170.jpg" alt="image de bijou"/>
            <div class="product-info">
                <h3 class="product-title"><slot name="name">Ras de cou</slot></h3>
                <p><slot name="price">30,00€</slot></p>
            </div>
-        </div>
+        </a>
         `;
     }
 
@@ -55,6 +60,11 @@ class Product extends HTMLElement{
         const src = this.getAttribute("src");
         if(src){
             this.shadowRoot.querySelector("img").setAttribute("src", src);
+        }
+
+        const href = this.getAttribute("href");
+        if(href){
+            this.shadowRoot.querySelector("a").setAttribute("href", href);
         }
     }
 }

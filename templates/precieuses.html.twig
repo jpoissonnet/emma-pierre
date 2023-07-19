@@ -26,18 +26,18 @@
         <strong>couleur</strong> spécifique
         et/ou leur <strong>taille</strong> particulière les mettant particulièrement en valeur.
     </p>
-    <nav class="filter-wrapper">
+    <nav class="filter-wrapper" data-main-category="family" data-type="boucles">
         <div class="main-categories-wrapper">
-            <button class="active">Family</button>
-            <button>Trilogy</button>
-            <button>Rana</button>
-            <button>Pearl</button>
+            <button class="active" id="family">Family</button>
+            <button id="trilogy">Trilogy</button>
+            <button id="rana">Rana</button>
+            <button id="pearl">Pearl</button>
         </div>
         <hr/>
         <div class="sub-categories-wrapper">
-            <button>Bracelet</button>
-            <button>Collier</button>
-            <button class="active">Boucles</button>
+            <button id="bracelet">Bracelet</button>
+            <button id="collier">Collier</button>
+            <button class="active" id="boucles">Boucles</button>
         </div>
     </nav>
     <section id="product">
@@ -57,18 +57,6 @@
 </div>
 <c-footer></c-footer>
 </body>
-<script>
-    fetch('/api/products').then(res => res.json()).then(data => {
-        console.table(data);
-        const products = document.querySelector('.products-wrapper')
-        data.forEach(product => {
-            const cProduct = document.createElement('c-product')
-            cProduct.setAttribute('src', product.image)
-            cProduct.innerHTML = `<span slot="name">${product.nom}</span><span slot="price">${product.prix}€</span>`
-            products.appendChild(cProduct)
-        });
-    });
-</script>
 <style>
     * {
         box-sizing: border-box;
@@ -163,4 +151,82 @@
     }
 
 </style>
+<script>
+
+    fetch('/api/products/precieuses').then(res => res.json()).then(data => {
+        console.table(data);
+        const products = document.querySelector('.products-wrapper')
+        data.forEach(product => {
+            const cProduct = document.createElement('c-product')
+            cProduct.setAttribute('src', product.image)
+            console.log(product.image, product)
+            console.log(typeof product)
+            cProduct.setAttribute('href', '/precieuses/' + product.id)
+            cProduct.setAttribute('data-main-category', product.categorie)
+            cProduct.setAttribute('data-type', product.type)
+            cProduct.innerHTML = `<span slot="name">${product.nom}</span><span slot="price">${product.prix}€</span>`
+            products.appendChild(cProduct)
+        });
+        renderFilter();
+    });
+
+    const filter = document.querySelector('.filter-wrapper')
+    const buttons = document.querySelectorAll('.main-categories-wrapper button')
+
+    function renderFilter() {
+        const mainCategory = filter.getAttribute('data-main-category')
+        const subCategory = filter.getAttribute('data-type')
+        const products = document.querySelectorAll('c-product')
+        products.forEach(product => {
+            if (mainCategory === product.getAttribute("data-main-category") && subCategory === product.getAttribute("data-type")) {
+                product.style.display = 'block'
+            } else {
+                product.style.display = 'none'
+            }
+        })
+    }
+
+    renderFilter();
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            buttons.forEach(button => {
+                button.classList.remove('active')
+                button.style.display = 'inline-block'
+            })
+            button.classList.add('active')
+            filter.setAttribute('data-main-category', button.innerText.toLowerCase())
+            document.querySelectorAll(".sub-categories-wrapper button").forEach(button => {
+                button.style.display = 'inline-block'
+            });
+            switch (button.innerText.toLowerCase()) {
+                case "family":
+                    document.querySelector("#boucles").style.display = "none";
+                    break;
+                case "trilogy":
+                    document.querySelector("#bracelet").style.display = "none";
+                    document.querySelector("#boucles").style.display = "none";
+                    break;
+                case "rana":
+                    document.querySelector("#bracelet").style.display = "none";
+                    break;
+                case "pearl":
+                    document.querySelector("#bracelet").style.display = "none";
+                    break;
+                default:
+                    break;
+            }
+
+            renderFilter();
+        });
+    })
+    const subButtons = document.querySelectorAll('.sub-categories-wrapper button')
+    subButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            subButtons.forEach(button => button.classList.remove('active'))
+            button.classList.add('active')
+            filter.setAttribute('data-type', button.innerText.toLowerCase())
+            renderFilter();
+        })
+    })
+</script>
 </html>

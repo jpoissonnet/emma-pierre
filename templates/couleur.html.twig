@@ -40,38 +40,7 @@
     </nav>
     <section id="product">
         <div class="products-wrapper">
-            <c-product src="/assets/images/25147.jpg">
-                <span slot="name">Goutte d'or</span>
-                <span slot="price">22€</span>
-            </c-product>
-            <c-product src="/assets/images/25146.jpg">
-                <span slot="name">Opale d'été</span>
-                <span slot="price">35€</span>
-            </c-product>
-            <c-product src="/assets/images/25149.jpg">
-                <span slot="name">Lune de miel</span>
-                <span slot="price">25€</span>
-            </c-product>
-            <c-product src="/assets/images/25150.jpg">
-                <span slot="name">Prune d'automne</span>
-                <span slot="price">27€</span>
-            </c-product>
-            <c-product src="/assets/images/25151.jpg">
-                <span slot="name">Larme de cristal</span>
-                <span slot="price">30€</span>
-            </c-product>
-            <c-product src="/assets/images/25152.jpg">
-                <span slot="name">Perle de morphée</span>
-                <span slot="price">32€</span>
-            </c-product>
-            <c-product src="/assets/images/25146.jpg">
-                <span slot="name">Opale d'été</span>
-                <span slot="price">35€</span>
-            </c-product>
-            <c-product src="/assets/images/25147.jpg">
-                <span slot="name">Goutte d'or</span>
-                <span slot="price">22€</span>
-            </c-product>
+            <!-- Products -->
         </div>
         <div id="pagination">
             <button>&lt;</button>
@@ -92,8 +61,8 @@
         const products = document.querySelector('.products-wrapper')
         data.forEach(product => {
             const cProduct = document.createElement('c-product')
-            cProduct.setAttribute('src', product)
-            cProduct.innerHTML = `<span slot="name">${product}</span><span slot="price">${product}€</span>`
+            cProduct.setAttribute('src', product.image)
+            cProduct.innerHTML = `<span slot="name">${product.nom}</span><span slot="price">${product.prix}€</span>`
             products.appendChild(cProduct)
         });
     });

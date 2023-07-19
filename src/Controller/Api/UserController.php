@@ -7,6 +7,7 @@ use App\Routing\Attribute\Route;
 
 class UserController extends AbstractApiController
 {
+
     #[Route("/api/users", name: "api_users_get")]
     public function getUsers()
     {
@@ -25,7 +26,7 @@ class UserController extends AbstractApiController
 
     }
 
-    #[Route("/api/users", name: "api_users_post", httpMethod: "POST")]
+    #[Route("/api/register", name: "api_users_post", httpMethod: "POST")]
     public function createUser()
     {
         $data = json_decode(file_get_contents('php://input'), true);
@@ -34,7 +35,8 @@ class UserController extends AbstractApiController
         $password = $data['password'];
         $nom = $data['nom'];
         $prenom = $data['prenom'];
-        $telephone = $data['telephone'];
+        //TODO: handle rue
+        //TODO: handle ville
 
         $query = $this->db->prepare('SELECT * FROM user WHERE login = :login');
         $query->execute([
@@ -51,20 +53,20 @@ class UserController extends AbstractApiController
 
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        $query = $this->db->prepare('INSERT INTO user (login, password, nom, prenom, telephone, id_role) VALUES (:login, :password, :nom, :prenom, :telephone, :id_role)');
+        $query = $this->db->prepare('INSERT INTO user (login, password, nom, prenom, id_role) VALUES (:login, :password, :nom, :prenom, :id_role)');
         $query->execute([
             'login' => $login,
             'password' => $hashedPassword,
             'nom' => $nom,
             'prenom' => $prenom,
-            'telephone' => $telephone,
             'id_role' => 2
         ]);
 
 
         header('Content-Type: application/json', true, 201);
         return json_encode([
-            'message' => 'User created'
+            'message' => 'User created',
+            'body' => $data
         ]);
     }
 

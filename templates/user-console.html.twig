@@ -23,7 +23,7 @@
 <body>
 <c-nav></c-nav>
 
-<h1>Utilsisateur console</h1>
+<h1>Console utilisateur</h1>
 
 <section class="users">
     <table>
@@ -50,14 +50,14 @@
             <td>Ville</td>
             <td>
                 <button>
-                    <svg id="edit" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                    <svg class="edit" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                         <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                         <path
                             d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"/>
                     </svg>
                 </button>
                 <button>
-                    <svg id="delete" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                    <svg class="delete" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
                         <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                         <path
                             d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/>
@@ -75,9 +75,6 @@
         <label for="login">Login</label>
         <input type="text" name="login" id="login" placeholder="Login" required/>
 
-        <label for="password">Mot de passe</label>
-        <input type="password" name="password" id="password" placeholder="Mot de passe" required/>
-
         <label for="lastname">Nom</label>
         <input type="text" name="lastname" id="lastname" placeholder="Nom" required/>
 
@@ -93,7 +90,10 @@
         <label for="city">Ville</label>
         <input type="text" name="city" id="city" placeholder="Ville" required/>
 
-        <button>Valider</button>
+        <div>
+            <button>Anuler</button>
+            <button>Valider</button>
+        </div>
     </form>
 </dialog>
 
@@ -101,7 +101,10 @@
     <h2>Supprimer un utilsisateur</h2>
     <form action="">
         <p>Vous allez supprimé l'utilisateur <b>'REMPLIRICI'</b> êtes-vous sûrs ?</p>
-        <button>Valider et supprimer</button>
+
+        <div>
+            <button>Anuler</button>
+            <button>Valider et supprimer</button></div>
     </form>
 </dialog>
 
@@ -112,7 +115,6 @@
 
 <script>
     const dialog = document.querySelectorAll('dialog');
-    const buttons = document.querySelectorAll('button');
 
     window.addEventListener('load', () => {
         fetch(window.location.origin + '/api/users')
@@ -142,14 +144,23 @@
                     let edit = document.createElement('button');
                     let del = document.createElement('button');
 
-                    edit.innerHTML = '<svg id="edit" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><path d="M570.1 57.9L518.1 5.9c-18.7-18.7-49.1-18.7-67.9 0l-35.8 35.8 68 68 35.8-35.8c9.4-9.4 24.6-9.4 33.9 0l51.9 51.9c9.4 9.4 9.4 24.6 0 33.9l-35.8 35.8 68 68 35.8-35.8c18.7-18.7 18.7-49.1 0-67.9zM192 288l-64 64-64-64 64-64 64 64zm-64 64l-64 64-64-64 64-64 64 64zm256-192l-64 64-64-64 64-64 64 64zm-64 64l-64 64-64-64 64-64 64 64z"/></svg>';
-                    del.innerHTML = '<svg id="delete" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M400 32H320V12c0-6.6-5.4-12-12-12H140c-6.6 0-12 5.4-12 12v20H48C21.5 32 0 53.5 0 80v32c0 6.6 5.4 12 12 12h424c6.6 0 12-5.4 12-12V80c0-26.5-21.5-48-48-48zM48 80h352v32H48V80zm352 352H48V160h352v272zm-176-80c0 26.5-21.5 48-48 48s-48-21.5-48-48V208c0-26.5 21.5-48 48-48s48 21.5 48 48v144z"/></svg>'
+                    edit.innerHTML = ` <svg class="edit" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"> <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --> <path d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"/> </svg> `;
+                    del.innerHTML = ` <svg class="delete" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"> <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --> <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/> </svg> `;
+
+                    console.log(user)
 
                     edit.addEventListener('click', () => {
+                        document.querySelector('dialog form input[name="login"]').value = user.login;
+                        document.querySelector('dialog form input[name="firstname"]').value = user.nom;
+                        document.querySelector('dialog form input[name="lastname"]').value = user.prenom;
+                        document.querySelector('dialog form input[name="address"]').value = user.adresse;
+                        document.querySelector('dialog form input[name="zipcode"]').value = user.code_postal;
+                        document.querySelector('dialog form input[name="city"]').value = user.ville;
                         dialog[0].showModal();
                     });
 
                     del.addEventListener('click', () => {
+                        document.querySelector('dialog:nth-of-type(2) p').innerHTML = `Voulez-vous vraiment supprimer l'utilisateur <b>${user.login}</b> ?`;
                         dialog[1].showModal();
                     });
 
@@ -167,12 +178,6 @@
                     document.querySelector('tbody').appendChild(row);
                 })
             })
-    });
-
-    buttons.forEach((button, index) => {
-        button.addEventListener('click', () => {
-            dialog[index].showModal();
-        });
     });
 
     dialog.forEach((dialog) => {
@@ -286,19 +291,19 @@
         height: 1.5rem;
     }
 
-    #edit {
+    .edit {
         fill: var(--blue-light);
     }
 
-    #edit:hover {
+    .edit:hover {
         fill: var(--blue-dark);
     }
 
-    #delete {
+    .delete {
         fill: var(--coral-light);
     }
 
-    #delete:hover {
+    .delete:hover {
         fill: var(--coral);
     }
 
@@ -437,6 +442,12 @@
         margin-bottom: 0.5rem;
     }
 
+    dialog form div {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
     dialog form button {
         align-self: flex-end;
     }
@@ -446,7 +457,7 @@
     }
 
     dialog form button:first-child {
-        background-color: var(--coral-light);
+        background-color: var(--blue-gray);
     }
 
     dialog form button:first-child:hover {

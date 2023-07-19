@@ -22,7 +22,7 @@ class Filesystem
 
         $iterator->replacement = '$1';
         return array_map(function ($e) use ($namespacePrefix, $baseDir) {
-            $cleanedElement = $namespacePrefix . str_replace($baseDir . '\\', '', $e);
+            $cleanedElement = $namespacePrefix . str_replace($baseDir . '/', '', $e);
             return str_replace("/", "\\", $cleanedElement);
         }, iterator_to_array($iterator));
     }

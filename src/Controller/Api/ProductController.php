@@ -16,11 +16,11 @@ class ProductController extends AbstractApiController
     public function getAll()
     {
         if (empty($_GET['category'])) {
-            $query = $this->db->query("SELECT p.nom, p.prix, p.image, p.categorie, t.nom as 'type' FROM $this->table");
+            $query = $this->db->query("SELECT p.nom, p.prix, p.image, p.categorie, t.nom as 'type' FROM $this->table p");
         } else if ($_GET['category'] == "precieuses") {
-            $query = $this->db->query("SELECT p.nom, p.prix, p.image, p.categorie, t.nom as 'type' FROM $this->table WHERE categorie NOT IN ('impertinentes', 'par couleur', 'uniques')");
+            $query = $this->db->query("SELECT p.nom, p.prix, p.image, p.categorie, t.nom as 'type' FROM $this->table p inner join `type` t on t.id = p.id_type WHERE categorie NOT IN ('impertinentes', 'par couleur', 'uniques')");
         } else {
-            $query = $this->db->prepare("SELECT p.nom, p.prix, p.image, p.categorie, t.nom as 'type' FROM $this->table WHERE categorie = :category");
+            $query = $this->db->prepare("SELECT p.nom, p.prix, p.image, p.categorie, t.nom as 'type' FROM $this->table p inner join `type` t on t.id = p.id_type WHERE categorie = :category");
             $query->execute(['category' => $_GET['category']]);
         }
         $products = $query->fetchAll(\PDO::FETCH_ASSOC);
@@ -44,12 +44,6 @@ class ProductController extends AbstractApiController
     public function getById(string $id)
     {
         echo json_encode($id);
-    }
-
-    #[Route("/api/products?category={category}", name: "api_products", httpMethod: "GET")]
-    public function getByCategory(string $category)
-    {
-        echo json_encode($category);
     }
 
 

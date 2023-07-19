@@ -35,8 +35,7 @@ class Router
     public function getRoute(string $uri, string $httpMethod): ?Route
     {
         foreach ($this->routes as $route) {
-            var_dump($route);
-            if (($this->argumentResolver->match($uri, $route) || substr($uri, 0, strpos($uri, "?"))) && $route->getHttpMethod() === $httpMethod) {
+            if (($this->argumentResolver->match($uri, $route) || substr($uri, 0, strpos($uri, "?")) == $route->getPath()) && $route->getHttpMethod() === $httpMethod) {
                 $params = $this->argumentResolver->resolveUrlParams($uri, $route);
 
                 $route->setUrlParams($params);

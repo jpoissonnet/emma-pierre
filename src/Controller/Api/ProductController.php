@@ -30,7 +30,7 @@ class ProductController extends AbstractApiController
         echo json_encode($products);
     }
 
-/*    #[Route("/api/products/precieuses", name: "api_products_precieuses", httpMethod: "GET")]
+    #[Route("/api/products/precieuses", name: "api_products_precieuses", httpMethod: "GET")]
     public function getPrecieuses()
     {
         $query = $this->db->query("SELECT p.nom, p.prix, p.image, p.categorie, t.nom as 'type'
@@ -40,7 +40,7 @@ class ProductController extends AbstractApiController
         $products = $query->fetchAll(\PDO::FETCH_ASSOC);
 
         echo json_encode($products);
-    }*/
+    }
 
     #[Route("/api/products/{category}", name: "api_product", httpMethod: "GET")]
     public function getById(string $category)

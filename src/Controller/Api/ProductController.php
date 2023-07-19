@@ -28,12 +28,15 @@ class ProductController extends AbstractApiController
         echo json_encode($products);
     }
 
-    #[Route("/api/products/{id}", name: "api_product_id", httpMethod: "GET")]
-    public function getById(string $id)
+    #[Route("/api/details", name: "api_details_id", httpMethod: "GET")]
+    public function getById()
     {
-        $query = $this->db->prepare("SELECT * FROM $this->table WHERE id = :id");
-        $query->execute(['id' => $id]);
-        $product = $query->fetch(\PDO::FETCH_ASSOC);
+        $query = $this->db->prepare("SELECT p.nom, prix, taille, c.nom as `couleur`, image 
+        FROM $this->table p inner join couleur c on c.id = p.id_couleur 
+        WHERE p.id = :id");
+        $query->execute(['id' => 5]);
+        $product = $query->fetchAll(\PDO::FETCH_ASSOC);
+
         echo json_encode($product);
     }
 

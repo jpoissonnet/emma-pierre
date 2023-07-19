@@ -35,7 +35,7 @@ class Router
     public function getRoute(string $uri, string $httpMethod): ?Route
     {
         foreach ($this->routes as $route) {
-            if ($this->argumentResolver->match($uri, $route) && $route->getHttpMethod() === $httpMethod) {
+            if (($this->argumentResolver->match($uri, $route) || substr($uri, 0, strpos($uri, "?"))) && $route->getHttpMethod() === $httpMethod) {
                 $params = $this->argumentResolver->resolveUrlParams($uri, $route);
 
                 $route->setUrlParams($params);
@@ -51,8 +51,7 @@ class Router
      * @return void
      * @throws RouteNotFoundException
      */
-    public
-    function execute(string $requestUri, string $httpMethod)
+    public function execute(string $requestUri, string $httpMethod)
     {
         $route = $this->getRoute($requestUri, $httpMethod);
 

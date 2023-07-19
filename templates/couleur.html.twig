@@ -56,7 +56,7 @@
 <c-footer></c-footer>
 </body>
 <script>
-    fetch('/api/products/couleurs').then(res => res.json()).then(data => {
+    fetch('/api/products?category=par couleur').then(res => res.json()).then(data => {
         console.table(data);
         const products = document.querySelector('.products-wrapper')
         data.forEach(product => {

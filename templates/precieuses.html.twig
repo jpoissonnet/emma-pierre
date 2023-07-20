@@ -159,7 +159,11 @@
         data.forEach(product => {
             const cProduct = document.createElement('c-product')
             cProduct.setAttribute('src', product.image)
+<<<<<<< HEAD
             cProduct.setAttribute('href', '/products/' + product.id)
+=======
+            cProduct.setAttribute('href', '/products?id=' + product.id)
+>>>>>>> c776871cd893654b87470ea70bdec52735825c23
             cProduct.setAttribute('data-main-category', product.categorie)
             cProduct.setAttribute('data-type', product.type)
             cProduct.innerHTML = `<span slot="name">${product.nom}</span><span slot="price">${product.prix}€</span>`

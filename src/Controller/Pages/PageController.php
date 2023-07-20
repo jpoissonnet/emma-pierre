@@ -72,7 +72,11 @@ class PageController extends AbstractPageController
     {
         return $this->twig->render("product.html.twig");
     }
+<<<<<<< HEAD
     #[Route("/products/{id}", name: "article")]
+=======
+    #[Route("/product/{id}", name: "article")]
+>>>>>>> c776871cd893654b87470ea70bdec52735825c23
     public function article(int $id): string
     {
         return $this->twig->render("article.html.twig");

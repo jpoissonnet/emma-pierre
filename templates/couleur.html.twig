@@ -62,6 +62,7 @@
         data.forEach(product => {
             const cProduct = document.createElement('c-product')
             cProduct.setAttribute('src', product.image)
+            cProduct.setAttribute('href', '/products/' + product.id)
             cProduct.innerHTML = `<span slot="name">${product.nom}</span><span slot="price">${product.prix}€</span>`
             products.appendChild(cProduct)
         });

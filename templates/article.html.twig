@@ -72,12 +72,14 @@
                 justify-content: space-between;
             }
             img.product-image {
-                max-width: 60%;
+                max-width: 350px;
+                max-height: 400px;
                 float: left;
                 height: auto;
                 display: block;
                 margin-top: 0px;
                 padding: 1rem 0;
+                object-fit: contain;
             }
             .inline {
                 display: inline-block;
@@ -127,12 +129,12 @@
         <c-nav></c-nav>
         <main class="wrap">
             <div class="wrap-list">
-                <img class="product-image" src="/assets/images/start.jpeg" alt="Image du Produit" id="product-image" />
+                <img class="product-image" alt="Image du Produit" id="product-image" />
             </div>
 
             <div class="wrap-list">
                 <div>
-                    <h1 class="product-title" id="product-name">Nom du Produit</h1>
+                    <h1 class="product-title" id="product-name"></h1>
                     <div>
                         <label for="taille">Taille :</label>
                         <span id="taille" class="taille"></span>
@@ -166,7 +168,7 @@
         </main>
         <c-footer></c-footer>
     </body>
-    <script>
+    <script defer>
     const url = window.location.href;
     const id = url.substring(url.lastIndexOf('/') + 1);
 

@@ -74,71 +74,133 @@
 
 <c-footer></c-footer>
 
-<dialog id="add-modal">
+<dialog data-id="" id="add-modal">
     <h2>Ajout de produit</h2>
     <form action="">
         <label for="name">Nom</label>
         <input type="text" name="name" id="name"/>
 
-        <label for="category">Catégorie</label>
-        <select name="category" id="category">
+        <label for="type">Type</label>
+        <select name="type" id="type">
             <option value="bracelet">Bracelet</option>
             <option value="bague">Bague</option>
             <option value="collier">Collier</option>
             <option value="boucle">Boucle d'oreille</option>
         </select>
 
+        <label for="categorie">Categories</label>
+        <select name="categorie" id="categorie">
+            <option value="family">Famille</option>
+            <option value="trilogy">Trilogie</option>
+            <option value="rana">Rana</option>
+            <option value="pearl">Pearl</option>
+            <option value="impertinentes">Impertinentes</option>
+            <option value="par couleur">Par couleur</option>
+            <option value="uniques">Uniques</option>
+        </select>
+
         <label for="price">Prix</label>
         <input type="number" name="price" id="price"/>
 
-        <label for="description">Description</label>
-        <textarea name="description" id="description" cols="30" rows="10"></textarea>
+        <label for="taille">Taille</label>
+        <select name="taille" id="taille">
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option>
+        </select>
+
+        <label for="couleur">Couleur</label>
+        <select name="couleur" id="couleur">
+            <option value="rouge">Rouge</option>
+            <option value="bleu">Bleu</option>
+            <option value="vert">Vert</option>
+            <option value="jaune">Jaune</option>
+            <option value="orange">Orange</option>
+            <option value="violet">Violet</option>
+            <option value="rose">Rose</option>
+            <option value="noir">Noir</option>
+            <option value="blanc">Blanc</option>
+            <option value="gris">Gris</option>
+            <option value="marron">Marron</option>
+            <option value="beige">Beige</option>
+        </select>
 
         <label for="image">Image</label>
         <input type="file" name="image" id="image"/>
 
         <div>
-            <button>Anuler</button>
-            <button>Valider et ajouter</button></div>
+            <button class="cancel">Anuler</button>
+            <button type="submit">Valider et ajouter</button>
+        </div>
     </form>
 </dialog>
 
-<dialog id="edit">
+<dialog data-id="" id="edit">
     <h2>Modification de produit</h2>
     <form action="">
         <label for="name">Nom</label>
         <input type="text" name="name" id="name"/>
 
-        <label for="category">Catégorie</label>
+        <label for="price">Prix</label>
+        <input type="number" name="price" id="price"/>
+
+        <label for="category">Categories</label>
         <select name="category" id="category">
+            <option value="family">Famille</option>
+            <option value="trilogy">Trilogie</option>
+            <option value="rana">Rana</option>
+            <option value="pearl">Pearl</option>
+            <option value="impertinentes">Impertinentes</option>
+            <option value="par couleur">Par couleur</option>
+            <option value="uniques">Uniques</option>
+        </select>
+
+        <label for="taille">Taille</label>
+        <select name="taille" id="taille">
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option>
+        </select>
+
+        <label for="couleur">Couleur</label>
+        <select name="couleur" id="couleur">
+            <option value="noir">Noir</option>
+            <option value="blanc">Blanc</option>
+            <option value="rouge">Rouge</option>
+            <option value="bleu">Bleu</option>
+            <option value="vert">Vert</option>
+        </select>
+
+        <label for="type">Type</label>
+        <select name="type" id="type">
             <option value="bracelet">Bracelet</option>
             <option value="bague">Bague</option>
             <option value="collier">Collier</option>
             <option value="boucle">Boucle d'oreille</option>
         </select>
 
-        <label for="price">Prix</label>
-        <input type="number" name="price" id="price"/>
-
-        <label for="description">Description</label>
-        <textarea name="description" id="description" cols="30" rows="10"></textarea>
-
         <label for="image">Image</label>
         <input type="file" name="image" id="image"/>
 
         <div>
-            <button>Anuler</button>
-            <button>Valider et modifier</button></div>
+            <button class="cancel">Anuler</button>
+            <button type="submit">Valider et modifier</button>
+        </div>
     </form>
 </dialog>
 
-<dialog id="delete">
+<dialog data-id="" id="delete">
     <h2>Suppression de produit</h2>
     <form action="">
-        <p><p>Êtes-vous sûr de vouloir supprimer le produit 'produit' ?</p></p>
+        <p>Êtes-vous sûr de vouloir supprimer le produit 'produit' ?</p>
         <div>
-            <button>Anuler</button>
-            <button>Valider et supprimer</button></div>
+            <button class="cancel">Anuler</button>
+            <button type="submit">Valider et supprimer</button>
+        </div>
     </form>
 </dialog>
 
@@ -150,9 +212,39 @@
     const add = document.querySelector('#add');
     const edit = document.querySelector('#edit');
     const del = document.querySelector('#delete');
+    const forms = document.querySelectorAll('form');
 
-    window.addEventListener('load', () => {
-        fetch(window.location.origin + '/api/products')
+    window.addEventListener('load', async () => {
+        await fetch(window.location.origin + '/api/couleurs')
+            .then((res) => res.json())
+            .then((data) => {
+                const couleurs = document.querySelector('#couleur');
+
+                data.forEach((couleur) => {
+                    const option = document.createElement('option');
+                    option.value = couleur.id;
+                    option.textContent = couleur.nom;
+
+                    couleurs.appendChild(option);
+                });
+            });
+
+        await fetch(window.location.origin + "/api/types")
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data)
+                const types = document.querySelector('#type');
+
+                data.forEach((type) => {
+                    const option = document.createElement('option');
+                    option.value = type.id;
+                    option.textContent = type.nom;
+
+                    types.appendChild(option);
+                });
+            });
+
+        await fetch(window.location.origin + '/api/products')
             .then(response => response.json())
             .then(data => {
                 const products = document.querySelector('.produits');
@@ -160,16 +252,17 @@
                 data.forEach((produit) => {
                     const create = document.createElement('div');
                     create.classList.add('produit');
+                    create.dataset.id = produit.id;
 
                     const img = document.createElement('img');
                     img.src = produit.image;
-                    img.alt = produit.name;
+                    img.alt = produit.nom;
 
                     const name = document.createElement('p');
-                    name.textContent = produit.name;
+                    name.textContent = produit.nom;
 
                     const price = document.createElement('p');
-                    price.textContent = produit.price + '€';
+                    price.textContent = produit.prix + '€';
 
                     const actions = document.createElement('div');
                     actions.classList.add('actions');
@@ -181,25 +274,25 @@
                     del.textContent = 'Supprimer';
 
                     edit.addEventListener('click', () => {
-                        const name = document.querySelector('dialog#edit #name');
-                        const category = document.querySelector('dialog#edit #category');
-                        const price = document.querySelector('dialog#edit #price');
-                        const description = document.querySelector('dialog#edit #description');
-                        const image = document.querySelector('dialog#edit #image');
+                        const dial = document.querySelector('#edit');
+                        dial.dataset.id = produit.id;
 
-                        name.value = produit.name;
-                        category.value = produit.category;
-                        price.value = produit.price;
-                        description.value = produit.description;
-                        image.src = produit.image;
+                        document.querySelector('dialog#edit #name').value = produit.nom;
+                        document.querySelector('dialog#edit #price').value = produit.prix;
+                        document.querySelector('dialog#edit #type').value = produit.type;
+                        document.querySelector('dialog#edit #category').value = produit.categorie;
+                        document.querySelector('dialog#edit #image').src = produit.image;
+                        document.querySelector('dialog#edit #taille').value = produit.taille;
+                        document.querySelector('dialog#edit #couleur').value = produit.couleur;
 
-
-                        document.querySelector('#edit').showModal();
+                        dial.showModal();
                     });
 
                     del.addEventListener('click', () => {
-                        document.querySelector('#delete').innerHTML = `<p>Êtes-vous sûr de vouloir supprimer le produit '${produit.name}' ?</p>`;
-                        document.querySelector('#delete').showModal();
+                        const dial = document.querySelector('#delete');
+                        document.querySelector('#delete p').innerHTML = `<p>Êtes-vous sûr de vouloir supprimer le produit '${produit.nom}' ?</p>`;
+                        dial.dataset.id = produit.id;
+                        dial.showModal();
                     });
 
                     actions.appendChild(edit);
@@ -210,13 +303,91 @@
                     create.appendChild(price);
                     create.appendChild(actions);
                     products.appendChild(create);
+
                 })
-            });
+            }).catch(err => console.log(err));
     });
+
+
 
     add.addEventListener('click', () => {
         document.querySelector('#add-modal').showModal();
     });
+
+    forms.forEach((form) => {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+        });
+    })
+
+    const cancelButtons = document.querySelectorAll('.cancel');
+
+    cancelButtons.forEach((button) => {
+        button.addEventListener('click', (e) => {
+            button.parentNode.parentNode.parentNode.close();
+        });
+    });
+
+
+    async function deleteProduct(id) {
+        console.log(id)
+        await fetch(window.location.origin + '/api/products/' + id, {method: 'DELETE'})
+            .then((res) => console.log(res))
+            .catch(err => console.log(err));
+    }
+
+    async function addProduct() {
+        const productToAdd = {
+            nom: document.querySelector('dialog#add-modal #name').value,
+            prix: document.querySelector('dialog#add-modal #price').value,
+            image: document.querySelector('dialog#add-modal #image').value,
+            taille: document.querySelector('dialog#add-modal #taille').value,
+            id_type: document.querySelector('dialog#add-modal #type').value,
+            categorie: document.querySelector('dialog#add-modal #categorie').value,
+            id_couleur: document.querySelector('dialog#add-modal #couleur').value
+        }
+
+        await fetch(window.location.origin + '/api/products', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(productToAdd)
+        })
+            .then((res) => console.log(res))
+            .catch(err => console.log(err));
+    }
+
+    async function editProduct(id) {
+        const editedProduct = {
+            name: document.querySelector('dialog#edit #name').value,
+            prix: document.querySelector('dialog#edit #price').value,
+            image: document.querySelector('dialog#edit #image').value,
+            id_type: document.querySelector('dialog#edit #type').value,
+            categorie: document.querySelector('dialog#edit #categorie').value,
+            taille: document.querySelector('dialog#edit #taille').value,
+            id_couleur: document.querySelector('dialog#edit #couleur').value
+        }
+
+        await fetch(window.location.origin + '/api/products/' + id, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(editedProduct)
+        })
+        // window.location.reload())
+            .then((data) => console.log(data))
+            .catch(err => console.log(err));
+    }
+
+    const validateEditButton = document.querySelector('#edit button[type="submit"]');
+    const validateDeleteButton = document.querySelector('#delete button[type="submit"]');
+    const validateAddButton = document.querySelector('#add-modal button[type="submit"]');
+
+    validateAddButton.addEventListener('click', async () => await addProduct());
+    validateEditButton.addEventListener('click', async () => await editProduct(document.querySelector('dialog#edit').dataset.id));
+    validateDeleteButton.addEventListener('click', async () => await deleteProduct(document.querySelector('dialog#delete').dataset.id));
 
 </script>
 
@@ -334,8 +505,6 @@
     }
 
     dialog {
-        width: 50%;
-        height: 50%;
         position: fixed;
         top: 50%;
         left: 50%;
@@ -349,12 +518,28 @@
         display: none;
     }
 
+    dialog #edit {
+        width: 70%;
+        height: 50%;
+        overflow: hidden;
+    }
+
+    dialog#delete {
+        width: 70%;
+        height: 25%;
+        overflow: hidden;
+    }
+
     dialog[open] {
         display: flex;
     }
 
     dialog h2 {
         margin: 1rem 0;
+    }
+
+    dialog button {
+        cursor: pointer;
     }
 
     dialog form {
@@ -419,5 +604,10 @@
         fill: #fff;
     }
 
-
+    dialog#delete div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+    }
 </style>

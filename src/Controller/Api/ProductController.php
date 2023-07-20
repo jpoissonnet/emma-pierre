@@ -28,6 +28,15 @@ class ProductController extends AbstractApiController
         echo json_encode($products);
     }
 
+    #[Route("/api/products/last", name: "api_products_last", httpMethod: "GET")]
+    public function getLast()
+    {
+        $query = $this->db->query("select p.id, p.nom, p.image, p.prix from $this->table p order by p.id desc limit 4;");
+        $products = $query->fetchAll(\PDO::FETCH_ASSOC);
+
+        echo json_encode($products);
+    }
+
     #[Route("/api/products/{id}", name: "api_details_id", httpMethod: "GET")]
     public function getById(int $id)
     {

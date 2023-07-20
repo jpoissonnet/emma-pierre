@@ -39,20 +39,11 @@
     <div class="wrapper">
         <section class="news">
             <h2>Nouveautés <img src="/assets/images/star.png" alt="star" /></h2>
-            <ul>
-                <h3>Bracelets</h3>
-                <h3>Colliers</h3>
-                <h3>Boucles d'oreilles</h3>
-            </ul>
+
+            <br>
 
             <div class="articles">
-                <c-article href="/articles/1" src="/assets/images/star.png">
-                    <span slot="title">Coucou</span>
-                    <span slot="price">20,00</span>
-                </c-article>
-                <c-article></c-article>
-                <c-article></c-article>
-                <c-article></c-article>
+                
             </div>
 
             <div id="draw-wrapper" href="#">
@@ -174,28 +165,14 @@
 <script>
     fetch('/api/products/last').then(res => res.json()).then(data => {
         console.table(data);
-        const products = document.querySelector('.articles');
+        const articles = document.querySelector('.articles');
         data.forEach(product => {
             const cArticle = document.createElement('c-article');
+            cArticle.setAttribute('src', product.image);
+            cArticle.innerHTML = `<span slot="title">${product.nom}</span><span slot="price">${product.prix}</span>`
+            cArticle.setAttribute('href', '/products/' + product.id);
 
-            // Ajout de l'image avec l'attribut "src"
-            const img = document.createElement('img');
-            img.setAttribute('src', product.image);
-            img.setAttribute('alt', 'article image');
-            cArticle.appendChild(img);
-
-            // Ajout du titre (h2) en utilisant produit.nom
-            const title = document.createElement('h2');
-            title.textContent = product.nom;
-            cArticle.appendChild(title);
-
-            // Ajout du prix dans le span "price" en utilisant produit.prix
-            const price = document.createElement('span');
-            price.classList.add('price');
-            price.textContent = `${product.prix}€`;
-            cArticle.appendChild(price);
-
-            products.appendChild(cArticle);
+            articles.appendChild(cArticle);
         });
 
     });

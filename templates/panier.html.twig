@@ -31,7 +31,7 @@
             <div class="basket-product">
                 <div class="item">
                     <div class="product-image">
-                        <img src="..//assets/images/27777.jpeg" alt="Placholder Image 2" class="product-frame">
+                        <img src="..//assets/images/27777.jpeg" alt="article bijoux" class="product-frame">
                     </div>
                     <div class="product-details">
                         <div class="principal-title"><strong><span class="item-quantity">2 x </span></strong>Boucles d'oreilles<strong> N950</strong></div>
@@ -55,7 +55,7 @@
             <div class="basket-product">
                 <div class="item">
                     <div class="product-image">
-                        <img src="..//assets/images/28888.jpeg" alt="Placholder Image 2" class="product-frame">
+                        <img src="..//assets/images/28888.jpeg" alt="article bijoux" class="product-frame">
                     </div>
                     <div class="product-details">
                         <div class="principal-title"><strong><span class="item-quantity">1 x </span></strong>Boucles d'oreilles<strong> N950</strong></div>
@@ -98,43 +98,46 @@
     <div class="suggestions">
         <h1>Vous aimeriez aussi ...</h1>
         <div class="boxes">
-            <div class="box">
-                <img src="..//assets/images/24444.jpeg">
-                <p>Boucles d'oreilles solaires</p>
-                <p>39,00€</p>
-            </div>
-            <div class="box">
-                <img src="..//assets/images/23333.jpeg">
-                <p>Collier sel de mer</p>
-                <p>55,00€</p>
-            </div>
-            <div class="box">
-                <img src="..//assets/images/25555.jpeg">
-                <p>Bracelet terre naturelle</p>
-                <p>29,00€</p>
-            </div>
-            <div class="box">
-                <img src="..//assets/images/21111.jpeg">
-                <p>Collier N450</p>
-                <p>65,00€</p>
-            </div>
+            <!-- Articles -->
         </div>
     </div>
 
-    <div class="button-draw">
-        <div class='button-circle'>
-            <button>Voir tout</button>
-            <svg viewBox="0 0 500 150" preserveAspectRatio="none">
-                <path fill="none"
-                    d="M325,18C228.7-8.3,118.5,8.3,78,21C22.4,38.4,4.6,54.6,5.6,77.6c1.4,32.4,52.2,54,142.6,63.7 c66.2,7.1,212.2,7.5,273.5-8.3c64.4-16.6,104.3-57.6,33.8-98.2C386.7-4.9,179.4-1.4,126.3,20.7" />
-            </svg>
-        </div>
-    </div>
     <c-footer></c-footer>
 
 </body>
 <script src="..//components/navigation.js"></script>
 <script src="..//components/navigation/footer.js"></script>
+
+<script>
+    fetch('/api/products/last').then(res => res.json()).then(data => {
+        console.table(data);
+        const articles = document.querySelector('.boxes');
+        data.forEach(product => {
+            const box = document.createElement('div');
+            box.classList.add('box');
+            articles.appendChild(box);
+
+            const a = document.createElement('a');
+            a.href = '/products/' + product.id;
+            box.appendChild(a);
+
+            const img = document.createElement('img');
+            img.src = product.image;
+            a.appendChild(img);
+
+            const title = document.createElement('p');
+            title.classList.add('title');
+            title.textContent = product.nom;
+            box.appendChild(title);
+
+            const price = document.createElement('p');
+            price.classList.add('price');
+            price.textContent = product.prix;
+            box.appendChild(price);
+        });
+
+    });
+</script>
 
 </html>
 
@@ -532,6 +535,7 @@
     .boxes img {
         width: 280px;
         height: 270px;
+        object-fit: cover;
     }
 
     .boxes {

@@ -91,17 +91,22 @@ class Article extends HTMLElement {
             }
 
         </style>
-        <div id="id" class="article">
+        <div class="article">
             <img src="/assets/images/start.jpeg" alt="article image">
-            <h2>Title</h2>
+            <h2><slot name="title"></slot></h2>
             <span class="cart">🛒</span>
-            <span class="price">24,00€</span>
+            <span class="price"><slot name="price"></slot>€</span>
         </div>
         `;
     }
 
     connectedCallback() {
         this.render();
+
+        const src = this.getAttribute("src");
+        if(src){
+            this.shadowRoot.querySelector("img").setAttribute("src", src);
+        }
 
         this.shadowRoot.querySelector(".article").addEventListener("mouseover", () => {
             this.shadowRoot.querySelector(".article").classList.add("hover");
@@ -124,7 +129,7 @@ class Article extends HTMLElement {
                 return;
             }
 
-            window.location.href = "/article";
+            window.location.href = this.getAttribute("href");
         });
     }
 }

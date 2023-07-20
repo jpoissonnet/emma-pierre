@@ -24,8 +24,8 @@
                 <ul>
                     <li class="item item-heading">Produit</li>
                     <li class="price">Prix unitaire </li>
-                    <li class="quantity">Quantité</li>
-                    <li class="subtotal">Total </li>
+                    {# <li class="quantity">Quantité</li> #}
+                    {# <li class="subtotal">Sous-total </li> #}
                 </ul>
             </div>
             
@@ -41,7 +41,7 @@
             </div>
             <div class="sous-total">
                 <div class="Subtotal">Total</div>
-                <div class="total-amount">134€</div>
+                <div class="total-amount"></div>
             </div>
         </div>
         <button class="button">Commander</button>
@@ -62,6 +62,18 @@
 <script src="..//components/navigation/footer.js"></script>
 
 <script defer>
+function calculateTotal() {
+        let total = 0;
+        const count = document.querySelector('.price-unit');
+        cart.forEach(product => {
+            total = total + product.prix;
+        });
+        const totalAmount = document.querySelector('.total-amount');
+        totalAmount.textContent = total + '€';
+    }
+
+    let quantite = JSON.parse(localStorage.getItem('quantite')) || [];
+
     fetch('/api/products/last').then(res => res.json()).then(data => {
         const articles = document.querySelector('.boxes');
         data.forEach(product => {
@@ -83,11 +95,12 @@
             box.appendChild(title);
 
             const price = document.createElement('p');
-            price.classList.add('price');
+            price.classList.add('price-unit');
             price.textContent = product.prix;
             box.appendChild(price);
         });
-
+    
+        calculateTotal();
     });
 
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -102,16 +115,6 @@
 
         const basketProducts = document.querySelectorAll('.basket-product');
         basketProducts[index].remove();
-    }
-
-    function calculateTotal() {
-        let total = 0;
-        const count = document.querySelector('.count');
-        cart.forEach(product => {
-            total += product.prix * count.textContent;
-        });
-        const totalAmount = document.querySelector('.total-amount');
-        totalAmount.textContent = total + '€';
     }
 
     function createProductElement(product, index) {
@@ -159,33 +162,33 @@
         price.textContent = product.prix;
         basketProduct.appendChild(price);
 
-        const quantity = document.createElement('div');
+        /*const quantity = document.createElement('div');
         quantity.classList.add('quantity');
-        basketProduct.appendChild(quantity);
+        basketProduct.appendChild(quantity); */
 
-        const counter = document.createElement('div');
+        /*const counter = document.createElement('div');
         counter.classList.add('counter');
-        quantity.appendChild(counter);
+        quantity.appendChild(counter);*/
 
-        const btn = document.createElement('div');
+        /*const btn = document.createElement('div');
         btn.classList.add('btn-plus');
         btn.textContent = '+';
-        counter.appendChild(btn);
+        counter.appendChild(btn);*/
 
-        const count = document.createElement('div');
+        /*const count = document.createElement('div');
         count.classList.add('count');
-        count.textContent = '1';
-        counter.appendChild(count);
+        count.textContent = quantite;
+        counter.appendChild(count);*/
 
-        const btn2 = document.createElement('div');
+        /*const btn2 = document.createElement('div');
         btn2.classList.add('btn-minus');
         btn2.textContent = '-';
-        counter.appendChild(btn2);
+        counter.appendChild(btn2);*/
 
-        const subtotal = document.createElement('div');
+        /*const subtotal = document.createElement('div');
         subtotal.classList.add('subtotal');
         subtotal.textContent = product.prix;
-        basketProduct.appendChild(subtotal);
+        basketProduct.appendChild(subtotal);*/
 
         const remove = document.createElement('div');
         remove.classList.add('remove');
@@ -199,7 +202,6 @@
         removeButton.addEventListener('click', () => {
             removeProductFromCart(index);
         });
-
     }
 
     const basket = document.querySelector('.basket');    
@@ -207,21 +209,31 @@
         createProductElement(product, index);
     });
 
-    const count = document.querySelector('.count');
-    const plus = document.querySelector('.btn-plus');
-    const minus = document.querySelector('.btn-minus');
-    plus.addEventListener('click', () => {
+    const plusArray = document.querySelectorAll('.btn-plus');
+    const minusArray = document.querySelectorAll('.btn-minus');
+    plusArray.forEach((plus) => plus.addEventListener('click', (e) => {
+        const count = e.target.parentNode.parentNode.parentNode.querySelector('.count');
+        let subtotal = e.target.parentNode.parentNode.parentNode.querySelector('.subtotal')
+        const prix = e.target.parentNode.parentNode.parentNode.querySelector('.price');
+        
         count.textContent = parseInt(count.textContent) + 1;
+        subtotal.textContent = prix.textContent * count.textContent;
         calculateTotal();
-    });
-    minus.addEventListener('click', () => {
+
+    }));
+
+    minusArray.forEach((minus) => minus.addEventListener('click', (e) => {
+        const count = e.target.parentNode.parentNode.parentNode.querySelector('.count');
+        let subtotal = e.target.parentNode.parentNode.parentNode.querySelector('.subtotal')
+        const prix = e.target.parentNode.parentNode.parentNode.querySelector('.price');
+        
         count.textContent = parseInt(count.textContent) - 1;
+        subtotal.textContent = prix.textContent * count.textContent;
         calculateTotal();
-    });
 
-    const totalAmount = document.querySelector('.total-amount');
-    totalAmount.textContent = calculateTotal();
+    }));
 
+    calculateTotal();
 </script>
 
 </html>
@@ -458,7 +470,7 @@
     }
 
     .product-image {
-        width: 35%;
+        width: 150px;
     }
 
     .product-details {

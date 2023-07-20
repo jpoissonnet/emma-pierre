@@ -9,71 +9,37 @@ class ProductController extends AbstractApiController
 {
     protected $table = 'PRODUCT';
 
-
+    /**
+     * This route can handle a category query parameter
+     */
     #[Route("/api/products", name: "api_products", httpMethod: "GET")]
     public function getAll()
     {
-        $query = $this->db->query("SELECT * FROM $this->table");
+        if (empty($_GET['category'])) {
+            $query = $this->db->query("SELECT p.nom, p.prix, p.image, p.categorie, p.id, t.nom as 'type' FROM $this->table p inner join `type` t on t.id = p.id_type");
+        } else if ($_GET['category'] == "precieuses") {
+            $query = $this->db->query("SELECT p.nom, p.prix, p.image, p.categorie, p.id, t.nom as 'type' FROM $this->table p inner join `type` t on t.id = p.id_type WHERE categorie NOT IN ('impertinentes', 'par couleur', 'uniques')");
+        } else {
+            $query = $this->db->prepare("SELECT p.nom, p.prix, p.image, p.categorie, p.id, t.nom as 'type' FROM $this->table p inner join `type` t on t.id = p.id_type WHERE categorie = :category");
+            $query->execute(['category' => $_GET['category']]);
+        }
         $products = $query->fetchAll(\PDO::FETCH_ASSOC);
 
         echo json_encode($products);
     }
 
-    #[Route("/api/products?category={category}", name: "api_products_filter", httpMethod: "GET")]
-    public function getAllFilter($category)
+    #[Route("/api/products/{id}", name: "api_details_id", httpMethod: "GET")]
+    public function getById(int $id)
     {
-        $query = $this->db->query("SELECT * FROM $this->table p where c.nom = :category");
-        $queryStmt = $this->db->prepare($query);
-        $queryStmt->execute(['category' => $category]);
-        $products = $queryStmt->fetch(\PDO::FETCH_ASSOC);
-
-        echo json_encode($products);
-    }
-
-    #[Route("/api/products/precieuses", name: "api_products_precieuses", httpMethod: "GET")]
-    public function getPrecieuses()
-    {
-        $query = $this->db->query("SELECT p.nom, p.prix, p.image, p.categorie, t.nom as 'type'
-        FROM $this->table p
-        inner join `type` t on t.id = p.id_type
-        where categorie NOT IN ('impertinentes', 'par couleur', 'uniques')");
-        $products = $query->fetchAll(\PDO::FETCH_ASSOC);
-
-        echo json_encode($products);
-    }
-
-    #[Route("/api/products/{category}", name: "api_product", httpMethod: "GET")]
-    public function getById(string $category)
-    {
-        echo json_encode($category);
-    }
-
-    #[Route("/api/products/impertinentes", name: "api_products_impertinentes", httpMethod: "GET")]
-    public function getImpertinentes()
-    {
-        $query = $this->db->query("SELECT * FROM $this->table where categorie = 'impertinentes'");
-        $products = $query->fetchAll(\PDO::FETCH_ASSOC);
-
-        echo json_encode($products);
-    }
-
-    #[Route("/api/products/couleurs", name: "api_products_couleurs", httpMethod: "GET")]
-    public function getCouleurs()
-    {
-        $query = $this->db->query("SELECT * FROM $this->table p inner join couleur c on p.id_couleur = c.id;");
-        $products = $query->fetchAll(\PDO::FETCH_ASSOC);
-
-        echo json_encode($products);
-    }
-
-    public function get($id)
-    {
-        $query = $this->db->prepare('SELECT * FROM $TABLE WHERE id = :id');
+        $query = $this->db->prepare("SELECT p.nom, prix, taille, categorie, c.nom as `couleur`, image 
+        FROM $this->table p inner join couleur c on c.id = p.id_couleur 
+        WHERE p.id = :id");
         $query->execute(['id' => $id]);
         $product = $query->fetch(\PDO::FETCH_ASSOC);
 
         echo json_encode($product);
     }
+
 
     public function create()
     {

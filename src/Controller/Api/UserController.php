@@ -73,6 +73,7 @@ class UserController extends AbstractApiController
     #[Route("/api/login", name: "api_login_post", httpMethod: "POST")]
     public function connect()
     {
+        //TODO: handle login twice
         $data = json_decode(file_get_contents('php://input'), true);
 
         $login = $data['login'];
@@ -99,8 +100,40 @@ class UserController extends AbstractApiController
         }
 
         header('Content-Type: application/json', true, 200);
+
+
+        //TODO: check if session already exists
+        //TODO: put this in a class
+        $query = $this->db->prepare('INSERT INTO session (id,user_id) VALUES (:id,:user_id)');
+
+        $session = [
+            'id' => rand(0, 1000000000),
+            'user_id' => $user['id']
+        ];
+
+        $query->execute($session);
+
         return json_encode([
-            'message' => 'User connected'
+            'message' => 'User connected',
+            'session' => $session['id']
+        ]);
+    }
+
+    #[Route("/api/logout", name: "api_logout_post", httpMethod: "POST")]
+    public function logout()
+    {
+        $data = json_decode(file_get_contents('php://input'), true);
+
+        $sessionId = $data['session'];
+
+        $query = $this->db->prepare('DELETE FROM session WHERE id = :id');
+        $query->execute([
+            'id' => $sessionId
+        ]);
+
+        header('Content-Type: application/json', true, 200);
+        return json_encode([
+            'message' => 'User disconnected'
         ]);
     }
 }

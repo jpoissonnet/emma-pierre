@@ -18,7 +18,6 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="../index.css" />
         <style>
             /* Style CSS pour la mise en forme de la page produit */
             body {
@@ -44,7 +43,7 @@
                 border-radius: 5px;
             }
             img.product-image {
-                max-width: 100%;
+                max-width: 80%;
                 height: auto;
                 display: block;
                 margin: 0 auto;
@@ -54,10 +53,12 @@
                 text-align: center;
                 font-size: 2rem;
                 margin-bottom: 1rem;
+                text-transform: uppercase;
             }
             p.product-description {
                 text-align: justify;
                 margin-bottom: 1rem;
+                margin-left: 10px;
             }
             .product-price {
                 font-size: 1.6rem;
@@ -74,33 +75,50 @@
                 display: flex;
             }
             .wrap div {
-                margin: 10px;
+                margin-left: 10px;
             }
-            img.product-image {
-                max-width: 100%;
-                height: auto;
+            .details {
+                display: flex;
+                align-items: center;
+                white-space: break-spaces;
             }
-
             .inline {
                 display: inline-block;
+            }
+            .details p {
+                margin: 0;
             }
         </style>
     </head>
     <body>
         <c-nav></c-nav>
         <main class="wrap">
-            <div class="">
-                <img class="product-image" class=".article" src="/assets/images/start.jpeg" alt="Image du Produit" />
+            <div class="image">
+                <img class="product-image" class=".article" alt="Image du Produit" />
             </div>
-            <div>
-                <h1 class="product-title">Nom du Produit</h1>
+            <div class="product-wrapper">
                 <p class="product-description">
-                    Description détaillée du produit. Cette section peut contenir des informations importantes sur les
-                    caractéristiques, les avantages et les détails du produit.
                 </p>
                 <div class="wrap inline">
-                    <span>Prix :</span>
-                    <p class="product-price">$99.99</p>
+                    <div class='details'>
+                        <span>Taille : </span>
+                        <p class="product-size"></p>
+                    </div>
+
+                    <div class='details'>
+                    <span>Couleur : </span>
+                    <p class="product-color"></p>
+                    </div>
+                    
+                    <div class='details-prix'>
+                    <span>Prix : </span>
+                    <p class="product-price"></p>
+                    </div>
+
+                    <div class='details'>
+                    <span>Frais de port : </span>
+                    <p class="product-taxe"></p>
+                    </div>
                 </div>
 
                 <c-button variant="produit"
@@ -110,6 +128,28 @@
         </main>
     </body>
     <script>
-    
+        fetch('/api/products').then(res => res.json()).then(data => {
+        console.table(data);
+
+        const productWrapper = document.querySelector('.product-wrapper'); // Ajout de la classe manquante
+        data.forEach(detail => {
+            const cProduct = document.createElement('h1');
+            cProduct.textContent = detail.nom;
+            cProduct.classList.add('product-title');
+            productWrapper.insertBefore(cProduct, productWrapper.firstChild);
+
+            const productImage = document.querySelector('.product-image');
+            productImage.src = detail.image;
+
+            const productPrice = document.querySelector('.product-price');
+            productPrice.textContent = detail.prix + '€';
+
+            const productDescription = document.querySelector('.product-size');
+            productDescription.innerText = detail.taille;
+            
+            const productColor = document.querySelector('.product-color');
+            productColor.innerText = detail.couleur;
+        });
+    });
     </script>
 </html>

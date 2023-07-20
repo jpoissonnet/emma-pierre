@@ -52,12 +52,13 @@
 <c-footer></c-footer>
 </body>
 <script>
-    fetch('/api/products/impertinentes').then(res => res.json()).then(data => {
+    fetch('/api/products?category=impertinentes').then(res => res.json()).then(data => {
         console.table(data);
         const products = document.querySelector('.products-wrapper')
         data.forEach(product => {
             const cProduct = document.createElement('c-product')
             cProduct.setAttribute('src', product.image)
+            cProduct.setAttribute('href', '/products/' + product.id)
             cProduct.innerHTML = `<span slot="name">${product.nom}</span><span slot="price">${product.prix}€</span>`
             products.appendChild(cProduct)
         });

@@ -23,10 +23,18 @@ class ProductController extends AbstractApiController
             $query = $this->db->prepare("SELECT p.nom, p.prix, p.image, p.categorie, p.id, t.nom as 'type' FROM $this->table p inner join `type` t on t.id = p.id_type WHERE categorie = :category");
             $query->execute(['category' => $_GET['category']]);
         }
-        $query = $this->db->query("SELECT * FROM $this->table");
         $products = $query->fetchAll(\PDO::FETCH_ASSOC);
 
         return json_encode($products);
+    }
+
+    #[Route("/api/products/last", name: "api_products_last", httpMethod: "GET")]
+    public function getLast()
+    {
+        $query = $this->db->query("select p.id, p.nom, p.image, p.prix from $this->table p order by p.id desc limit 4;");
+        $products = $query->fetchAll(\PDO::FETCH_ASSOC);
+
+        echo json_encode($products);
     }
 
     #[Route("/api/products/{id}", name: "api_details_id", httpMethod: "GET")]

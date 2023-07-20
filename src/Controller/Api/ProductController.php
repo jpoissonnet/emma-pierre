@@ -16,7 +16,7 @@ class ProductController extends AbstractApiController
     public function getAll()
     {
         if (empty($_GET['category'])) {
-            $query = $this->db->query("SELECT p.nom, p.prix, p.image, p.categorie, p.id, t.nom as 'type' FROM $this->table p inner join `type` t on t.id = p.id_type");
+            $query = $this->db->query("SELECT p.nom, p.prix, p.image, p.categorie, p.id, p.taille, c.nom as couleur, t.nom as 'type' FROM $this->table p inner join `type` t on t.id = p.id_type inner join couleur c on c.id = p.id_couleur");
         } else if ($_GET['category'] == "precieuses") {
             $query = $this->db->query("SELECT p.nom, p.prix, p.image, p.categorie, p.id, t.nom as 'type' FROM $this->table p inner join `type` t on t.id = p.id_type WHERE categorie NOT IN ('impertinentes', 'par couleur', 'uniques')");
         } else {
@@ -54,12 +54,9 @@ class ProductController extends AbstractApiController
     {
         $data = json_decode(file_get_contents('php://input'), true);
 
-        return json_encode($data);
+        $query = $this->db->prepare("INSERT INTO $this->table (nom, prix, taille, image, categorie, id_type, id_couleur) VALUES (:nom, :prix, :taille, :image, :categorie, :id_type, :id_couleur)");
 
-        $query = $this->db->query("INSERT INTO $this->table (nom, prix, taille, image, categorie, id_type, id_couleur) VALUES (:nom, :prix, :taille, :image, :categorie, :id_type, :id_couleur)");
-        $queryStmt = $this->db->prepare($query);
-
-        $queryStmt->execute([
+        $query->execute([
             'nom' => $data['nom'],
             'prix' => $data['prix'],
             'taille' => $data['taille'],
@@ -73,32 +70,30 @@ class ProductController extends AbstractApiController
     }
 
     #[Route("/api/products/{id}", name: "api_products_edit", httpMethod: "PUT")]
-    public function editProduct()
+    public function editProduct(int $id)
     {
         $data = json_decode(file_get_contents('php://input'), true);
 
-        $query = $this->db->query("UPDATE $this->table SET nom = :nom, prix = :prix, taille = :taille, image = :image, id_type = :id_type, id_couleur = :id_couleur WHERE id = :id");
-        $queryStmt = $this->db->prepare($query);
-
-        $queryStmt->execute([
+        $query = $this->db->prepare("UPDATE $this->table SET nom = :nom, prix = :prix, taille = :taille, image = :image, id_type = :id_type, id_couleur = :id_couleur WHERE id = :id");
+        $query->execute([
             'nom' => $data['nom'],
             'prix' => $data['prix'],
             'taille' => $data['taille'],
             'image' => $data['image'],
             'id_type' => $data['id_type'],
             'id_couleur' => $data['id_couleur'],
-            'id' => $data['id']
+            'id' => $id,
         ]);
 
         return json_encode(['message' => 'product edited']);
     }
 
     #[Route("/api/products/{id}", name: "api_product_delete", httpMethod: "DELETE")]
-    public function delete($id)
+    public function delete(int $id)
     {
-        $query = $this->db->prepare('DELETE FROM $TABLE WHERE id = :id');
-        $query->execute(['id' => $id]);
+        $query = $this->db->prepare("DELETE FROM $this->table WHERE id = :id");
+        $query->execute(['id' => intval($id)]);
 
-        echo json_encode(['message' => 'product deleted']);
+        return json_encode(['message' => 'product deleted']);
     }
 }

@@ -32,8 +32,8 @@
         <label for="search">Rechercher</label>
         <input type="text" name="search" id="search"/>
 
-        <label for="category">Catégorie</label>
-        <select name="category" id="category">
+        <label for="categorie">Catégorie</label>
+        <select name="categorie" id="category">
             <option value="all">Toutes</option>
             <option value="bracelet">Bracelet</option>
             <option value="bague">Bague</option>
@@ -82,10 +82,6 @@
 
         <label for="type">Type</label>
         <select name="type" id="type">
-            <option value="bracelet">Bracelet</option>
-            <option value="bague">Bague</option>
-            <option value="collier">Collier</option>
-            <option value="boucle">Boucle d'oreille</option>
         </select>
 
         <label for="categorie">Categories</label>
@@ -99,32 +95,20 @@
             <option value="uniques">Uniques</option>
         </select>
 
-        <label for="price">Prix</label>
-        <input type="number" name="price" id="price"/>
-
         <label for="taille">Taille</label>
         <select name="taille" id="taille">
+            <option value="XS">XS</option>
             <option value="S">S</option>
             <option value="M">M</option>
             <option value="L">L</option>
             <option value="XL">XL</option>
-            <option value="XXL">XXL</option>
         </select>
+
+        <label for="price">Prix</label>
+        <input type="number" name="price" id="price"/>
 
         <label for="couleur">Couleur</label>
         <select name="couleur" id="couleur">
-            <option value="rouge">Rouge</option>
-            <option value="bleu">Bleu</option>
-            <option value="vert">Vert</option>
-            <option value="jaune">Jaune</option>
-            <option value="orange">Orange</option>
-            <option value="violet">Violet</option>
-            <option value="rose">Rose</option>
-            <option value="noir">Noir</option>
-            <option value="blanc">Blanc</option>
-            <option value="gris">Gris</option>
-            <option value="marron">Marron</option>
-            <option value="beige">Beige</option>
         </select>
 
         <label for="image">Image</label>
@@ -146,8 +130,12 @@
         <label for="price">Prix</label>
         <input type="number" name="price" id="price"/>
 
-        <label for="category">Categories</label>
-        <select name="category" id="category">
+        <label for="type">Type</label>
+        <select name="type" id="type">
+        </select>
+
+        <label for="categorie">Categories</label>
+        <select name="categorie" id="categorie">
             <option value="family">Famille</option>
             <option value="trilogy">Trilogie</option>
             <option value="rana">Rana</option>
@@ -157,30 +145,17 @@
             <option value="uniques">Uniques</option>
         </select>
 
+        <label for="couleur">Couleur</label>
+        <select name="couleur" id="couleur">
+        </select>
+
         <label for="taille">Taille</label>
         <select name="taille" id="taille">
+            <option value="XS">XS</option>
             <option value="S">S</option>
             <option value="M">M</option>
             <option value="L">L</option>
             <option value="XL">XL</option>
-            <option value="XXL">XXL</option>
-        </select>
-
-        <label for="couleur">Couleur</label>
-        <select name="couleur" id="couleur">
-            <option value="noir">Noir</option>
-            <option value="blanc">Blanc</option>
-            <option value="rouge">Rouge</option>
-            <option value="bleu">Bleu</option>
-            <option value="vert">Vert</option>
-        </select>
-
-        <label for="type">Type</label>
-        <select name="type" id="type">
-            <option value="bracelet">Bracelet</option>
-            <option value="bague">Bague</option>
-            <option value="collier">Collier</option>
-            <option value="boucle">Boucle d'oreille</option>
         </select>
 
         <label for="image">Image</label>
@@ -218,30 +193,35 @@
         await fetch(window.location.origin + '/api/couleurs')
             .then((res) => res.json())
             .then((data) => {
-                const couleurs = document.querySelector('#couleur');
+                const couleurs = document.querySelectorAll('#couleur');
 
-                data.forEach((couleur) => {
-                    const option = document.createElement('option');
-                    option.value = couleur.id;
-                    option.textContent = couleur.nom;
+                couleurs.forEach((couleur) => {
+                    data.forEach((coul) => {
+                        const option = document.createElement('option');
+                        option.value = coul.id;
+                        option.textContent = coul.nom;
 
-                    couleurs.appendChild(option);
+                        couleur.appendChild(option);
+                    });
                 });
+
             });
 
         await fetch(window.location.origin + "/api/types")
             .then((res) => res.json())
             .then((data) => {
-                console.log(data)
-                const types = document.querySelector('#type');
+                const types = document.querySelectorAll('#type');
 
-                data.forEach((type) => {
-                    const option = document.createElement('option');
-                    option.value = type.id;
-                    option.textContent = type.nom;
+                types.forEach((type) => {
+                    data.forEach((tp) => {
+                        const option = document.createElement('option');
+                        option.value = tp.id;
+                        option.textContent = tp.nom;
 
-                    types.appendChild(option);
-                });
+                        type.appendChild(option);
+                    });
+                })
+
             });
 
         await fetch(window.location.origin + '/api/products')
@@ -277,13 +257,15 @@
                         const dial = document.querySelector('#edit');
                         dial.dataset.id = produit.id;
 
+                        console.log(produit)
+                        console.log(document.querySelector('dialog#edit #couleur'))
                         document.querySelector('dialog#edit #name').value = produit.nom;
                         document.querySelector('dialog#edit #price').value = produit.prix;
-                        document.querySelector('dialog#edit #type').value = produit.type;
-                        document.querySelector('dialog#edit #category').value = produit.categorie;
+                        document.querySelector('dialog#edit #type').selected = produit.type;
+                        document.querySelector('dialog#edit #categorie').value = produit.categorie;
                         document.querySelector('dialog#edit #image').src = produit.image;
-                        document.querySelector('dialog#edit #taille').value = produit.taille;
-                        document.querySelector('dialog#edit #couleur').value = produit.couleur;
+                        document.querySelector('dialog#edit #taille').selected = produit.taille;
+                        document.querySelector('dialog#edit #couleur').selected = produit.couleur;
 
                         dial.showModal();
                     });
@@ -308,8 +290,6 @@
             }).catch(err => console.log(err));
     });
 
-
-
     add.addEventListener('click', () => {
         document.querySelector('#add-modal').showModal();
     });
@@ -332,7 +312,7 @@
     async function deleteProduct(id) {
         console.log(id)
         await fetch(window.location.origin + '/api/products/' + id, {method: 'DELETE'})
-            .then((res) => console.log(res))
+            .then((res) => window.location.reload())
             .catch(err => console.log(err));
     }
 
@@ -354,13 +334,13 @@
             },
             body: JSON.stringify(productToAdd)
         })
-            .then((res) => console.log(res))
+            .then((res) => window.location.reload())
             .catch(err => console.log(err));
     }
 
     async function editProduct(id) {
         const editedProduct = {
-            name: document.querySelector('dialog#edit #name').value,
+            nom: document.querySelector('dialog#edit #name').value,
             prix: document.querySelector('dialog#edit #price').value,
             image: document.querySelector('dialog#edit #image').value,
             id_type: document.querySelector('dialog#edit #type').value,
@@ -376,8 +356,7 @@
             },
             body: JSON.stringify(editedProduct)
         })
-        // window.location.reload())
-            .then((data) => console.log(data))
+            .then((data) => window.location.reload())
             .catch(err => console.log(err));
     }
 

@@ -31,8 +31,8 @@ class ProductController extends AbstractApiController
     #[Route("/api/products/{id}", name: "api_details_id", httpMethod: "GET")]
     public function getById(int $id)
     {
-        $query = $this->db->prepare("SELECT p.nom, prix, taille, categorie, c.nom as `couleur`, image 
-        FROM $this->table p inner join couleur c on c.id = p.id_couleur 
+        $query = $this->db->prepare("SELECT p.nom, prix, taille, categorie, c.nom as `couleur`, image
+        FROM $this->table p inner join couleur c on c.id = p.id_couleur
         WHERE p.id = :id");
         $query->execute(['id' => $id]);
         $product = $query->fetch(\PDO::FETCH_ASSOC);

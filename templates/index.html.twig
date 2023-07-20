@@ -46,10 +46,7 @@
             </ul>
 
             <div class="articles">
-                <c-article></c-article>
-                <c-article></c-article>
-                <c-article></c-article>
-                <c-article></c-article>
+                <!-- Articles -->
             </div>
 
             <div id="draw-wrapper" href="#">
@@ -167,6 +164,36 @@
 
     <c-footer></c-footer>
 </body>
+
+<script>
+    fetch('/api/products/last').then(res => res.json()).then(data => {
+        console.table(data);
+        const products = document.querySelector('.articles');
+        data.forEach(product => {
+            const cArticle = document.createElement('c-article');
+      
+            // Ajout de l'image avec l'attribut "src"
+            const img = document.createElement('img');
+            img.setAttribute('src', product.image);
+            img.setAttribute('alt', 'article image');
+            cArticle.appendChild(img);
+            
+            // Ajout du titre (h2) en utilisant produit.nom
+            const title = document.createElement('h2');
+            title.textContent = product.nom;
+            cArticle.appendChild(title);
+            
+            // Ajout du prix dans le span "price" en utilisant produit.prix
+            const price = document.createElement('span');
+            price.classList.add('price');
+            price.textContent = `${product.prix}€`;
+            cArticle.appendChild(price);
+            
+            products.appendChild(cArticle);
+        });
+
+    });
+</script>
 
 </html>
 

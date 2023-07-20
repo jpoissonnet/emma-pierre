@@ -7,15 +7,18 @@ abstract class AbstractRoute
     protected string $name;
     protected string $path;
     protected string $httpMethod;
+    protected string $guardRole;
 
     public function __construct(
         string $path,
         string $httpMethod = "GET",
-        string $name = "default"
+        string $name = "default",
+        string $guardRole = "public"
     ) {
         $this->path = $path;
         $this->httpMethod = $httpMethod;
         $this->name = $name;
+        $this->guardRole = $guardRole;
     }
 
     public function getName(): string
@@ -50,6 +53,18 @@ abstract class AbstractRoute
     public function setHttpMethod(string $httpMethod): self
     {
         $this->httpMethod = $httpMethod;
+
+        return $this;
+    }
+
+    public function getGuardRole(): string
+    {
+        return $this->guardRole;
+    }
+
+    public function setGuardRole(string $guardRole): self
+    {
+        $this->guardRole = $guardRole;
 
         return $this;
     }

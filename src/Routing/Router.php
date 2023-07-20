@@ -2,6 +2,7 @@
 
 namespace App\Routing;
 
+use App\Routing\Attribute\Guard as GuardAttribute;
 use App\Routing\Attribute\Route as RouteAttribute;
 use App\Routing\Route;
 use App\Utils\Filesystem;
@@ -69,6 +70,14 @@ class Router
 
         $params = array_merge($serviceParams, $route->getUrlParams());
 
+        $routeGuard = $route->getGuardRole();
+
+        if ($routeGuard !== "public") {
+            $guard = $this->container->get(Guard::class);
+            $guard->check($routeGuard);
+        }
+
+
         echo call_user_func_array([$controllerInstance, $method], $params);
     }
 
@@ -125,20 +134,31 @@ class Router
                     continue;
                 }
 
-                $attributes = $method->getAttributes(RouteAttribute::class);
 
+                $attributes = $method->getAttributes(RouteAttribute::class);
                 if (!empty($attributes)) {
                     $routeAttribute = $attributes[0];
                     /** @var RouteAttribute */
                     $routeAttribute = $routeAttribute->newInstance();
-                    $this->addRoute(new Route(
+                    $newRoute = new Route(
                         $routeAttribute->getPath(),
                         $fqcn,
                         $method->getName(),
                         $routeAttribute->getHttpMethod(),
                         $routeAttribute->getName()
-                    ));
+                    );
+
+                    $guardAttributes = $method->getAttributes(GuardAttribute::class);
+                    if (!empty($guardAttributes)) {
+                        $guardAttribute = $guardAttributes[0];
+                        /** @var GuardAttribute */
+                        $guardAttribute = $guardAttribute->newInstance();
+                        $newRoute->setGuardRole($guardAttribute->getGuardRole());
+                    }
+                    $this->addRoute($newRoute);
                 }
+
+
             }
         }
 

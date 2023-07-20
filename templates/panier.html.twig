@@ -28,54 +28,7 @@
                     <li class="subtotal">Total </li>
                 </ul>
             </div>
-            <div class="basket-product">
-                <div class="item">
-                    <div class="product-image">
-                        <img src="..//assets/images/27777.jpeg" alt="article bijoux" class="product-frame">
-                    </div>
-                    <div class="product-details">
-                        <div class="principal-title"><strong><span class="item-quantity">2 x </span></strong>Boucles d'oreilles<strong> N950</strong></div>
-                        <p class="description">Plaqué OR - XS</p>
-                        <p>Code produit - 232321939</p>
-                    </div>
-                </div>
-                <div class="price">26,00</div>
-                <div class="quantity">
-                    <div class="counter">
-                        <div class="btn">+</div>
-                        <div class="count">2</div>
-                        <div class="btn">-</div>
-                    </div>
-                </div>
-                <div class="subtotal">52,00</div>
-                <div class="remove">
-                    <button class="remove-button">Supprimer</button>
-                </div>
-            </div>
-            <div class="basket-product">
-                <div class="item">
-                    <div class="product-image">
-                        <img src="..//assets/images/28888.jpeg" alt="article bijoux" class="product-frame">
-                    </div>
-                    <div class="product-details">
-                        <div class="principal-title"><strong><span class="item-quantity">1 x </span></strong>Boucles d'oreilles<strong> N950</strong></div>
-                        <p class="description">Plaqué OR - XS</p>
-                        <p>Code produit - 232321939</p>
-                    </div>
-                </div>
-                <div class="price">26,00</div>
-                <div class="quantity">
-                    <div class="counter">
-                        <div class="btn">+</div>
-                        <div class="count">1</div>
-                        <div class="btn">-</div>
-                    </div>
-                </div>
-                <div class="subtotal">26,00</div>
-                <div class="remove">
-                    <button class="remove-button">Supprimer</button>
-                </div>
-            </div>
+            
         </div>
     </main>
 
@@ -87,7 +40,7 @@
 
             </div>
             <div class="sous-total">
-                <div class="Subtotal">Sous-total</div>
+                <div class="Subtotal">Total</div>
                 <div class="total-amount">134€</div>
             </div>
         </div>
@@ -108,9 +61,8 @@
 <script src="..//components/navigation.js"></script>
 <script src="..//components/navigation/footer.js"></script>
 
-<script>
+<script defer>
     fetch('/api/products/last').then(res => res.json()).then(data => {
-        console.table(data);
         const articles = document.querySelector('.boxes');
         data.forEach(product => {
             const box = document.createElement('div');
@@ -137,6 +89,139 @@
         });
 
     });
+
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+     function updateCartInLocalStorage(cart) {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    function removeProductFromCart(index) {
+        cart.splice(index, 1); 
+        updateCartInLocalStorage(cart);
+
+        const basketProducts = document.querySelectorAll('.basket-product');
+        basketProducts[index].remove();
+    }
+
+    function calculateTotal() {
+        let total = 0;
+        const count = document.querySelector('.count');
+        cart.forEach(product => {
+            total += product.prix * count.textContent;
+        });
+        const totalAmount = document.querySelector('.total-amount');
+        totalAmount.textContent = total + '€';
+    }
+
+    function createProductElement(product, index) {
+        const basketProduct = document.createElement('div');
+        basketProduct.classList.add('basket-product');
+        basket.appendChild(basketProduct);
+
+        const item = document.createElement('div');
+        item.classList.add('item');
+        basketProduct.appendChild(item);
+
+        const img = document.createElement('div');
+        img.classList.add('product-image');
+        item.appendChild(img);
+
+        const image = document.createElement('img');
+        image.src = product.image;
+        img.appendChild(image);
+
+        const details = document.createElement('div');
+        details.classList.add('product-details');
+        item.appendChild(details);
+
+        const principalTitle = document.createElement('div');
+        principalTitle.classList.add('principal-title');
+        principalTitle.textContent = product.nom;
+        details.appendChild(principalTitle);
+
+        const span = document.createElement('span');
+        span.classList.add('item-quantity');
+        principalTitle.appendChild(span);
+
+        const description = document.createElement('p');
+        description.classList.add('description');
+        description.textContent = product.taille;
+        details.appendChild(description);
+
+        const couleur = document.createElement('p');
+        couleur.classList.add('couleur');
+        couleur.textContent = 'Couleur: ' + product.couleur;
+        details.appendChild(couleur);
+
+        const price = document.createElement('div');
+        price.classList.add('price');
+        price.textContent = product.prix;
+        basketProduct.appendChild(price);
+
+        const quantity = document.createElement('div');
+        quantity.classList.add('quantity');
+        basketProduct.appendChild(quantity);
+
+        const counter = document.createElement('div');
+        counter.classList.add('counter');
+        quantity.appendChild(counter);
+
+        const btn = document.createElement('div');
+        btn.classList.add('btn-plus');
+        btn.textContent = '+';
+        counter.appendChild(btn);
+
+        const count = document.createElement('div');
+        count.classList.add('count');
+        count.textContent = '1';
+        counter.appendChild(count);
+
+        const btn2 = document.createElement('div');
+        btn2.classList.add('btn-minus');
+        btn2.textContent = '-';
+        counter.appendChild(btn2);
+
+        const subtotal = document.createElement('div');
+        subtotal.classList.add('subtotal');
+        subtotal.textContent = product.prix;
+        basketProduct.appendChild(subtotal);
+
+        const remove = document.createElement('div');
+        remove.classList.add('remove');
+        basketProduct.appendChild(remove);
+
+        const removeButton = document.createElement('button');
+        removeButton.classList.add('remove-button');
+        removeButton.textContent = 'Supprimer';
+        remove.appendChild(removeButton);
+
+        removeButton.addEventListener('click', () => {
+            removeProductFromCart(index);
+        });
+
+    }
+
+    const basket = document.querySelector('.basket');    
+    cart.forEach((product, index) => {
+        createProductElement(product, index);
+    });
+
+    const count = document.querySelector('.count');
+    const plus = document.querySelector('.btn-plus');
+    const minus = document.querySelector('.btn-minus');
+    plus.addEventListener('click', () => {
+        count.textContent = parseInt(count.textContent) + 1;
+        calculateTotal();
+    });
+    minus.addEventListener('click', () => {
+        count.textContent = parseInt(count.textContent) - 1;
+        calculateTotal();
+    });
+
+    const totalAmount = document.querySelector('.total-amount');
+    totalAmount.textContent = calculateTotal();
+
 </script>
 
 </html>
@@ -169,15 +254,20 @@
 
     .principal-title {
         font-size: 18px;
-        font-weight: normal;
+        font-weight: 700;
         margin: 0;
         padding: 0;
+        text-transform: uppercase;
     }
 
     input,
     .remove-button {
         border: 0 none;
         outline: 0 none;
+    }
+
+    .couleur {
+        text-transform: uppercase;
     }
 
     .remove-button {
@@ -239,7 +329,7 @@
         align-items: center;
     }
 
-    .btn {
+    .btn-plus, .btn-minus {
         width: 40px;
         height: 40px;
         border-radius: 50%;
@@ -265,6 +355,7 @@
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
+        width: 100%;
     }
 
     .basket-module {

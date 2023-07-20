@@ -119,10 +119,6 @@
             }
 
         }
-
-
-
-
         </style>
     </head>
     <body>
@@ -194,6 +190,28 @@
 
         const productCat = document.querySelector('.cat');
         productCat.innerText = detail.categorie;
+
+        // Gestionnaire d'événement pour le bouton "Ajouter au panier"
+        const addToCartButton = document.querySelector('.add-to-cart-button');
+        addToCartButton.addEventListener('click', () => {
+            const product = {
+                id: id,
+                nom: detail.nom,
+                image: detail.image,
+                prix: detail.prix,
+                taille: detail.taille,
+                couleur: detail.couleur,
+                categorie: detail.categorie,
+            };
+            
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            cart.push(product);
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            window.location.href = '/panier';
+        });
     });
     </script>
 </html>

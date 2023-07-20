@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Emma Pierre's Jewelry Shop"/>
+    <meta name="keywords" content="Bijoux, Pierre précieuse, Jewelry"/>
+    <meta name="author" content="ESGI's Brahim, Cihan Jules and Kenza"/>
+    <link rel="icon" href="/assets/images/favicon_io/favicon.ico"/>
+    <link rel="stylesheet" href="/css/index.css"/>
+    <script src="/components/navigation/footer.js"></script>
+    <title>Emma Pierre - Panneau d'administration utilsateur </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Jost&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet"
+    />
+</head>
+
+<body>
+<c-nav></c-nav>
+
+<h1>Console utilisateur</h1>
+
+<section class="users">
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Login</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Adresse</th>
+            <th>Code postal</th>
+            <th>Ville</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Id</td>
+            <td>Login</td>
+            <td>Nom</td>
+            <td>Prenom</td>
+            <td>Adresse</td>
+            <td>Code Postal</td>
+            <td>Ville</td>
+            <td>
+                <button>
+                    <svg class="edit" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                        <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <path
+                            d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"/>
+                    </svg>
+                </button>
+                <button>
+                    <svg class="delete" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                        <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <path
+                            d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/>
+                    </svg>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+
+<dialog>
+    <h2>Modifier un utilisateur</h2>
+    <form action="">
+        <label for="login">Login</label>
+        <input type="text" name="login" id="login" placeholder="Login" required/>
+
+        <label for="lastname">Nom</label>
+        <input type="text" name="lastname" id="lastname" placeholder="Nom" required/>
+
+        <label for="firstname">Prénom</label>
+        <input type="text" name="firstname" id="firstname" placeholder="Prénom" required/>
+
+        <label for="address">Adresse</label>
+        <input type="text" name="address" id="address" placeholder="Adresse" required/>
+
+        <label for="zipcode">Code postal</label>
+        <input type="text" name="zipcode" id="zipcode" placeholder="Code postal" required/>
+
+        <label for="city">Ville</label>
+        <input type="text" name="city" id="city" placeholder="Ville" required/>
+
+        <div>
+            <button>Anuler</button>
+            <button>Valider</button>
+        </div>
+    </form>
+</dialog>
+
+<dialog>
+    <h2>Supprimer un utilsisateur</h2>
+    <form action="">
+        <p>Vous allez supprimé l'utilisateur <b>'REMPLIRICI'</b> êtes-vous sûrs ?</p>
+
+        <div>
+            <button>Anuler</button>
+            <button>Valider et supprimer</button></div>
+    </form>
+</dialog>
+
+<c-footer></c-footer>
+</body>
+
+<script src="/components/navigation.js"></script>
+
+<script>
+    const dialog = document.querySelectorAll('dialog');
+
+    window.addEventListener('load', () => {
+        fetch(window.location.origin + '/api/users')
+            .then(response => response.json())
+            .then(data => {
+                document.querySelector('tbody').innerHTML = '';
+
+                data.forEach((user) => {
+                    let row = document.createElement('tr');
+                    let id = document.createElement('td');
+                    let login = document.createElement('td');
+                    let lastname = document.createElement('td');
+                    let firstname = document.createElement('td');
+                    let address = document.createElement('td');
+                    let zipcode = document.createElement('td');
+                    let city = document.createElement('td');
+                    let actions = document.createElement('td');
+
+
+                    id.innerText = user.id;
+                    login.innerText = user.login;
+                    lastname.innerText = user.nom;
+                    firstname.innerText = user.prenom;
+                    address.innerText = user.adresse;
+                    zipcode.innerText = user.code_postal;
+                    city.innerText = user.ville;
+                    let edit = document.createElement('button');
+                    let del = document.createElement('button');
+
+                    edit.innerHTML = ` <svg class="edit" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"> <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --> <path d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"/> </svg> `;
+                    del.innerHTML = ` <svg class="delete" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"> <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --> <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/> </svg> `;
+
+                    console.log(user)
+
+                    edit.addEventListener('click', () => {
+                        document.querySelector('dialog form input[name="login"]').value = user.login;
+                        document.querySelector('dialog form input[name="firstname"]').value = user.nom;
+                        document.querySelector('dialog form input[name="lastname"]').value = user.prenom;
+                        document.querySelector('dialog form input[name="address"]').value = user.adresse;
+                        document.querySelector('dialog form input[name="zipcode"]').value = user.code_postal;
+                        document.querySelector('dialog form input[name="city"]').value = user.ville;
+                        dialog[0].showModal();
+                    });
+
+                    del.addEventListener('click', () => {
+                        document.querySelector('dialog:nth-of-type(2) p').innerHTML = `Voulez-vous vraiment supprimer l'utilisateur <b>${user.login}</b> ?`;
+                        dialog[1].showModal();
+                    });
+
+                    row.appendChild(id);
+                    row.appendChild(login);
+                    row.appendChild(lastname);
+                    row.appendChild(firstname);
+                    row.appendChild(address);
+                    row.appendChild(zipcode);
+                    row.appendChild(city);
+                    row.appendChild(actions);
+                    actions.appendChild(edit);
+                    actions.appendChild(del);
+
+                    document.querySelector('tbody').appendChild(row);
+                })
+            })
+    });
+
+    dialog.forEach((dialog) => {
+        dialog.addEventListener('click', (event) => {
+            if (event.target.tagName === 'DIALOG') {
+                dialog.close();
+            }
+        });
+    });
+
+    const validateDelete = document.querySelector('dialog:nth-of-type(2) button');
+    validateDelete.addEventListener('click', () => {
+        console.log("delete")
+        // send a request to the server to delete the user
+        // if the request is successful, close the dialog
+        // else, display an error message
+        dialog[1].close();
+    });
+
+    const validateEdit = document.querySelector('dialog:nth-of-type(1) button');
+    validateEdit.addEventListener('click', () => {
+        console.log("edit")
+        // send a request to the server to edit the user
+        // if the request is successful, close the dialog
+        // else, display an error message
+        dialog[0].close();
+    });
+
+
+</script>
+
+</html>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    section {
+        margin: 2rem;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    h1 {
+        text-align: center;
+        margin: 2rem;
+    }
+
+    h2 {
+        margin-bottom: 1rem;
+    }
+
+    .users {
+        margin: 2rem;
+    }
+
+    .users table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .users th, .users td {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .users tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    .users th {
+        background-color: var(--blue-light);
+        color: white;
+    }
+
+    .users h2 {
+        margin-bottom: 1rem;
+    }
+
+    .users button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        outline: none;
+    }
+
+    .users button svg {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .edit {
+        fill: var(--blue-light);
+    }
+
+    .edit:hover {
+        fill: var(--blue-dark);
+    }
+
+    .delete {
+        fill: var(--coral-light);
+    }
+
+    .delete:hover {
+        fill: var(--coral);
+    }
+
+    dialog {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0.5);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+        opacity: 0;
+        pointer-events: none;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        display: none;
+        overflow: hidden;
+    }
+
+    dialog[open] {
+        display: flex;
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    dialog > * {
+        width: 100%;
+        max-width: 500px;
+        padding: 2rem;
+        background-color: white;
+        border-radius: 5px;
+    }
+
+    dialog label, dialog input {
+        width: 100%;
+    }
+
+    dialog button {
+        background-color: var(--blue-light);
+        color: white;
+        border: none;
+        padding: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        outline: none;
+        margin-top: 1rem;
+    }
+
+    dialog button:hover {
+        background-color: var(--blue-dark);
+    }
+
+    dialog p {
+        margin-bottom: 1rem;
+    }
+
+    dialog h2 {
+        margin-bottom: 1rem;
+    }
+
+    dialog form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    dialog form input {
+        margin-bottom: 1rem;
+    }
+
+    dialog form input:last-child {
+        margin-bottom: 0;
+    }
+
+    dialog form label {
+        margin-bottom: 0.5rem;
+    }
+
+    dialog form button {
+        align-self: flex-end;
+    }
+
+    dialog form button:last-child {
+        margin-left: 1rem;
+    }
+
+    dialog form button:first-child {
+        background-color: var(--coral-light);
+    }
+
+    dialog form button:first-child:hover {
+        background-color: var(--coral);
+    }
+
+    dialog form button:last-child {
+        background-color: var(--blue-light);
+    }
+
+    dialog form button:last-child:hover {
+        background-color: var(--blue-dark);
+    }
+
+    dialog form button {
+        background-color: var(--blue-light);
+        color: white;
+        border: none;
+        padding: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        outline: none;
+        margin-top: 1rem;
+    }
+
+    dialog form button:hover {
+        background-color: var(--blue-dark);
+    }
+
+    dialog form p {
+        margin-bottom: 1rem;
+    }
+
+    dialog form h2 {
+        margin-bottom: 1rem;
+    }
+
+    dialog form input {
+        margin-bottom: 1rem;
+        line-height: 2rem;
+    }
+
+    dialog form input:last-child {
+        margin-bottom: 0;
+    }
+
+    dialog form label {
+        margin-bottom: 0.5rem;
+    }
+
+    dialog form div {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    dialog form button {
+        align-self: flex-end;
+    }
+
+    dialog form button:last-child {
+        margin-left: 1rem;
+    }
+
+    dialog form button:first-child {
+        background-color: var(--blue-gray);
+    }
+
+    dialog form button:first-child:hover {
+        background-color: var(--coral);
+    }
+</style>

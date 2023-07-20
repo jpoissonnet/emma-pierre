@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Emma Pierre's Jewelry Shop"/>
+    <meta name="keywords" content="Bijoux, Pierre précieuse, Jewelry"/>
+    <meta name="author" content="ESGI's Brahim, Cihan Jules and Kenza"/>
+    <link rel="icon" href="/assets/images/favicon_io/favicon.ico"/>
+    <link rel="stylesheet" href="/css/index.css"/>
+    <script src="/components/navigation/footer.js"></script>
+    <title>Emma Pierre - Panneau d'administration produit </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Jost&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet"
+    />
+</head>
+
+<body>
+<c-nav></c-nav>
+
+<h1>Console produit</h1>
+
+<p id="nombre_produit">Nombre de produits: 344</p>
+
+<section class="filtres">
+    <form action="">
+        <label for="search">Rechercher</label>
+        <input type="text" name="search" id="search"/>
+
+        <label for="category">Catégorie</label>
+        <select name="category" id="category">
+            <option value="all">Toutes</option>
+            <option value="bracelet">Bracelet</option>
+            <option value="bague">Bague</option>
+            <option value="collier">Collier</option>
+            <option value="boucle">Boucle d'oreille</option>
+        </select>
+
+        <label for="price">Prix</label>
+        <select name="price" id="price">
+            <option value="all">Tous</option>
+            <option value="0-50">0 - 50€</option>
+            <option value="50-100">50 - 100€</option>
+            <option value="100-200">100 - 200€</option>
+            <option value="200-500">200 - 500€</option>
+            <option value="500-1000">500 - 1000€</option>
+            <option value="1000-">1000€ et plus</option>
+        </select>
+        <label for="sort">Trier par</label>
+        <select name="sort" id="sort">
+            <option value="new">Nouveauté</option>
+            <option value="old">Ancienneté</option>
+            <option value="price">Prix</option>
+        </select>
+    </form>
+    <button type="submit">
+        <svg id="search" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+            <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+            <path
+                d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
+        </svg>
+    </button>
+    <button id="add">Ajouter un produit</button>
+</section>
+
+<section class="produits">
+
+</section>
+
+<c-footer></c-footer>
+
+<dialog data-id="" id="add-modal">
+    <h2>Ajout de produit</h2>
+    <form action="">
+        <label for="name">Nom</label>
+        <input type="text" name="name" id="name"/>
+
+        <label for="type">Type</label>
+        <select name="type" id="type">
+            <option value="bracelet">Bracelet</option>
+            <option value="bague">Bague</option>
+            <option value="collier">Collier</option>
+            <option value="boucle">Boucle d'oreille</option>
+        </select>
+
+        <label for="categorie">Categories</label>
+        <select name="categorie" id="categorie">
+            <option value="family">Famille</option>
+            <option value="trilogy">Trilogie</option>
+            <option value="rana">Rana</option>
+            <option value="pearl">Pearl</option>
+            <option value="impertinentes">Impertinentes</option>
+            <option value="par couleur">Par couleur</option>
+            <option value="uniques">Uniques</option>
+        </select>
+
+        <label for="price">Prix</label>
+        <input type="number" name="price" id="price"/>
+
+        <label for="taille">Taille</label>
+        <select name="taille" id="taille">
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option>
+        </select>
+
+        <label for="couleur">Couleur</label>
+        <select name="couleur" id="couleur">
+            <option value="rouge">Rouge</option>
+            <option value="bleu">Bleu</option>
+            <option value="vert">Vert</option>
+            <option value="jaune">Jaune</option>
+            <option value="orange">Orange</option>
+            <option value="violet">Violet</option>
+            <option value="rose">Rose</option>
+            <option value="noir">Noir</option>
+            <option value="blanc">Blanc</option>
+            <option value="gris">Gris</option>
+            <option value="marron">Marron</option>
+            <option value="beige">Beige</option>
+        </select>
+
+        <label for="image">Image</label>
+        <input type="file" name="image" id="image"/>
+
+        <div>
+            <button class="cancel">Anuler</button>
+            <button type="submit">Valider et ajouter</button>
+        </div>
+    </form>
+</dialog>
+
+<dialog data-id="" id="edit">
+    <h2>Modification de produit</h2>
+    <form action="">
+        <label for="name">Nom</label>
+        <input type="text" name="name" id="name"/>
+
+        <label for="price">Prix</label>
+        <input type="number" name="price" id="price"/>
+
+        <label for="category">Categories</label>
+        <select name="category" id="category">
+            <option value="family">Famille</option>
+            <option value="trilogy">Trilogie</option>
+            <option value="rana">Rana</option>
+            <option value="pearl">Pearl</option>
+            <option value="impertinentes">Impertinentes</option>
+            <option value="par couleur">Par couleur</option>
+            <option value="uniques">Uniques</option>
+        </select>
+
+        <label for="taille">Taille</label>
+        <select name="taille" id="taille">
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option>
+        </select>
+
+        <label for="couleur">Couleur</label>
+        <select name="couleur" id="couleur">
+            <option value="noir">Noir</option>
+            <option value="blanc">Blanc</option>
+            <option value="rouge">Rouge</option>
+            <option value="bleu">Bleu</option>
+            <option value="vert">Vert</option>
+        </select>
+
+        <label for="type">Type</label>
+        <select name="type" id="type">
+            <option value="bracelet">Bracelet</option>
+            <option value="bague">Bague</option>
+            <option value="collier">Collier</option>
+            <option value="boucle">Boucle d'oreille</option>
+        </select>
+
+        <label for="image">Image</label>
+        <input type="file" name="image" id="image"/>
+
+        <div>
+            <button class="cancel">Anuler</button>
+            <button type="submit">Valider et modifier</button>
+        </div>
+    </form>
+</dialog>
+
+<dialog data-id="" id="delete">
+    <h2>Suppression de produit</h2>
+    <form action="">
+        <p>Êtes-vous sûr de vouloir supprimer le produit 'produit' ?</p>
+        <div>
+            <button class="cancel">Anuler</button>
+            <button type="submit">Valider et supprimer</button>
+        </div>
+    </form>
+</dialog>
+
+</body>
+
+<script src="/components/navigation.js"></script>
+
+<script>
+    const add = document.querySelector('#add');
+    const edit = document.querySelector('#edit');
+    const del = document.querySelector('#delete');
+    const forms = document.querySelectorAll('form');
+
+    window.addEventListener('load', async () => {
+        await fetch(window.location.origin + '/api/couleurs')
+            .then((res) => res.json())
+            .then((data) => {
+                const couleurs = document.querySelector('#couleur');
+
+                data.forEach((couleur) => {
+                    const option = document.createElement('option');
+                    option.value = couleur.id;
+                    option.textContent = couleur.nom;
+
+                    couleurs.appendChild(option);
+                });
+            });
+
+        await fetch(window.location.origin + "/api/types")
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data)
+                const types = document.querySelector('#type');
+
+                data.forEach((type) => {
+                    const option = document.createElement('option');
+                    option.value = type.id;
+                    option.textContent = type.nom;
+
+                    types.appendChild(option);
+                });
+            });
+
+        await fetch(window.location.origin + '/api/products')
+            .then(response => response.json())
+            .then(data => {
+                const products = document.querySelector('.produits');
+
+                data.forEach((produit) => {
+                    const create = document.createElement('div');
+                    create.classList.add('produit');
+                    create.dataset.id = produit.id;
+
+                    const img = document.createElement('img');
+                    img.src = produit.image;
+                    img.alt = produit.nom;
+
+                    const name = document.createElement('p');
+                    name.textContent = produit.nom;
+
+                    const price = document.createElement('p');
+                    price.textContent = produit.prix + '€';
+
+                    const actions = document.createElement('div');
+                    actions.classList.add('actions');
+
+                    const edit = document.createElement('button');
+                    const del = document.createElement('button');
+
+                    edit.textContent = 'Modifier';
+                    del.textContent = 'Supprimer';
+
+                    edit.addEventListener('click', () => {
+                        const dial = document.querySelector('#edit');
+                        dial.dataset.id = produit.id;
+
+                        document.querySelector('dialog#edit #name').value = produit.nom;
+                        document.querySelector('dialog#edit #price').value = produit.prix;
+                        document.querySelector('dialog#edit #type').value = produit.type;
+                        document.querySelector('dialog#edit #category').value = produit.categorie;
+                        document.querySelector('dialog#edit #image').src = produit.image;
+                        document.querySelector('dialog#edit #taille').value = produit.taille;
+                        document.querySelector('dialog#edit #couleur').value = produit.couleur;
+
+                        dial.showModal();
+                    });
+
+                    del.addEventListener('click', () => {
+                        const dial = document.querySelector('#delete');
+                        document.querySelector('#delete p').innerHTML = `<p>Êtes-vous sûr de vouloir supprimer le produit '${produit.nom}' ?</p>`;
+                        dial.dataset.id = produit.id;
+                        dial.showModal();
+                    });
+
+                    actions.appendChild(edit);
+                    actions.appendChild(del);
+
+                    create.appendChild(img);
+                    create.appendChild(name);
+                    create.appendChild(price);
+                    create.appendChild(actions);
+                    products.appendChild(create);
+
+                })
+            }).catch(err => console.log(err));
+    });
+
+
+
+    add.addEventListener('click', () => {
+        document.querySelector('#add-modal').showModal();
+    });
+
+    forms.forEach((form) => {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+        });
+    })
+
+    const cancelButtons = document.querySelectorAll('.cancel');
+
+    cancelButtons.forEach((button) => {
+        button.addEventListener('click', (e) => {
+            button.parentNode.parentNode.parentNode.close();
+        });
+    });
+
+
+    async function deleteProduct(id) {
+        console.log(id)
+        await fetch(window.location.origin + '/api/products/' + id, {method: 'DELETE'})
+            .then((res) => console.log(res))
+            .catch(err => console.log(err));
+    }
+
+    async function addProduct() {
+        const productToAdd = {
+            nom: document.querySelector('dialog#add-modal #name').value,
+            prix: document.querySelector('dialog#add-modal #price').value,
+            image: document.querySelector('dialog#add-modal #image').value,
+            taille: document.querySelector('dialog#add-modal #taille').value,
+            id_type: document.querySelector('dialog#add-modal #type').value,
+            categorie: document.querySelector('dialog#add-modal #categorie').value,
+            id_couleur: document.querySelector('dialog#add-modal #couleur').value
+        }
+
+        await fetch(window.location.origin + '/api/products', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(productToAdd)
+        })
+            .then((res) => console.log(res))
+            .catch(err => console.log(err));
+    }
+
+    async function editProduct(id) {
+        const editedProduct = {
+            name: document.querySelector('dialog#edit #name').value,
+            prix: document.querySelector('dialog#edit #price').value,
+            image: document.querySelector('dialog#edit #image').value,
+            id_type: document.querySelector('dialog#edit #type').value,
+            categorie: document.querySelector('dialog#edit #categorie').value,
+            taille: document.querySelector('dialog#edit #taille').value,
+            id_couleur: document.querySelector('dialog#edit #couleur').value
+        }
+
+        await fetch(window.location.origin + '/api/products/' + id, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(editedProduct)
+        })
+        // window.location.reload())
+            .then((data) => console.log(data))
+            .catch(err => console.log(err));
+    }
+
+    const validateEditButton = document.querySelector('#edit button[type="submit"]');
+    const validateDeleteButton = document.querySelector('#delete button[type="submit"]');
+    const validateAddButton = document.querySelector('#add-modal button[type="submit"]');
+
+    validateAddButton.addEventListener('click', async () => await addProduct());
+    validateEditButton.addEventListener('click', async () => await editProduct(document.querySelector('dialog#edit').dataset.id));
+    validateDeleteButton.addEventListener('click', async () => await deleteProduct(document.querySelector('dialog#delete').dataset.id));
+
+</script>
+
+</html>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    h1 {
+        text-align: center;
+        margin: 2rem 0;
+    }
+
+    #nombre_produit {
+        text-align: center;
+        margin: 2rem 0;
+    }
+
+    .filtres {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        align-items: center;
+    }
+
+    .filtres form {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .filtres form label {
+        margin-right: 1rem;
+    }
+
+    .filtres form input,
+    .filtres form select {
+        padding: 0.5rem;
+        border: 1px solid var(--primary);
+        border-radius: 0.5rem;
+    }
+
+    .filtres form button {
+        padding: 0.5rem;
+        border: 1px solid var(--primary);
+        border-radius: 0.5rem;
+        background-color: var(--primary);
+        color: #fff;
+    }
+
+    .filtres button {
+        padding: 0.5rem;
+        border: 1px solid var(--primary);
+        border-radius: 0.5rem;
+        color: var(--blue-light);
+        border-color: var(--blue-light);
+        background-color: #fff;
+        cursor: pointer;
+    }
+
+    .filtres button:hover {
+        background-color: var(--blue-light);
+        color: #fff;
+        fill: #fff;
+    }
+
+    .filtres svg#search {
+        fill: var(--blue-light);
+    }
+
+    .produits {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 25px;
+        flex-wrap: wrap;
+        gap: 25px;
+    }
+
+    .produit {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 1rem 0;
+        width: 20%;
+    }
+
+    .produit img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .produit p {
+        margin: 0.5rem 0;
+    }
+
+    .produit button#search, .produit button#edit {
+        padding: 0.5rem;
+        border: 1px solid var(--primary);
+        border-radius: 0.5rem;
+        background-color: var(--primary);
+        color: #fff;
+    }
+
+    div.actions {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        gap: 15px
+    }
+
+    dialog {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        border-radius: 1rem;
+        padding: 1rem;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        display: none;
+    }
+
+    dialog #edit {
+        width: 70%;
+        height: 50%;
+        overflow: hidden;
+    }
+
+    dialog#delete {
+        width: 70%;
+        height: 25%;
+        overflow: hidden;
+    }
+
+    dialog[open] {
+        display: flex;
+    }
+
+    dialog h2 {
+        margin: 1rem 0;
+    }
+
+    dialog button {
+        cursor: pointer;
+    }
+
+    dialog form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    dialog form input {
+        padding: 0.5rem;
+        border: 1px solid var(--primary);
+        border-radius: 0.5rem;
+    }
+
+    dialog form button {
+        padding: 0.5rem;
+        border: 1px solid var(--primary);
+        border-radius: 0.5rem;
+        background-color: var(--primary);
+        color: #fff;
+    }
+
+    dialog form button:hover {
+        background-color: var(--blue-light);
+        color: #fff;
+        fill: #fff;
+    }
+
+    dialog form button#cancel {
+        background-color: #fff;
+        color: var(--blue-light);
+        border-color: var(--blue-light);
+    }
+
+    dialog form button#cancel:hover {
+        background-color: var(--blue-light);
+        color: #fff;
+        fill: #fff;
+    }
+
+    dialog form label {
+        margin-bottom: 0.5rem;
+    }
+
+    dialog form input[type="file"] {
+        padding: 0;
+        border: none;
+    }
+
+    dialog form input[type="file"]::-webkit-file-upload-button {
+        padding: 0.5rem;
+        border: 1px solid var(--primary);
+        border-radius: 0.5rem;
+        background-color: var(--primary);
+        color: #fff;
+        cursor: pointer;
+    }
+
+    dialog form input[type="file"]::-webkit-file-upload-button:hover {
+        background-color: var(--blue-light);
+        color: #fff;
+        fill: #fff;
+    }
+
+    dialog#delete div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+    }
+</style>

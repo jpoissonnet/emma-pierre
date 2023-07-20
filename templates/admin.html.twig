@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Emma Pierre's Jewelry Shop"/>
+    <meta name="keywords" content="Bijoux, Pierre précieuse, Jewelry"/>
+    <meta name="author" content="ESGI's Brahim, Cihan Jules and Kenza"/>
+    <link rel="icon" href="/assets/images/favicon_io/favicon.ico"/>
+    <link rel="stylesheet" href="/css/index.css"/>
+    <script src="/components/navigation/footer.js"></script>
+    <title>Emma Pierre - Panneau d'administration </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Jost&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet"
+    />
+</head>
+
+<body>
+<c-nav></c-nav>
+
+<h1>Admin console</h1>
+
+<section class="services">
+    <div class="service" id="admin/user">
+        <img src="/assets/images/25142.jpg" alt="users">
+        <h2>Utilisateurs</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</p>
+    </div>
+
+    <div class="service" id="admin/product">
+        <img src="/assets/images/21111.jpeg" alt="products">
+        <h2>Produits</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</p>
+    </div>
+
+
+    <div class="service" id="admin/order">
+        <img src="/assets/images/21111.jpeg" alt="order">
+        <h2>Orders</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</p>
+    </div>
+</section>
+
+
+<c-footer></c-footer>
+</body>
+
+<script src="/components/navigation.js"></script>
+
+<script>
+    const services = document.querySelectorAll('.service');
+
+    services.forEach(service => {
+        service.addEventListener('click', () => {
+            window.location.href = '/' + service.id;
+        })
+    })
+
+
+</script>
+
+</html>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .services {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 0 auto;
+        width: 80%;
+        margin-top: 50px;
+    }
+
+    .service {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 300px;
+        height: 300px;
+        border: 1px solid black;
+        border-radius: 10px;
+        margin: 20px;
+        padding: 20px;
+        cursor: pointer;
+    }
+
+    .service img {
+        width: 250px;
+        height: 130px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        object-fit: cover;
+    }
+
+    .service h2 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    .service p {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    h1 {
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    @media screen and (max-width: 768px) {
+        .services {
+            width: 100%;
+        }
+    }
+
+</style>

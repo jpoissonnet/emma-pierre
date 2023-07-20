@@ -3,6 +3,7 @@
 namespace App\Controller\Pages;
 
 use App\Controller\AbstractPageController;
+use App\Routing\Attribute\Guard;
 use App\Routing\Attribute\Route;
 
 class PageController extends AbstractPageController
@@ -67,7 +68,7 @@ class PageController extends AbstractPageController
         return $this->twig->render("uniques.html.twig");
     }
 
-    #[Route("/details", name: "details")]
+    #[Route("/product", name: "product")]
     public function product(): string
     {
         return $this->twig->render("product.html.twig");
@@ -78,14 +79,41 @@ class PageController extends AbstractPageController
     {
         return $this->twig->render("article.html.twig");
     }
+
     #[Route("/connexion", name: "auth")]
     public function auth(): string
     {
         return $this->twig->render("connexion.html.twig");
     }
+
     #[Route("/inscription", name: "inscription")]
     public function inscription(): string
     {
         return $this->twig->render("inscription.html.twig");
+    }
+
+    #[Guard(role: "admin")]
+    #[Route("/admin", name: "admin-console")]
+    public function admin(): string
+    {
+        return $this->twig->render("admin.html.twig");
+    }
+
+    #[Route("/admin/user", name: "user-console")]
+    public function userConsole(): string
+    {
+        return $this->twig->render("admin-user.html.twig");
+    }
+
+    #[Route("/admin/product", name: "product-console")]
+    public function productConsole(): string
+    {
+        return $this->twig->render("admin-product.html.twig");
+    }
+
+    #[Route("/admin/order", name: "order-console")]
+    public function proutConsole(): string
+    {
+        return $this->twig->render("admin-user.html.twig");
     }
 }

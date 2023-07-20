@@ -7,7 +7,7 @@ use App\Routing\Attribute\Route;
 
 class ProductController extends AbstractApiController
 {
-    protected $table = 'PRODUCT';
+    protected $table = 'product';
 
     /**
      * This route can handle a category query parameter
@@ -23,6 +23,30 @@ class ProductController extends AbstractApiController
             $query = $this->db->prepare("SELECT p.nom, p.prix, p.image, p.categorie, p.id, t.nom as 'type' FROM $this->table p inner join `type` t on t.id = p.id_type WHERE categorie = :category");
             $query->execute(['category' => $_GET['category']]);
         }
+        $query = $this->db->query("SELECT * FROM $this->table");
+        $products = $query->fetchAll(\PDO::FETCH_ASSOC);
+
+        return json_encode($products);
+    }
+
+    #[Route("/api/products?category={category}", name: "api_products_filter", httpMethod: "GET")]
+    public function getAllFilter($category)
+    {
+        $query = $this->db->query("SELECT * FROM $this->table p where c.nom = :category");
+        $queryStmt = $this->db->prepare($query);
+        $queryStmt->execute(['category' => $category]);
+        $products = $queryStmt->fetch(\PDO::FETCH_ASSOC);
+
+        echo json_encode($products);
+    }
+
+    #[Route("/api/products/precieuses", name: "api_products_precieuses", httpMethod: "GET")]
+    public function getPrecieuses()
+    {
+        $query = $this->db->query("SELECT p.nom, p.prix, p.image, p.categorie, t.nom as 'type'
+        FROM $this->table p
+        inner join `type` t on t.id = p.id_type
+        where categorie NOT IN ('impertinentes', 'par couleur', 'uniques')");
         $products = $query->fetchAll(\PDO::FETCH_ASSOC);
 
         echo json_encode($products);
@@ -31,8 +55,8 @@ class ProductController extends AbstractApiController
     #[Route("/api/products/{id}", name: "api_details_id", httpMethod: "GET")]
     public function getById(int $id)
     {
-        $query = $this->db->prepare("SELECT p.nom, prix, taille, categorie, c.nom as `couleur`, image 
-        FROM $this->table p inner join couleur c on c.id = p.id_couleur 
+        $query = $this->db->prepare("SELECT p.nom, prix, taille, categorie, c.nom as `couleur`, image
+        FROM $this->table p inner join couleur c on c.id = p.id_couleur
         WHERE p.id = :id");
         $query->execute(['id' => $id]);
         $product = $query->fetch(\PDO::FETCH_ASSOC);
@@ -41,49 +65,56 @@ class ProductController extends AbstractApiController
     }
 
 
-    public function create()
+    #[Route("/api/products", name: "api_products_create", httpMethod: "POST")]
+    public function createProduct()
     {
         $data = json_decode(file_get_contents('php://input'), true);
 
-        $query = $this->db->prepare('INSERT INTO $TABLE (name, email) VALUES (:name, :email)');
-        $query->execute([
-            'name' => $data['name'],
-            'email' => $data['email']
+        return json_encode($data);
+
+        $query = $this->db->query("INSERT INTO $this->table (nom, prix, taille, image, categorie, id_type, id_couleur) VALUES (:nom, :prix, :taille, :image, :categorie, :id_type, :id_couleur)");
+        $queryStmt = $this->db->prepare($query);
+
+        $queryStmt->execute([
+            'nom' => $data['nom'],
+            'prix' => $data['prix'],
+            'taille' => $data['taille'],
+            'image' => $data['image'],
+            'categorie' => $data['categorie'],
+            'id_type' => $data['id_type'],
+            'id_couleur' => $data['id_couleur'],
         ]);
 
-        $id = $this->db->lastInsertId();
-
-        $query = $this->db->prepare('SELECT * FROM $TABLE WHERE id = :id');
-        $query->execute(['id' => $id]);
-        $product = $query->fetch(\PDO::FETCH_ASSOC);
-
-        echo json_encode($product);
+        return json_encode(['message' => 'product created']);
     }
 
-    public function update($id)
+    #[Route("/api/products/{id}", name: "api_products_edit", httpMethod: "PUT")]
+    public function editProduct()
     {
         $data = json_decode(file_get_contents('php://input'), true);
 
-        $query = $this->db->prepare('UPDATE $TABLE SET name = :name, email = :email WHERE id = :id');
-        $query->execute([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'id' => $id
+        $query = $this->db->query("UPDATE $this->table SET nom = :nom, prix = :prix, taille = :taille, image = :image, id_type = :id_type, id_couleur = :id_couleur WHERE id = :id");
+        $queryStmt = $this->db->prepare($query);
+
+        $queryStmt->execute([
+            'nom' => $data['nom'],
+            'prix' => $data['prix'],
+            'taille' => $data['taille'],
+            'image' => $data['image'],
+            'id_type' => $data['id_type'],
+            'id_couleur' => $data['id_couleur'],
+            'id' => $data['id']
         ]);
 
-        $query = $this->db->prepare('SELECT * FROM $TABLE WHERE id = :id');
-        $query->execute(['id' => $id]);
-        $product = $query->fetch(\PDO::FETCH_ASSOC);
-
-        echo json_encode($product);
+        return json_encode(['message' => 'product edited']);
     }
 
+    #[Route("/api/products/{id}", name: "api_product_delete", httpMethod: "DELETE")]
     public function delete($id)
     {
         $query = $this->db->prepare('DELETE FROM $TABLE WHERE id = :id');
         $query->execute(['id' => $id]);
 
-        echo json_encode(['message' => 'User deleted']);
+        echo json_encode(['message' => 'product deleted']);
     }
-
 }

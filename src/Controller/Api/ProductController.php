@@ -29,29 +29,6 @@ class ProductController extends AbstractApiController
         return json_encode($products);
     }
 
-    #[Route("/api/products?category={category}", name: "api_products_filter", httpMethod: "GET")]
-    public function getAllFilter($category)
-    {
-        $query = $this->db->query("SELECT * FROM $this->table p where c.nom = :category");
-        $queryStmt = $this->db->prepare($query);
-        $queryStmt->execute(['category' => $category]);
-        $products = $queryStmt->fetch(\PDO::FETCH_ASSOC);
-
-        echo json_encode($products);
-    }
-
-    #[Route("/api/products/precieuses", name: "api_products_precieuses", httpMethod: "GET")]
-    public function getPrecieuses()
-    {
-        $query = $this->db->query("SELECT p.nom, p.prix, p.image, p.categorie, t.nom as 'type'
-        FROM $this->table p
-        inner join `type` t on t.id = p.id_type
-        where categorie NOT IN ('impertinentes', 'par couleur', 'uniques')");
-        $products = $query->fetchAll(\PDO::FETCH_ASSOC);
-
-        echo json_encode($products);
-    }
-
     #[Route("/api/products/{id}", name: "api_details_id", httpMethod: "GET")]
     public function getById(int $id)
     {
@@ -63,7 +40,6 @@ class ProductController extends AbstractApiController
 
         echo json_encode($product);
     }
-
 
     #[Route("/api/products", name: "api_products_create", httpMethod: "POST")]
     public function createProduct()

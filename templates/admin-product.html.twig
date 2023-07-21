@@ -188,16 +188,25 @@
     const edit = document.querySelector('#edit');
     const del = document.querySelector('#delete');
     const forms = document.querySelectorAll('form');
+    let typesArray = null;
+    let colorsArray = null;
 
     window.addEventListener('load', async () => {
         await fetch(window.location.origin + '/api/couleurs')
             .then((res) => res.json())
             .then((data) => {
                 const couleurs = document.querySelectorAll('#couleur');
+                colorsArray = []
 
                 couleurs.forEach((couleur) => {
                     data.forEach((coul) => {
                         const option = document.createElement('option');
+
+                        colorsArray.push({
+                            id: coul.id,
+                            nom: coul.nom
+                        })
+
                         option.value = coul.id;
                         option.textContent = coul.nom;
 
@@ -211,10 +220,17 @@
             .then((res) => res.json())
             .then((data) => {
                 const types = document.querySelectorAll('#type');
+                typesArray = []
 
                 types.forEach((type) => {
                     data.forEach((tp) => {
                         const option = document.createElement('option');
+
+                        typesArray.push({
+                            id: tp.id,
+                            nom: tp.nom
+                        })
+
                         option.value = tp.id;
                         option.textContent = tp.nom;
 
@@ -257,15 +273,17 @@
                         const dial = document.querySelector('#edit');
                         dial.dataset.id = produit.id;
 
-                        console.log(produit)
-                        console.log(document.querySelector('dialog#edit #couleur'))
+                        const productType = typesArray.find((tp) => tp.nom === produit.type);
+                        const productColo = colorsArray.find((cl) => cl.nom === produit.couleur)
+                        console.log(productColo)
+
                         document.querySelector('dialog#edit #name').value = produit.nom;
                         document.querySelector('dialog#edit #price').value = produit.prix;
-                        document.querySelector('dialog#edit #type').selected = produit.type;
+                        document.querySelector('dialog#edit #type').value = productType.id;
                         document.querySelector('dialog#edit #categorie').value = produit.categorie;
                         document.querySelector('dialog#edit #image').src = produit.image;
-                        document.querySelector('dialog#edit #taille').selected = produit.taille;
-                        document.querySelector('dialog#edit #couleur').selected = produit.couleur;
+                        document.querySelector('dialog#edit #taille').value = produit.taille;
+                        document.querySelector('dialog#edit #couleur').value = productColo.id;
 
                         dial.showModal();
                     });

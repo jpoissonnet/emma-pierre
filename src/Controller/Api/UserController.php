@@ -59,7 +59,7 @@ class UserController extends AbstractApiController
             'password' => $hashedPassword,
             'nom' => $nom,
             'prenom' => $prenom,
-            'id_role' => 2
+            'id_role' => 1
         ]);
 
 
@@ -156,36 +156,22 @@ class UserController extends AbstractApiController
     {
         $data = json_decode(file_get_contents('php://input'), true);
 
-        $login = $data['login'];
         $nom = $data['nom'];
         $prenom = $data['prenom'];
+        $id_role = $data['id_role'];
         //TODO: handle rue
         //TODO: handle ville
 
-        $query = $this->db->prepare('SELECT * FROM user WHERE login = :login');
-        $query->execute([
-            'login' => $login
-        ]);
-        $user = $query->fetch();
-
-        if ($user) {
-            header('Content-Type: application/json', true, 409);
-            return json_encode([
-                'message' => 'User already exists'
-            ]);
-        }
-
-        $query = $this->db->prepare('UPDATE user SET login = :login, nom = :nom, prenom = :prenom, id_role = :id_role WHERE id = :id');
+        $query = $this->db->prepare('UPDATE user SET nom = :nom, prenom = :prenom, id_role = :id_role WHERE id = :id');
         $query->execute([
             'id' => $id,
-            'login' => $login,
             'nom' => $nom,
             'prenom' => $prenom,
-            'id_role' => 2
+            'id_role' => $id_role
         ]);
 
 
-        header('Content-Type: application/json', true, 201);
+        header('Content-Type: application/json', true, 200);
         return json_encode([
             'message' => 'User edited',
             'body' => $data

@@ -81,6 +81,11 @@
         <label for="firstname">Prénom</label>
         <input type="text" name="firstname" id="firstname" placeholder="Prénom" required/>
 
+        <select name="role" id="role">
+            <option value="2">Admin</option>
+            <option value="1">User</option>
+        </select>
+
         <label for="address">Adresse</label>
         <input type="text" name="address" id="address" placeholder="Adresse" required/>
 
@@ -215,6 +220,7 @@
             login: document.querySelector('dialog form input[name="login"]').value,
             nom: document.querySelector('dialog form input[name="firstname"]').value,
             prenom: document.querySelector('dialog form input[name="lastname"]').value,
+            id_role: document.querySelector('dialog form select[name="role"]').value,
         }
 
         fetch(window.location.origin + '/api/users/' + id, {

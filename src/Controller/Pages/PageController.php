@@ -99,18 +99,21 @@ class PageController extends AbstractPageController
         return $this->twig->render("admin.html.twig");
     }
 
+    #[Guard(role: "admin")]
     #[Route("/admin/user", name: "user-console")]
     public function userConsole(): string
     {
         return $this->twig->render("admin-user.html.twig");
     }
 
+    #[Guard(role: "admin")]
     #[Route("/admin/product", name: "product-console")]
     public function productConsole(): string
     {
         return $this->twig->render("admin-product.html.twig");
     }
 
+    #[Guard(role: "admin")]
     #[Route("/admin/order", name: "order-console")]
     public function proutConsole(): string
     {

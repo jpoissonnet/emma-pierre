@@ -1,6 +1,6 @@
 # Sciences-U - B3 IW - PHP MVC - 2023
 
-Participants: Kenza SCHULER, Brahim Boutajat, Jules POISSONNET, Cihan KAFADAR
+Participants: Kenza SCHULER, Brahim Boutagjat, Jules POISSONNET, Cihan KAFADAR
 
 ## Démarrage
 

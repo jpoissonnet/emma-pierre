@@ -122,6 +122,7 @@
 <script>
     const dialog = document.querySelectorAll('dialog');
     const forms = document.querySelectorAll('form');
+    const cancels = document.querySelectorAll('.cancel');
 
     window.addEventListener('load', () => {
         fetch(window.location.origin + '/api/users')
@@ -241,6 +242,13 @@
             e.preventDefault();
         });
     })
+
+    cancels.forEach((cancel, index) => {
+        cancel.addEventListener('click', (e) => {
+            e.preventDefault();
+            dialog[index].close();
+        });
+    });
 
 
 </script>

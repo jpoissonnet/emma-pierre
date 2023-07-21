@@ -74,12 +74,12 @@ class ProductController extends AbstractApiController
     {
         $data = json_decode(file_get_contents('php://input'), true);
 
-        $query = $this->db->prepare("UPDATE $this->table SET nom = :nom, prix = :prix, taille = :taille, image = :image, id_type = :id_type, id_couleur = :id_couleur WHERE id = :id");
+        $query = $this->db->prepare("UPDATE $this->table SET nom = :nom, prix = :prix, taille = :taille, categorie=:categorie, id_type = :id_type, id_couleur = :id_couleur WHERE id = :id");
         $query->execute([
             'nom' => $data['nom'],
             'prix' => $data['prix'],
             'taille' => $data['taille'],
-            'image' => $data['image'],
+            'categorie' => $data['categorie'],
             'id_type' => $data['id_type'],
             'id_couleur' => $data['id_couleur'],
             'id' => $id,

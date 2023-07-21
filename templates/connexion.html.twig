@@ -127,7 +127,7 @@
         }).then(async (res) => {
             if (res.status === 200) {
                 const {session} = await res.json();
-                localStorage.setItem('session', session);
+                document.cookie = `session_id=${session}`;
                 window.location.href = "/";
             } else {
                 alert("Login ou mot de passe incorrect");

@@ -12,15 +12,15 @@ class UserController extends AbstractApiController
     public function getUsers()
     {
         try {
-            $this->db->query('SELECT * FROM user');
-            $users = $this->db->fetchAll();
+            $query = $this->db->query('SELECT * FROM user');
+            $users = $query->fetchAll(\PDO::FETCH_ASSOC);
 
             header('Content-Type: application/json', true, 200);
             return json_encode($users);
         } catch (\Throwable $th) {
             header('Content-Type: application/json', true, 500);
             return json_encode([
-                'message' => 'Internal error while trying to fetch users'
+                'message' => 'Internal error while trying to fetch users' . $th->getMessage()
             ]);
         }
 
@@ -134,6 +134,61 @@ class UserController extends AbstractApiController
         header('Content-Type: application/json', true, 200);
         return json_encode([
             'message' => 'User disconnected'
+        ]);
+    }
+
+    #[Route("/api/users/{id}", name: "api_user_delete", httpMethod: "DELETE")]
+    public function deleteUser(int $id) {
+        $query = $this->db->prepare('DELETE FROM user WHERE id = :id');
+        $query->execute([
+            'id' => $id
+        ]);
+
+        header('Content-Type: application/json', true, 200);
+        return json_encode([
+            'message' => 'User deleted'
+        ]);
+    }
+
+
+    #[Route("/api/users/{id}", name: "api_users_put", httpMethod: "PUT")]
+    public function editUser(int $id)
+    {
+        $data = json_decode(file_get_contents('php://input'), true);
+
+        $login = $data['login'];
+        $nom = $data['nom'];
+        $prenom = $data['prenom'];
+        //TODO: handle rue
+        //TODO: handle ville
+
+        $query = $this->db->prepare('SELECT * FROM user WHERE login = :login');
+        $query->execute([
+            'login' => $login
+        ]);
+        $user = $query->fetch();
+
+        if ($user) {
+            header('Content-Type: application/json', true, 409);
+            return json_encode([
+                'message' => 'User already exists'
+            ]);
+        }
+
+        $query = $this->db->prepare('UPDATE user SET login = :login, nom = :nom, prenom = :prenom, id_role = :id_role WHERE id = :id');
+        $query->execute([
+            'id' => $id,
+            'login' => $login,
+            'nom' => $nom,
+            'prenom' => $prenom,
+            'id_role' => 2
+        ]);
+
+
+        header('Content-Type: application/json', true, 201);
+        return json_encode([
+            'message' => 'User edited',
+            'body' => $data
         ]);
     }
 }
